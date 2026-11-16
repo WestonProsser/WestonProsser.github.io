@@ -8,8 +8,8 @@
 <meta property="og:title" content="Weston Prosser | Electrical Engineering Portfolio">
 <meta property="og:description" content="Weston Prosser, electrical engineering student at UC San Diego. Circuit boards, wire harnesses, and electrical repair work, with photos and write-ups.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://grumpyzpants.github.io/img/hero-rover-poster.jpg">
-<meta property="og:url" content="https://grumpyzpants.github.io/">
+<meta property="og:image" content="https://westonprosser.github.io/img/hero-rover-poster.jpg">
+<meta property="og:url" content="https://westonprosser.github.io/">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
@@ -328,6 +328,9 @@ figure { margin: 0; }
 figcaption { margin-top: 10px; font-size: 15px; line-height: 1.5; font-style: italic; color: var(--muted); }
 figcaption .fig { margin-right: 8px; font-family: var(--font-mono); font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
 .todo { padding: 16px 18px; border: 1px dashed var(--line-strong); border-radius: 6px; font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: var(--muted); }
+.p-note { margin: clamp(48px, 7vw, 88px) 0 0; max-width: 40em; font-size: 16px; line-height: 1.6; color: var(--muted); }
+.p-note span { margin-right: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
+.p-note + .next { margin-top: 32px; }
 .next { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-top: clamp(64px, 9vw, 112px); padding-block: 28px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; }
 .next strong { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 36px); font-weight: 700; line-height: 1.15; }
 .next:hover strong { color: var(--accent); }
@@ -386,6 +389,8 @@ figcaption .fig { font-size: 13px; }
 .points { margin: 0 0 1em; padding-left: 1.2em; max-width: 34em; font-size: 19px; line-height: 1.6; }
 .points li { margin-bottom: 0.55em; }
 .p-head .lead + .lead { margin-top: 14px; }
+.p-head .lead-sub { margin: 14px 0 0; font-size: 17px; line-height: 1.6; color: var(--muted); max-width: 62ch; }
+.p-head .lead + .lead-sub { margin-top: 18px; }
 
 /* Linked media, before/after pairs, scroll progress */
 a.media { display: block; color: inherit; }
@@ -683,16 +688,16 @@ a.zoomable { cursor: zoom-in; }
       </article>
 
       <article class="proj" data-reveal>
-        <div class="media"><video muted loop playsinline preload="none" poster="img/bench-poster.jpg" aria-label="Test bench with a power supply, an ODrive motor controller, a NEO motor, and a laptop running the ODrive setup tool"><source src="media/bench-loop.mp4" type="video/mp4"></video></div>
+        <a class="media" href="#motor-bench"><video muted loop playsinline preload="none" poster="img/bench-poster.jpg" aria-label="Test bench with a power supply, an ODrive motor controller, a NEO motor, and a laptop running the ODrive setup tool. Open the write-up."><source src="media/bench-loop.mp4" type="video/mp4"></video></a>
         <div class="proj-body">
           <div>
             <div class="label"><span class="num">04</span>Yonder Dynamics</div>
             <h3>Motor Test Bench</h3>
           </div>
           <div class="proj-text">
-            <p>My bench for running NEO 550 motors from an ODrive or a SPARK MAX, and for fixing broken ODrives.</p>
-            <ul class="tags"><li>ODrive</li><li>SPARK MAX</li><li>Repair</li></ul>
-            <span class="soon">Write-up coming</span>
+            <p>A small bench for testing and running NEO 550 motors from an ODrive Pro or a SPARK MAX.</p>
+            <ul class="tags"><li>ODrive</li><li>SPARK MAX</li><li>Testing</li></ul>
+            <a class="more" href="#motor-bench">Read the write-up →</a>
           </div>
         </div>
       </article>
@@ -843,9 +848,10 @@ a.zoomable { cursor: zoom-in; }
     <div class="about">
       <div data-reveal>
         <p>I'm an electrical engineering student at UC San Diego, graduating in 2028. I transferred in from Sierra College.</p>
-        <p>I learn best by building something and then finding out why it doesn't work. Most of the projects on this page started that way.</p>
-        <p>A lot of it happens at Yonder Dynamics, the rover team, where I design boards, build wire harnesses, and repair motor controllers. The rest happens at my desk or on somebody's boat.</p>
-        <p>Power electronics, motors, and optics are what I want to work on.</p>
+        <p>I learn best by prototyping and building something, and I excel at finding out why it doesn't work. Most of the projects on this page started that way.</p>
+        <p>A majority of my projects are from my time at Yonder Dynamics, working on the electrical subteam. The rest happens at my desk or on somebody's boat.</p>
+        <p>Power electronics, PCB design, motors, and optics are what I want to work on.</p>
+        <p>I have a passion for reading, volleyball, golf, and music. I love late-night walks, camping, and our family dogs.</p>
         <figure style="margin: 8px 0 24px">
           <a class="media natural zoomable" href="img/workbench.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="1085" src="img/workbench.jpg" alt="A desk with a 3D printer, a cabinet of small parts drawers, a soldering mat, and a small pink fume fan"></a>
           <figcaption>My bench at home. The pink box on the right is the fume fan, with the adapter I printed for it.</figcaption>
@@ -888,8 +894,9 @@ a.zoomable { cursor: zoom-in; }
       <div>
         <div class="label">Sierra College circuits lab · 2025</div>
         <h1 class="p-title">8-Bit Light Meter</h1>
-        <p class="lead">A light meter made from logic chips. No microcontroller, no code. It turns light into an 8-bit number, subtracts the room's light, and shows what's left on LEDs.</p>
-        <p class="lead">It started as a lab in my circuits class at Sierra College. We were handed an outline of the circuit, and the rest was ours to figure out. Afterward I turned mine into my first PCB.</p>
+        <p class="lead">A light meter made purely from logic chips. No microcontroller and no code. It turns light into an 8-bit number, with the ability to subtract the room's current light level, and shows the remaining output on the LEDs.</p>
+        <p class="lead-sub">It started as a lab in my circuits class at Sierra College. The experience of working as a team, designing, testing, and debugging became the foundation for my future work.</p>
+        <p class="lead-sub">We were only given the outline of the circuit. The rest was for us to figure out. It was built in a group of four, where I took the lead design role. Afterwards, I turned this design into my first PCB, designed in EasyEDA.</p>
         <ul class="tags"><li>Logic design</li><li>ADC</li><li>Breadboarding</li><li>Debugging</li><li>First PCB</li></ul>
       </div>
       <dl class="spec">
@@ -900,7 +907,8 @@ a.zoomable { cursor: zoom-in; }
         <div><dt>Display</dt><dd>One LED per bit</dd></div>
         <div><dt>Reset</dt><dd>Push button on the converter chip</dd></div>
         <div><dt>Supply</dt><dd>5 V and 12 V</dd></div>
-        <div><dt>Status</dt><dd>Breadboard working. PCB made, not fully soldered.</dd></div>
+        <div><dt>Status</dt><dd>Breadboard working. PCB made in EasyEDA, never soldered or tested.</dd></div>
+        <div><dt>Team</dt><dd>Group of four. I led the design.</dd></div>
       </dl>
     </div>
 
@@ -908,9 +916,10 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>Reading the light</h2></div>
         <div>
-          <p>A photoresistor sits in one arm of a Wheatstone bridge. As the light changes, the bridge output swings between 0 and 5 V, dark to bright.</p>
-          <p>The ADC0804 turns that voltage into a number from 0 to 255.</p>
-          <p>Picking the bridge resistors was trial and error. Change a value, cover the sensor, watch the meter, and repeat until the output sat near 0 V in the dark and near 5 V in the light.</p>
+          <p>A photoresistor sits inside a black PLA housing, attached to a Wheatstone bridge. As the light level changes, the bridge output swings between roughly 0 V and 5 V.</p>
+          <p>One of the major challenges with this circuit was finding a resistor combination that would give a close-to-linear output. A photoresistor in a Wheatstone bridge naturally gives a non-linear result when the resistor values are not tuned properly. Getting 2.5 V at ambient light, with even swings up to 5 V and down to 0 V, took hours of testing resistor combinations. The output never quite reached 0 V, so the goal was the combination that got as close to both ends as possible.</p>
+          <p>Figure 2 documents this process: repeated testing until the desired results were achieved.</p>
+          <p>The ADC0804 takes the voltage and turns it into a binary number from 0 to 255.</p>
         </div>
       </div>
       <div class="figs two">
@@ -929,8 +938,10 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>Zeroing out the room</h2></div>
         <div>
-          <p>A room is never fully dark, so the raw reading never starts at zero. Eight switches along the bottom set a number to subtract.</p>
-          <p>XOR gates and two 4-bit adders take that number off the reading, so the display reads zero in normal room light. That's two's complement subtraction, which I had to learn in order to build it.</p>
+          <p>Once roughly 2.5 V was achieved at ambient light levels, we built this into our circuit. However, to make sure the circuit worked in any condition, a "tare" feature was added.</p>
+          <p>Eight switches sit in the bottom left (Figure 3), allowing the user to zero the reading at any desired light level.</p>
+          <p>This works using XOR gates, controlled by the SPDT switch seen in the bottom right (Figure 3), and two 4-bit adders. Together, the XOR gates and adders take the switch number off the reading, so the display reads zero in the chosen room light.</p>
+          <p>This is done through two's complement subtraction, which I learned in order to build this circuit.</p>
         </div>
       </div>
       <div class="figs">
@@ -945,16 +956,17 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Hours of debugging</h2></div>
         <div>
-          <p>This was a long lab, and most of the hours went into finding out why something didn't work. The problems that ate the most time:</p>
+          <p>This was easily one of the longest projects I've ever worked on. Countless hours went into debugging my own circuit and other lab groups' circuits. Some of the problems encountered were:</p>
           <ul class="points">
-            <li><strong>Bridge resistors.</strong> Getting a clean 0 V and a clean 5 V out of the bridge.</li>
-            <li><strong>LED resistors.</strong> Bright enough to read, dim enough to look at.</li>
-            <li><strong>Reset button.</strong> The converter needed a push-button reset. I ended up pulling pins off the button and reworking the wiring so it only touches ground while it's pressed.</li>
+            <li><strong>Bridge resistors.</strong> Getting the bridge output as close to 0 V and 5 V as possible.</li>
+            <li><strong>LED resistors.</strong> Bright enough to read, dim enough to not outshine the other LEDs.</li>
+            <li><strong>Reset button.</strong> The converter needed a push-button reset. I ended up pulling pins off the button and reworking the wiring so it only touches ground while it's pressed, and doesn't accidentally bridge a connection while unpressed.</li>
             <li><strong>Zeroing.</strong> Built from the switches and XOR gates, once I understood how binary subtraction works.</li>
-            <li><strong>Moving to chips.</strong> Scaling up from transistor circuits to logic chips, and debugging each chip as it went in.</li>
-            <li><strong>Layout.</strong> Arranging the LEDs and wires so I could trace any signal by eye. That paid off every time something broke.</li>
+            <li><strong>Moving to chips.</strong> Scaling up from transistor circuits to logic chips, and debugging each chip as it went in. This ate up far too many hours, as each chip had a unique quirk and it was my first time using ICs.</li>
+            <li><strong>Layout.</strong> Arranging the LEDs and wires so I could trace any signal by eye. It was a pain, but it paid off every time something broke.</li>
           </ul>
-          <p>A fair share of those hours went to debugging classmates' circuits too.</p>
+          <p>Each IC added more complexity and took a number of hours to implement. While each IC saved space, supplying a clean voltage, working out which pins should do what, and understanding the internal logic became a challenge.</p>
+          <p>While this was once a nightmare, it is now a regular part of my design process, and it taught me a lot about design revisions and debugging.</p>
         </div>
       </div>
       <div class="figs">
@@ -969,8 +981,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">04</div><h2>From breadboard to PCB</h2></div>
         <div>
-          <p>Once the breadboard worked, I laid the circuit out as a PCB. Nobody assigned that part. It was my first board.</p>
-          <p>The boards came back and the chips fit. I haven't finished soldering it yet.</p>
+          <p>Once the class ended, I created a PCB version. This was out of my own interest, to see if I could create a PCB.</p>
+          <p>The board came back and all the components fit. However, because I transferred to UCSD, the board was never soldered and tested.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1164,8 +1176,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>The job</h2></div>
         <div>
-          <p>The rover's arm rides on a linear slide, which gives the arm one more direction to move. Before the ODrive can position the arm, it has to find one end of the rail and call that zero.</p>
-          <p>That takes a sensor at the end of the rail and a homing routine in the ODrive.</p>
+          <p>During the 2025–2026 design year, a new linear rail was added to give the arm another axis of freedom. For the operators to know the position of the arm, a homing sequence needed to be created. There was also no detection to indicate when the slide had reached the end of the rail.</p>
+          <p>The ODrive could handle many of these features, but a physical sensor and a software setup were in order.</p>
         </div>
       </div>
       <div class="figs">
@@ -1180,8 +1192,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>On paper first</h2></div>
         <div>
-          <p>I worked it out in my notebook first: which ODrive pins to use, where the sensor sits on the rail, the circuit, and the homing steps.</p>
-          <p>One note on that page carried straight into version 2. A limit switch should be wired normally closed, so a broken wire stops the slide instead of letting it run.</p>
+          <p>I worked out the requirements and the general idea on paper: the ODrive's GPIO, the slide's mechanical constraints, and the circuit diagram to be implemented.</p>
+          <p>Notably, version 2 took heavy inspiration from version 1. It carries over the normally-closed (NC) wiring noted on this page, for the reason written there.</p>
         </div>
       </div>
       <div class="figs" style="max-width: 520px">
@@ -1196,8 +1208,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Breadboard test</h2></div>
         <div>
-          <p>The first test was on a breadboard, with an ESP32 reading the sensor and printing the result to my laptop.</p>
-          <p>Bring a magnet close and the output flips. The LEDs show it.</p>
+          <p>The first tests were performed on a breadboard, using an ESP32 to read the Hall-effect sensor and print the results directly to my laptop.</p>
+          <p>When the magnet is brought close, the output flips. This shows as the green LED turning off and the red LED turning on.</p>
         </div>
       </div>
       <div class="figs wide-narrow">
@@ -1216,7 +1228,7 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">04</div><h2>Build and mount</h2></div>
         <div>
-          <p>Then the circuit moved to perfboard, with a status LED and a sleeved cable running to the ODrive.</p>
+          <p>The circuit then moved to perfboard as a rapid prototyping solution. A cable sleeve and a JST connector were added for quick attachment and detachment, and a back-up board was made in case any issue came up.</p>
           <p>The mechanical team designed the bracket. I gave them the dimensions and asked for the zip-tie points and the cable cover.</p>
         </div>
       </div>
@@ -1240,9 +1252,10 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">05</div><h2>Getting the ODrive to see it</h2></div>
         <div>
-          <p>At first the ODrive didn't see the sensor at all. The input wasn't being detected, and nothing changed in the ODrive tool no matter what the sensor did.</p>
-          <p>That turned into a long goose chase. The cause was one setting: sampling was turned off on that input. With GPIO 7 set as a digital input, the minimum endstop pointed at it and switched on, and "active high" set to match the sensor, it worked.</p>
-          <p>I wrote the settings up for the team, along with how to watch the sensor's state live in the ODrive tool. After that, the sensor stopped the slide at the end of its travel.</p>
+          <p>Initial testing made it look like the ODrive didn't see the sensor. The input never changed on screen, even though the status LEDs worked as expected.</p>
+          <p>This led to a long debugging process and hours of testing in the ODrive GUI. The issue was simply that the ODrive tool wasn't sampling live, so the sensor's state never updated on screen. This is best shown in Figure 9, where the arrow points to the on/off button for sampling.</p>
+          <p>Once that was fixed, GPIO 7 was set as the digital input, the minimum endstop was pointed at it, and the "active high" setting was selected. The result is the working slide in the video at the top of this page. I included a brief write-up to document the process for future use.</p>
+          <p>The ODrive is set up with a revolution limit. When the rover is powered on, the slide moves to the end position, hits the endstop, then runs a set number of revolutions back to the middle position. The ODrive then sets software limits for each end of the linear slide, similar to a 3D printer.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1252,7 +1265,7 @@ a.zoomable { cursor: zoom-in; }
         </figure>
         <figure>
           <a class="media natural zoomable" href="img/odrive-inspector.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="908" src="img/odrive-inspector.png" alt="ODrive tool screenshot with a hand-drawn arrow pointing at the run button"></a>
-          <figcaption><span class="fig">Fig. 9</span> From my note to the team: press run to watch the sensor's state live.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> The ODrive tool. The arrow points to the button that turns sampling on and off.</figcaption>
         </figure>
       </div>
     </section>
@@ -1261,8 +1274,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">06</div><h2>Why there is a version 2</h2></div>
         <div>
-          <p>The sensor worked. The magnet was the weak point. The slide is small, and the magnet wouldn't fit or hold well on it. If it fell off, the slide would have no endstop at all.</p>
-          <p>The software team also liked the idea of a physical switch. A switch gives up some speed and precision, but it stays well within what the slide needs. That became the <a href="#endstop">limit switch board</a>.</p>
+          <p>The sensor worked, but the magnet was the weak point. The slide was small and the magnet simply didn't hold well. If it happened to fall off, the slide would have no endstop.</p>
+          <p>The idea of a physical switch was first raised by the software team, and after a brief discussion a version 2 was created. A switch ultimately gives up some precision and speed, but it stays well within what the slide needs. That became the <a href="#endstop">limit switch board</a>.</p>
         </div>
       </div>
     </section>
@@ -1286,15 +1299,15 @@ a.zoomable { cursor: zoom-in; }
       <div>
         <div class="label">Personal project · 2022–24</div>
         <h1 class="p-title">Speed Boat Electrical Repair</h1>
-        <p class="lead">A friend's speed boat whose engine bay filled with water, twice. I repaired the electrical system in 2022. Then it flooded again, and I did it all again in 2023. I'm its mechanic.</p>
+        <p class="lead">A friend's speed boat whose engine bay filled with water, twice. I repaired the electrical system in 2022 and 2023. I also fixed many mechanical issues with the boat.</p>
         <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li><li>Starting and charging</li><li>Troubleshooting</li></ul>
       </div>
       <dl class="spec">
         <div><dt>Engine</dt><dd>Mercury MerCruiser 3.0 L</dd></div>
         <div><dt>Drive</dt><dd>MerCruiser Alpha One</dd></div>
-        <div><dt>Replaced</dt><dd>Starter, alternator (twice), ignition switch, hydraulic pump, belt</dd></div>
-        <div><dt>Added</dt><dd>In-line fuse between the battery and the ignition line</dd></div>
-        <div><dt>Also</dt><dd>Redid the crimps, battery cables included. Fixed the drive's hydraulics. Removed a lot of rust.</dd></div>
+        <div><dt>Replaced</dt><dd>Starter (twice), alternator, ignition switch, hydraulic pump and lines, belt</dd></div>
+        <div><dt>Added</dt><dd>15 A in-line fuse between the battery and the ignition</dd></div>
+        <div><dt>Also</dt><dd>Redid the crimps, battery cables included. Flushed the hydraulic lines. Removed a lot of rust.</dd></div>
         <div><dt>Status</dt><dd>Running</dd></div>
       </dl>
     </div>
@@ -1303,8 +1316,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>What I found</h2></div>
         <div>
-          <p>There was rusty water pooled under the engine, and everything mounted low had been soaking in it.</p>
-          <p>The starter was rusted solid. With it out, I could see rust on the flywheel teeth behind it too.</p>
+          <p>I found the boat in a poor state, with a rusty pool of water in the engine bay.</p>
+          <p>The starter was rusted solid. With it out, I could see the rust had extended to the flywheel teeth behind it.</p>
         </div>
       </div>
       <div class="figs three">
@@ -1327,7 +1340,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>Starter and alternator</h2></div>
         <div>
-          <p>Old starter out, new starter in. The alternator got replaced in 2022. After the second flood it needed another one in 2023, and I redid the crimps on its wiring both times.</p>
+          <p>After pulling the old starter out and crimping new terminal connections, I replaced the starter. After the boat flooded a second time in 2023, I replaced it once more. That second time, I had to redo all the crimps again.</p>
+          <p>A new alternator also went in during the 2023 round.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1346,8 +1360,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Battery and a new fuse</h2></div>
         <div>
-          <p>I added an in-line fuse between the battery and the ignition line. If that wire ever shorts, the fuse goes before the wire does.</p>
-          <p>I also redid the crimps on the battery cables.</p>
+          <p>I added an in-line fuse between the battery and the ignition, which has saved an untold number of electronics. This 15 A fuse has blown a number of times, due to poor pre-existing connections and other unknown issues.</p>
+          <p>I also had to redo the battery cable crimps after they, quite literally, disintegrated when I moved them.</p>
         </div>
       </div>
       <div class="figs two" style="max-width: 760px">
@@ -1366,7 +1380,7 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">04</div><h2>Ignition switch</h2></div>
         <div>
-          <p>The ignition switch got replaced in 2023. Every wire on it has a numbered tag, so each one goes back on the right terminal.</p>
+          <p>The ignition switch also failed in 2023, which led to me replacing its wires as well. I tagged each one to make sure they went back on in the correct order.</p>
         </div>
       </div>
       <div class="figs two" style="max-width: 760px">
@@ -1385,7 +1399,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">05</div><h2>Drive hydraulics</h2></div>
         <div>
-          <p>The hydraulic pump that moves the drive was badly corroded, with green and orange crust around its wiring. I fixed the drive's hydraulics in 2022 and replaced the pump in 2023.</p>
+          <p>The hydraulic pump was also badly corroded, and it fell apart when simply touched. After a long process of finding a replacement, I rewired the connections and got it running again. However, the lines had to be flushed because water had gotten into the hydraulic fluid.</p>
+          <p>The hydraulic lines themselves were removed and replaced after the seals began to fail. This required us to ratchet strap the drive in an upright position to reach all the threaded connections.</p>
         </div>
       </div>
       <div class="figs wide-narrow">
@@ -1406,12 +1421,12 @@ a.zoomable { cursor: zoom-in; }
         <div>
           <p>After the first round of repairs it filled with water again, and many of the same parts had to be replaced a second time.</p>
           <ul class="points">
-            <li><strong>2022.</strong> New alternator. Redid the crimps, battery cables included. Fixed the drive's hydraulics. Cleaned the boat.</li>
-            <li><strong>2023, after the second flood.</strong> Another alternator, and the crimps again. New hydraulic pump. New ignition switch. Fixed the overhead speakers after a connection broke. Cleaned it again.</li>
-            <li><strong>2024.</strong> New belt, after the old one snapped.</li>
+            <li><strong>2022.</strong> New starter. Redid the crimps, battery cables included. Cleaned the boat.</li>
+            <li><strong>2023, after the second flood.</strong> Another starter, a new alternator, and the crimps again. New hydraulic pump. New ignition switch. Fixed the overhead speakers after a connection broke. Cleaned it again.</li>
+            <li><strong>2024.</strong> New belt, after the old one snapped mid-use.</li>
           </ul>
-          <p>In 2022 and 2023 there was also a lot of rust removal, with a rust solvent and a steel brush.</p>
-          <p>It starts and it runs.</p>
+          <p>In 2022 and 2023 there was also a lot of rust to remove. The rust had degraded the health of many components on the boat. Although it was cleaned with a rust solvent and a steel brush, the boat overall remains in a degraded state, as it is simply too expensive to replace everything needed.</p>
+          <p>These days it starts and runs with little to no issue.</p>
         </div>
       </div>
     </section>
@@ -1432,18 +1447,20 @@ a.zoomable { cursor: zoom-in; }
       <div>
         <div class="label">Yonder Dynamics · 2026</div>
         <h1 class="p-title">Rover Power and Wiring</h1>
-        <p class="lead">Every motor controller on the rover's arm sits behind a small fuse board. I soldered those boards, tested one across its whole voltage range, and I build the rover's wire harnesses.</p>
-        <p class="lead">The fuse boards were designed by Aaron Lee, one of the team's two electrical leads.</p>
+        <p class="lead">During the 2025–2026 design year, I was involved in the overhaul of the power distribution board (PDB) and the new fuse board implementation on the rover.</p>
+        <p class="lead-sub">The rover switched from a 12 V design to a 24 V design. This required a redesigned PDB, which I helped wire by making a number of the XT90, XT60, and XT30 connections.</p>
+        <p class="lead-sub">Two fuse boards were also designed during this time by Aaron Lee, one of the two electrical leads for the 2026–2027 design year.</p>
+        <p class="lead-sub">I was directly involved with both the PDB and the fuse boards during development and later testing.</p>
         <ul class="tags"><li>Soldering</li><li>Testing</li><li>Crimping</li><li>Harnesses</li></ul>
       </div>
       <dl class="spec">
-        <div><dt>Board</dt><dd>ODrive S1 fuse board, Mark 2</dd></div>
+        <div><dt>Board</dt><dd>ODrive S1 fuse board, Mark 2. The older version, without heatsinks.</dd></div>
         <div><dt>Design</dt><dd>Aaron Lee</dd></div>
-        <div><dt>My part</dt><dd>Soldering, testing, and harnesses. I also proposed using these boards on the arm, and ring terminals for the power connections.</dd></div>
+        <div><dt>My part</dt><dd>Soldering, testing, PDB wiring, and harnesses. I also proposed using these boards on the arm, and ring terminals for the power connections.</dd></div>
         <div><dt>Turns on</dt><dd>About 18.4 V</dd></div>
         <div><dt>Cuts off</dt><dd>About 34.9 V</dd></div>
         <div><dt>Reversed</dt><dd>Output stays within 0.35 V of zero</dd></div>
-        <div><dt>Later</dt><dd>Became the base for the ODrive Pro version</dd></div>
+        <div><dt>Later</dt><dd>Newer versions for the S1 and the Pro add heatsinks</dd></div>
       </dl>
     </div>
 
@@ -1451,19 +1468,19 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>What the board does</h2></div>
         <div>
-          <p>Each board sits between the battery and one ODrive. It holds a blade fuse and only passes power when the input voltage is in a safe range.</p>
-          <p>Too low, too high, or plugged in backwards, and the output stays off.</p>
-          <p>Putting these boards on the arm was my recommendation. Most of them live there now.</p>
+          <p>These fuse boards were designed for both the ODrive S1 and Pro models. They are housed on the arm of the rover and contain a blade fuse for overcurrent protection, only passing power when the input voltage is within a safe range.</p>
+          <p>The output stays off when the board is plugged in backwards or an invalid voltage level is read.</p>
+          <p>Figure 1 shows the older design for the S1. The newer versions, made for both the S1 and the Pro, add the heatsinks shown in Figure 2.</p>
         </div>
       </div>
       <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/fuse-board.jpg" alt="A green fuse board with a blade fuse holder in the middle and two large power transistors on the right"></div>
-          <figcaption><span class="fig">Fig. 1</span> A fuse board after soldering: fuse holder in the middle, two power transistors on the right.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> The older S1 fuse board after soldering: fuse holder in the middle, two power transistors on the right.</figcaption>
         </figure>
         <figure>
           <div class="media r43 shot"><img loading="lazy" decoding="async" width="1190" height="846" src="img/cad-fuse-board.png" alt="Simplified 3D model of the fuse board with its fuse, heat sinks, and ring terminals"></div>
-          <figcaption><span class="fig">Fig. 2</span> My simplified model of the same board, for the rover's CAD.</figcaption>
+          <figcaption><span class="fig">Fig. 2</span> My simplified CAD model of the newer S1 board, with the heatsinks and ring terminals.</figcaption>
         </figure>
       </div>
     </section>
@@ -1472,18 +1489,20 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>Soldering the boards</h2></div>
         <div>
-          <p>I soldered the fuse boards. They're surface-mount: two big power transistors, a small control chip, and the resistors around it.</p>
-          <p>In the rover's electrical box, where part of the wiring is mine, a fuse board sits between two ODrives.</p>
+          <p>I soldered both the older and the newer fuse boards. The heatsinks on the newer version were a notable pain to solder on, requiring a large soldering tip, 450 °C of heat, and nearly 5 minutes of strategic heat application.</p>
+          <p>Smaller components, such as U1, were much easier to deal with. I soldered them both with a hot air gun (Figure 4) and by hand.</p>
+          <p>Figure 3 shows a number of connections made by me, largely connecting the PDB to each ODrive and NEO 550. Smaller 12 V and 5 V connections remained for software use (Jetson, Pi, etc.) and science use.</p>
+          <p>All the ODrives are also connected to each other over CAN, which I work with regularly.</p>
         </div>
       </div>
       <div class="figs wide-narrow">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="The rover's electrical box with a fuse board between two motor controllers"></div>
-          <figcaption><span class="fig">Fig. 3</span> The rover's electrical box.</figcaption>
+          <figcaption><span class="fig">Fig. 3</span> The rover's electrical box, with a number of my connections.</figcaption>
         </figure>
         <figure>
           <div class="media tall"><video muted loop playsinline preload="none" poster="img/fuse-solder-loop-poster.jpg" aria-label="Tweezers placing a part on a green fuse board during soldering"><source src="media/fuse-solder-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 4</span> Me soldering a fuse board.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> Me soldering a fuse board with hot air.</figcaption>
         </figure>
       </div>
     </section>
@@ -1492,17 +1511,19 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Testing it</h2></div>
         <div>
-          <p>I stepped the input from about −32 V up to +40 V and wrote down the output at each step.</p>
+          <p>I tested two boards: the older S1 board (no heatsinks) and the newer Pro board (with heatsinks). The numbers here are from the older S1 board. I don't have the Pro data on hand.</p>
+          <p>The newer S1 board was not tested separately. It is functionally the same circuit, with heatsinks added to carry heat away.</p>
+          <p>I stepped the input voltage from roughly −32 V up to +40 V and recorded the output at each step.</p>
           <p>The output turns on at about 18.4 V and follows the input up to about 34.9 V, where it cuts off. Coming back down, it turns on again at about 32.8 V and drops out at about 17.5 V.</p>
           <p>The gap between the on and off points is on purpose. Without it, the board would chatter on and off whenever the voltage sat right at a limit.</p>
           <p>With the input reversed, the output never moved more than 0.35 V from zero.</p>
-          <p>One test is still open. My equipment tops out at 10 A, which isn't enough to find out whether the fuse blows before the board gives out.</p>
+          <p>A small note: these boards are supposed to be rated for 30 A. Due to the limits of the available equipment, I could only test up to 10 A, so the full rating is untested. There remains a chance that the board fails internally before the 30 A blade fuse does.</p>
         </div>
       </div>
       <div class="figs">
         <figure>
           <a class="media natural zoomable" href="img/fuse-graph.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1400" height="800" src="img/fuse-graph.png" alt="Graph of output voltage against input voltage. The output is zero below about 18 volts, follows the input from 18 to 35 volts, and is zero above 35 volts and for all negative inputs."></a>
-          <figcaption><span class="fig">Fig. 5</span> My test data and my graph for the Mark 2 board. The board design is Aaron Lee's.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> My test data and my graph for the older S1 board (Mark 2). The board design is Aaron Lee's.</figcaption>
         </figure>
       </div>
     </section>
@@ -1511,8 +1532,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">04</div><h2>Terminals and harnesses</h2></div>
         <div>
-          <p>I pushed for ring terminals on the power connections. They bolt down, and they let power pass from one board to the next in a chain.</p>
-          <p>I also build the rover's harnesses: motor leads, servo power for the hand, and connectors.</p>
+          <p>The addition of ring terminals was my recommendation, as it allows us to easily daisy-chain the fuse boards up the arm of the rover.</p>
+          <p>I also built a number of harnesses on the rover, for the NEO 550 motors, miscellaneous connectors, and the pair of servos that power the hand.</p>
         </div>
       </div>
       <div class="figs three">
@@ -1536,9 +1557,9 @@ a.zoomable { cursor: zoom-in; }
         <div><div class="step-num">05</div><h2>A new floor for the electrical box</h2></div>
         <div>
           <p>The bottom of the rover's electrical box was a scratched sheet of acrylic with velcro stuck all over it. In November 2026, another club member and I replaced it.</p>
-          <p>We designed a new plate in Onshape, laser cut it, and bolted it in. It's larger, it's cleaner, and the screw holes are where they should be. I also helped make the mounting system.</p>
-          <p>It took about three hours from design to installed.</p>
-          <p>This is version 1. Still to come: bigger screw holes so it goes on faster, rounded corners so nothing is sharp, and the Yonder logo engraved in it.</p>
+          <p>We designed a new plate in Onshape, laser cut it, and bolted it in. It's larger, cleaner, and there are fewer random holes.</p>
+          <p>In a moment of frustration, the old one was removed, measured, redesigned, and installed all within 3 hours.</p>
+          <p>This is only version 1. Some improvements to be made are a laser-engraved Yonder logo, larger screw holes, rounded edges to remove sharp points, and better magnetic mounting for the pegboard attachment seen in Figure 12.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1556,10 +1577,95 @@ a.zoomable { cursor: zoom-in; }
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1154" src="img/ebox-pegboard.jpg" alt="A white pegboard carrying motor controllers, fuse boards, and wiring harnesses"></div>
-          <figcaption><span class="fig">Fig. 12</span> The electronics board that mounts in the box. That board is not my design.</figcaption>
+          <figcaption><span class="fig">Fig. 12</span> The pegboard attachment that mounts in the box. The pegboard is not my design.</figcaption>
         </figure>
       </div>
     </section>
+
+    <a class="next" href="#motor-bench">
+      <span class="label">Next project</span>
+      <strong>Motor Test Bench →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-bench" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All projects</a>
+    <div class="media" style="margin-top: 12px"><video muted loop playsinline preload="none" poster="img/bench-poster.jpg" aria-label="Test bench with a power supply, an ODrive motor controller, a NEO motor, and a laptop running the ODrive setup tool"><source src="media/bench-loop.mp4" type="video/mp4"></video></div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Yonder Dynamics · 2026</div>
+        <h1 class="p-title">Motor Test Bench</h1>
+        <p class="lead">I created a small test bench for testing and running NEO 550 motors from both our current ODrive Pros and our legacy SPARK MAX controllers.</p>
+        <ul class="tags"><li>ODrive</li><li>SPARK MAX</li><li>Testing</li><li>Crimping</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>Motors</dt><dd>NEO 550, in use and back-up</dd></div>
+        <div><dt>Controllers</dt><dd>ODrive Pro. SPARK MAX on the older setup.</dd></div>
+        <div><dt>My part</dt><dd>Built the bench, tested and replaced the wheel motors, fixed their connectors, and configured each ODrive</dd></div>
+        <div><dt>Status</dt><dd>Motors are on the rover. One wheel's wiring is still to be redone.</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>Why a bench</h2></div>
+        <div>
+          <p>During the 2026–2027 design year, the decision was made to test and replace all the NEOs on the wheels. My job became to test and replace each existing and back-up NEO 550.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/bench.jpg" alt="A workbench with a power supply, a motor controller wired to a small motor, and a laptop showing live readings"></div>
+          <figcaption><span class="fig">Fig. 1</span> The bench: power supply, ODrive, a NEO 550, and the ODrive tool on my laptop.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>Sorting the motors</h2></div>
+        <div>
+          <p>The bench let me quickly test each motor, see whether it worked, and label the ones that were usable and the ones that had issues.</p>
+          <p>A number of NEOs had incorrectly made 6-pin outputs. I removed the JST connectors they come with and crimped new 6-pin Molex connectors onto them.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/odrive-neo.jpg" alt="A motor controller board wired to a small black motor through yellow power connectors and clip leads"></div>
+          <figcaption><span class="fig">Fig. 2</span> A NEO 550 wired to an ODrive for testing.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/sparkmax.jpg" alt="SPARK MAX motor controller with power wires and a six-wire sensor cable attached"></div>
+          <figcaption><span class="fig">Fig. 3</span> A SPARK MAX with a NEO's 6-pin cable plugged in.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>On the rover</h2></div>
+        <div>
+          <p>Once the motors were on the rover, I worked directly with one of the software leads to test each connection.</p>
+          <p>I was also directly responsible for configuring each ODrive and making sure each NEO worked as intended. All the ODrives on the rover are connected over CAN, so this work meant using that network day to day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>One problem wheel</h2></div>
+        <div>
+          <p>After that, the ODrive running the middle wheel on the left side of the rover repeatedly threw "phase resistance" errors.</p>
+          <p>After testing and diagnosing these errors, the cause was narrowed down to a faulty, pre-existing connection somewhere between the NEO, the ODrive, and the PDB. The exact joint has not been found yet. Since the error is about phase wiring, it is most likely where the NEO meets the three phase wires that run to the ODrive.</p>
+          <p>Future work: I will redo all the wiring to this ODrive and NEO 550 so no future problems occur.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="p-note"><span>Also</span> I have repaired an ODrive that had taken physical damage.</p>
 
     <a class="next" href="#light-meter">
       <span class="label">Next project</span>
@@ -1580,7 +1686,8 @@ a.zoomable { cursor: zoom-in; }
       <div>
         <div class="label">Personal project · 2020–21</div>
         <h1 class="p-title">Pontoon Boat Rebuild</h1>
-        <p class="lead">A worn-out pontoon boat, stripped to the frame and rebuilt with a friend and his grandfather, who let me join the project. They ran the mechanical side, including the engine rebuild. The electrical system was mine, engine wiring included, and all three of us worked on everything else.</p>
+        <p class="lead">A worn-out pontoon boat, stripped to the frame and rebuilt with a friend and his grandfather, who let me join the project.</p>
+        <p class="lead-sub">We worked together on a majority of the project, in both rain and shine, well into the night. My official task was the electrical system, but I aided in much of the mechanical work.</p>
         <ul class="tags"><li>Marine electrical</li><li>Wiring plan</li><li>Fusing</li><li>Crimping</li></ul>
       </div>
       <dl class="spec">
@@ -1599,8 +1706,9 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>Where it started</h2></div>
         <div>
-          <p>It showed up with a worn deck, torn seats, and a bare console. We took it down to the frame.</p>
-          <p>The old floor came out. New plywood went down on marine adhesive, then marine flooring, seats, and a new driver's console. There was a lot of metal polishing.</p>
+          <p>My friend initially got it for free, with a worn deck, torn seats, and a bare console. We had to strip it down to the frame and begin from scratch.</p>
+          <p>The old flooring was removed and replaced with marine-grade plywood and adhesive. New marine vinyl flooring was added, the seats were replaced, and a new driver's console was installed.</p>
+          <p>The roof and siding were reused after being cleaned and polished.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1619,8 +1727,9 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>A plan on paper first</h2></div>
         <div>
-          <p>Before I ran a single wire, I drew the whole system: every load, the fuse for each one, and the wire size for the current it carries.</p>
-          <p>Power leaves the battery through an in-line fuse, then a main cut-off switch, then a lighted switch on the dash, then a 12-circuit fuse panel under the helm. Every load gets its own fuse and its own switch.</p>
+          <p>As this was a high school project, I drew a rough schematic of the wiring and got some valuable suggestions from my father.</p>
+          <p>Each load was estimated, then fused and sized accordingly. Each fuse was rated for its circuit's worst case.</p>
+          <p>Power leaves the battery through an in-line fuse, then a main cut-off switch, then a lighted switch on the dash, then a 12-circuit fuse panel under the helm. Every load gets its own fuse in that panel and its own dedicated switch.</p>
         </div>
       </div>
       <div class="figs">
@@ -1635,7 +1744,7 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Fuse panel and switches</h2></div>
         <div>
-          <p>Each circuit lands on its own labeled fuse. The labels on the panel read stereo, horn, GPS, dome light, DC outlet, and accessory.</p>
+          <p>Each circuit was labeled at its fuse and its switch, as seen in Figure 6. The labels on the panel read stereo, horn, GPS, dome light, DC outlet, and accessory.</p>
           <p>The wires end in crimped connectors and are zip-tied into bundles, so any one of them can be followed from fuse to switch.</p>
         </div>
       </div>
@@ -1684,9 +1793,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">05</div><h2>Charging from the outboard</h2></div>
         <div>
-          <p>The outboard has no belt-driven alternator. It charges the battery from a stator, a ring of coils under the flywheel that makes power as the flywheel's magnets spin past.</p>
-          <p>The boat needed a new stator. I fitted it and wired its output to the battery. The regulator and rectifier were fine.</p>
-          <p>The cable connections were not, so I redid the crimps.</p>
+          <p>The outboard has no belt-driven alternator. It charges the battery from a stator instead, a ring of coils under the flywheel that makes power as the flywheel's magnets spin past.</p>
+          <p>The boat needed a new stator. I fitted it and wired it back into the engine's charging circuit, which feeds the battery.</p>
         </div>
       </div>
       <div class="figs three">
@@ -1709,7 +1817,7 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">06</div><h2>Result</h2></div>
         <div>
-          <p>It runs. In April 2021 it was out on the lake with a new deck, new seats, and new wiring, and it has been in use ever since. I'm still the one who gets called when something on it breaks.</p>
+          <p>It runs, and continues to this day. In April 2021 it was out on the lake with a new deck, new seats, and new wiring. It has been in use ever since and, besides a summer cleaning, has worked perfectly each year.</p>
         </div>
       </div>
       <div class="figs">
@@ -1746,7 +1854,7 @@ a.zoomable { cursor: zoom-in; }
       <div>
         <div class="label">Personal project</div>
         <h1 class="p-title">Buggy Noise Filters</h1>
-        <p class="lead">My family's buggy runs a Holley Sniper fuel injection system. Two things on the buggy were putting electrical noise on its 12 V wiring, and that noise was reaching the Sniper. I found both sources and built a filter for each.</p>
+        <p class="lead">My family's buggy runs a Holley Sniper fuel injection system. The buggy had a notably bad habit of lurching forward at random times, starting rough, and stalling. After a long diagnosis process, the likely culprit was electrical noise on its 12 V wiring reaching the Sniper.</p>
         <ul class="tags"><li>Troubleshooting</li><li>Electrical noise (EMI)</li><li>Filter design</li><li>Crimping</li></ul>
       </div>
       <dl class="spec">
@@ -1755,7 +1863,7 @@ a.zoomable { cursor: zoom-in; }
         <div><dt>Filter 1</dt><dd>1000 µF electrolytic and two 0.1 µF ceramics, across 12 V and ground at the light bar</dd></div>
         <div><dt>Source 2</dt><dd>Ignition</dd></div>
         <div><dt>Filter 2</dt><dd>A series resistor with a ceramic capacitor to ground on each side, built in-line</dd></div>
-        <div><dt>Status</dt><dd>Both installed. Running clean.</dd></div>
+        <div><dt>Status</dt><dd>Both installed. Running clean, with no more stalling or lurching.</dd></div>
       </dl>
     </div>
 
@@ -1763,8 +1871,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>Two sources of noise</h2></div>
         <div>
-          <p>The Sniper is a small computer that reads sensors and fires the injectors. It shares its 12 V wiring with everything else on the buggy, so noise on that wiring can end up in what the computer reads.</p>
-          <p>Two things were making noise. One was the LED light bar. The other was the ignition.</p>
+          <p>The Holley Sniper is a common fuel injection computer among enthusiasts. It reads sensors and fires the fuel injectors. It shares a 12 V wiring connection with everything else on the buggy, so noise on the wiring can easily end up in what the computer reads.</p>
+          <p>Two things were making noise: the LED light bar and the ignition.</p>
         </div>
       </div>
     </section>
@@ -1773,10 +1881,10 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>Light bar filter</h2></div>
         <div>
-          <p>An LED light bar doesn't draw steady current. Its driver switches the current on and off very fast, and each switch tugs on the 12 V line. A well-designed light has parts inside to soak that up. This one didn't have enough.</p>
-          <p>My filter is three capacitors across 12 V and ground. The big 1000 µF one works like a small tank next to the light. It feeds the light's quick gulps of current, so they aren't pulled through the buggy's wiring.</p>
-          <p>The two small 0.1 µF ceramics catch the fastest noise, which the big capacitor is too slow to handle.</p>
-          <p>It sits as close to the light bar's power wires as I could get it. That way the noise is shorted out at the source, before the wiring can carry it anywhere.</p>
+          <p>An LED light bar doesn't draw a steady current. The driver for the LEDs switches the current on and off extraordinarily fast, and each switch puts noise onto the 12 V line. A well-designed light has parts to soak up this noise, but the one on the buggy didn't.</p>
+          <p>The filter I made is three capacitors from the 12 V line to ground. The big 1000 µF capacitor works as a small battery to draw from, supplying the LEDs when a momentary drop occurs.</p>
+          <p>The two smaller 0.1 µF ceramic capacitors catch any fast noise not caught by the electrolytic capacitor, typically created by the quick switching of the LEDs.</p>
+          <p>It sits close to the light bar's power connection, so the noise is filtered at its source. To further help with any noise, ferrite cores and EMI shielding tape were also used to cut down on outside EMI.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1822,7 +1930,7 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">04</div><h2>Result</h2></div>
         <div>
-          <p>With both filters in, the fuel injection has run clean.</p>
+          <p>With both filters in, the fuel injection has run clean, removing the stalling and random lurching that once occurred.</p>
         </div>
       </div>
     </section>
@@ -1927,6 +2035,7 @@ a.zoomable { cursor: zoom-in; }
     'hall-effect': document.getElementById('view-hall'),
     'speed-boat': document.getElementById('view-boat'),
     'rover-power': document.getElementById('view-rover'),
+    'motor-bench': document.getElementById('view-bench'),
     'pontoon': document.getElementById('view-pontoon'),
     'buggy-filters': document.getElementById('view-buggy')
   };
