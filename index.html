@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weston Prosser | Electrical Engineering Portfolio</title>
+<meta name="description" content="Weston Prosser, electrical engineering student at UC San Diego. Circuit boards, wire harnesses, and electrical repair work, with photos and write-ups.">
+<meta property="og:title" content="Weston Prosser | Electrical Engineering Portfolio">
+<meta property="og:description" content="Weston Prosser, electrical engineering student at UC San Diego. Circuit boards, wire harnesses, and electrical repair work, with photos and write-ups.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/hero-rover-poster.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Cpath d='M6 10l4 13 4-9 4 9 4-13' fill='none' stroke='%23F0A24B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<script>
+/* Dark is the default. A saved choice from the light/dark button wins. */
+(function () { var t = null; try { t = localStorage.getItem('pf-theme'); } catch (e) {} document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); })();
+</script>
+<style>
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img, video { max-width: 100%; }
+[hidden] { display: none !important; }
+
+/* Layout: one long scroll of full-width project photos, each followed by a title and summary row.
+   Project pages read like a lab report: facts table, then numbered steps with numbered figures. */
+:root {
+  color-scheme: dark;
+  --bg: #0A0A0A;
+  --surface: #141414;
+  --placeholder: #1A1A1A;
+  --line: #262626;
+  --line-strong: #4A4A48;
+  --fg: #F4F4F2;
+  --muted: #A8A8A4;
+  --accent-d: #F0A24B;
+  --accent-l: #9A5B00;
+  --accent: var(--accent-d);
+  --media-bg: #000000;
+  --paper: #FFFFFF;
+  --on-media: #FFFFFF;
+  --on-media-line: rgba(255, 255, 255, 0.55);
+  --scrim-top: rgba(0, 0, 0, 0.55);
+  --scrim-bottom: rgba(0, 0, 0, 0.78);
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #FFFFFF;
+    --surface: #F5F5F3;
+    --placeholder: #EEEEEA;
+    --line: #E0E0DC;
+    --line-strong: #9C9C96;
+    --fg: #0E0E0E;
+    --muted: #55554F;
+    --accent: var(--accent-l);
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --surface: #F5F5F3;
+  --placeholder: #EEEEEA;
+  --line: #E0E0DC;
+  --line-strong: #9C9C96;
+  --fg: #0E0E0E;
+  --muted: #55554F;
+  --accent: var(--accent-l);
+}
+:root[data-accent="green"] { --accent-d: #5FD68A; --accent-l: #0B7A3E; }
+:root[data-accent="blue"] { --accent-d: #7CC0FF; --accent-l: #1D5FD1; }
+:root[data-accent="red"] { --accent-d: #FF7A66; --accent-l: #C2301C; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Header */
+.top {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 9;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, background-color 0.35s ease;
+}
+.top.scrolled { border-bottom-color: var(--line); }
+.bar { display: flex; align-items: center; gap: 12px 28px; min-height: 68px; }
+.brand {
+  margin-right: auto;
+  min-width: 0;
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--fg);
+  text-decoration: none;
+}
+.links { display: flex; gap: 28px; }
+.links a { padding: 10px 0; font-size: 16px; font-weight: 500; color: var(--fg); text-decoration: none; }
+.links a:hover { color: var(--accent); }
+.actions { display: flex; align-items: center; gap: 10px; }
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+}
+.icon-btn svg { width: 20px; height: 20px; }
+.icon-btn[data-mode="dark"] .i-moon, .icon-btn[data-mode="light"] .i-sun { display: none; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 26px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-accent { background: var(--accent); color: var(--bg); }
+.btn-ghost { border-color: var(--line-strong); color: var(--fg); }
+.btn-small { min-height: 44px; padding: 0 18px; font-size: 15px; }
+@media (max-width: 719px) { .links { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: var(--media-bg); }
+.hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, var(--scrim-top), var(--scrim-bottom)); }
+.hero-in {
+  position: relative;
+  padding-block: clamp(96px, 15vw, 190px) clamp(40px, 6vw, 72px);
+  color: var(--on-media);
+}
+.hero .label { color: var(--on-media); }
+.hero h1 {
+  margin: 16px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(44px, 8.4vw, 108px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.hero-line { margin: 22px 0 0; max-width: 30em; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.45; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero .btn-ghost { border-color: var(--on-media-line); color: var(--on-media); }
+.hero-note { margin-top: clamp(40px, 6vw, 72px); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--on-media); opacity: 0.85; }
+
+/* Sections */
+.sec { padding-block: clamp(56px, 8vw, 112px); }
+.sec[id], .sec-anchor { scroll-margin-top: 84px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: clamp(28px, 4vw, 56px); }
+.sec-head h2, .big {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 48px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.divide { border-top: 1px solid var(--line); }
+
+/* Media */
+.media {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  background: var(--placeholder);
+}
+.media img, .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border: 1px dashed var(--line-strong);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--muted);
+}
+@media (max-width: 600px) { .media { aspect-ratio: 4 / 3; } }
+.media.natural { aspect-ratio: auto; }
+.media.natural img, .media.natural video { height: auto; object-fit: contain; }
+.media.tall { aspect-ratio: 3 / 4; }
+.media.box43 { aspect-ratio: 4 / 3; }
+.media.box43 img { object-fit: contain; }
+.media.duo { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 4px; aspect-ratio: 24 / 9; background: transparent; }
+.media.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; background: transparent; }
+@media (max-width: 600px) {
+  .media.duo { grid-template-columns: minmax(0, 1fr); aspect-ratio: auto; }
+  .media.duo img { aspect-ratio: 16 / 9; }
+}
+
+/* Project list on the home page */
+.projects { display: flex; flex-direction: column; gap: clamp(64px, 9vw, 128px); }
+.proj-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 16px 48px; margin-top: 24px; }
+.proj .num { margin-right: 10px; color: var(--accent); }
+.proj h3 {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.proj-text p { margin: 0; font-size: 19px; line-height: 1.6; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.tags li { padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font-family: var(--font-mono); font-size: 13px; font-weight: 500; line-height: 1.3; }
+.more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; font-weight: 600; text-underline-offset: 4px; }
+.soon { display: block; margin-top: 18px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+@media (max-width: 760px) { .proj-body { grid-template-columns: minmax(0, 1fr); } }
+
+/* Hands-on strip and smaller work */
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; }
+.strip .media { aspect-ratio: 1 / 1; }
+@media (max-width: 860px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.minis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 24px; margin-top: clamp(48px, 7vw, 88px); }
+.mini .media { aspect-ratio: 16 / 9; }
+.mini .label { margin-top: 16px; }
+.mini h3 { margin: 6px 0; font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.2; }
+.mini p { margin: 0; }
+@media (max-width: 860px) { .minis { grid-template-columns: minmax(0, 1fr); } }
+
+/* About and contact */
+.about { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 40px 64px; }
+.about p { margin: 0 0 1em; max-width: 34em; font-size: 20px; line-height: 1.6; }
+.path { margin: 0; padding: 0; list-style: none; }
+.path li { padding-block: 16px; border-top: 1px solid var(--line); }
+.path li:last-child { border-bottom: 1px solid var(--line); }
+.path strong { display: block; margin-top: 4px; font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.25; }
+@media (max-width: 860px) { .about { grid-template-columns: minmax(0, 1fr); } }
+.contact-mail { display: block; color: var(--fg); text-decoration: none; margin-top: 20px; font-family: var(--font-display); font-size: clamp(24px, 4vw, 44px); font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; user-select: all; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-top: 20px; }
+.contact-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-underline-offset: 4px; }
+
+/* Project page */
+.article { padding-block: 28px clamp(64px, 9vw, 112px); }
+.back { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-mono); font-size: 14px; text-decoration: none; }
+.p-head { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 32px 56px; margin-top: 32px; }
+.p-title { margin: 12px 0 0; font-family: var(--font-display); font-size: clamp(40px, 6.4vw, 80px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; text-wrap: balance; }
+.lead { margin: 20px 0 0; font-size: clamp(20px, 2.1vw, 23px); line-height: 1.5; }
+.spec { margin: 0; border-top: 1px solid var(--line); }
+.spec div { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.spec dt { padding-top: 3px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.spec dd { margin: 0; font-size: 17px; line-height: 1.5; }
+@media (max-width: 860px) { .p-head { grid-template-columns: minmax(0, 1fr); } }
+.step { margin-top: clamp(64px, 9vw, 120px); }
+.step-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 12px 48px; }
+.step-num { font-family: var(--font-mono); font-size: 14px; font-weight: 500; letter-spacing: 0.08em; color: var(--accent); }
+.step h2 { margin: 8px 0 0; font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+.step p { margin: 0 0 1em; max-width: 36em; font-size: 19px; line-height: 1.65; }
+@media (max-width: 760px) { .step-head { grid-template-columns: minmax(0, 1fr); } }
+.figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px 16px; margin-top: 32px; }
+.figs.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.figs.wide-narrow { grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); align-items: start; }
+.figs.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .figs.two, .figs.wide-narrow { grid-template-columns: minmax(0, 1fr); } }
+figure { margin: 0; }
+figcaption { margin-top: 10px; font-size: 15px; line-height: 1.5; font-style: italic; color: var(--muted); }
+figcaption .fig { margin-right: 8px; font-family: var(--font-mono); font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
+.todo { padding: 16px 18px; border: 1px dashed var(--line-strong); border-radius: 6px; font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: var(--muted); }
+.next { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-top: clamp(64px, 9vw, 112px); padding-block: 28px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; }
+.next strong { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 36px); font-weight: 700; line-height: 1.15; }
+.next:hover strong { color: var(--accent); }
+
+/* Footer */
+.foot { border-top: 1px solid var(--line); padding-block: 40px 96px; font-size: 16px; color: var(--muted); }
+.foot-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px 64px; }
+.foot-cols { display: flex; flex-wrap: wrap; gap: 28px 64px; }
+.foot ul { margin: 8px 0 0; padding: 0; list-style: none; }
+.foot li a { display: inline-flex; align-items: center; min-height: 36px; color: var(--fg); text-decoration: none; }
+.foot li a:hover { color: var(--accent); }
+
+/* Accent picker */
+.pick {
+  position: fixed;
+  right: calc(14px + env(safe-area-inset-right, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.sw { width: 36px; height: 36px; padding: 0; border: 3px solid var(--surface); border-radius: 50%; background: linear-gradient(135deg, var(--sw-d) 50%, var(--sw-l) 50%); cursor: pointer; }
+.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--fg); }
+.sw-amber { --sw-d: #F0A24B; --sw-l: #9A5B00; }
+.sw-green { --sw-d: #5FD68A; --sw-l: #0B7A3E; }
+.sw-blue { --sw-d: #7CC0FF; --sw-l: #1D5FD1; }
+.sw-red { --sw-d: #FF7A66; --sw-l: #C2301C; }
+@media (max-width: 600px) {
+  .pick { padding-left: 8px; }
+  .pick span { display: none; }
+  .bar { gap: 12px; }
+}
+
+/* Readability pass: larger labels, captions, and facts */
+.label { font-size: 14px; }
+.links a { font-size: 17px; }
+.tags li { font-size: 14px; }
+.soon { font-size: 14px; }
+.hero-note { font-size: 13px; }
+figcaption { font-size: 16px; font-style: normal; }
+figcaption .fig { font-size: 13px; }
+.spec div { grid-template-columns: 128px minmax(0, 1fr); }
+.spec dt { font-size: 14px; }
+.spec dd { font-size: 18px; }
+.mini p, .foot { font-size: 17px; }
+.todo { font-size: 15px; }
+.step p, .proj-text p { max-width: 34em; }
+.points { margin: 0 0 1em; padding-left: 1.2em; max-width: 34em; font-size: 19px; line-height: 1.6; }
+.points li { margin-bottom: 0.55em; }
+.p-head .lead + .lead { margin-top: 14px; }
+
+/* Linked media, before/after pairs, scroll progress */
+a.media { display: block; color: inherit; }
+.media.r43 { aspect-ratio: 4 / 3; }
+.media.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; aspect-ratio: 8 / 3; background: transparent; }
+.ba { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.ba img { position: absolute; inset: 0; }
+.ba-tag { position: absolute; left: 12px; top: 12px; padding: 5px 10px; border-radius: 4px; background: var(--media-bg); color: var(--on-media); font-family: var(--font-mono); font-size: 13px; font-weight: 500; line-height: 1.3; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (max-width: 600px) {
+  .media.pair { grid-template-columns: minmax(0, 1fr); aspect-ratio: auto; }
+  .ba { aspect-ratio: 4 / 3; }
+  .media.duo video { aspect-ratio: 3 / 4; }
+  .figs.three { grid-template-columns: minmax(0, 1fr); }
+  .media.tall { aspect-ratio: 1 / 1; }
+}
+@media (max-width: 600px) {
+  .brand { font-size: 17px; }
+  .btn-small { padding: 0 14px; font-size: 14px; }
+  .tags li { padding: 5px 10px; }
+}
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left center; }
+
+/* Slightly smaller project cards */
+.projects { gap: clamp(56px, 7vw, 96px); }
+.proj h3 { font-size: clamp(26px, 3.3vw, 38px); }
+@media (min-width: 601px) {
+  .proj > .media { aspect-ratio: 2.2 / 1; }
+  .proj > .media.pair, .proj > .media.duo, .proj > .media.trio { grid-template-rows: minmax(0, 1fr); }
+}
+
+/* Video that plays over a card while the pointer is on it */
+.media video.hover-vid, .ba video.hover-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
+.media video.hover-vid.on, .ba video.hover-vid.on { opacity: 1; }
+.play-tag { position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 999px; background: var(--media-bg); color: var(--on-media); font-family: var(--font-mono); font-size: 13px; font-weight: 500; line-height: 1.3; transition: opacity 0.25s ease; }
+[data-hover-video].playing .play-tag { opacity: 0; }
+@media (hover: none), (prefers-reduced-motion: reduce) { .play-tag { display: none; } }
+/* Before and after in one frame: the "after" photo sweeps in as the card scrolls up the screen */
+.media.blend { --p: 0.5; }
+.media.blend img { position: absolute; inset: 0; }
+.media.blend .b-after { -webkit-mask-image: linear-gradient(to left, #000 50%, transparent 50%); mask-image: linear-gradient(to left, #000 50%, transparent 50%); }
+.media.blend .tag-after { left: auto; right: 12px; }
+.media.blend .ba-tag { transition: opacity 0.2s linear; }
+.media.blend.live .b-after { -webkit-mask-image: linear-gradient(to left, #000 calc(var(--p) * 145% - 45%), transparent calc(var(--p) * 145%)); mask-image: linear-gradient(to left, #000 calc(var(--p) * 145% - 45%), transparent calc(var(--p) * 145%)); }
+.media.blend.live .tag-before { opacity: calc(1.5 - var(--p) * 3); }
+.media.blend.live .tag-after { opacity: calc(var(--p) * 3 - 1.5); }
+.media.blend.playing .tag-before { opacity: 0; }
+.media.shot { background: var(--paper); }
+.media.sch { background: var(--surface); border: 1px solid var(--line); color: var(--fg); padding: 12px; }
+.media.sch svg { display: block; width: 100%; height: auto; font-family: var(--font-mono); }
+.media.shot img { object-fit: contain; }
+
+/* Motion */
+[data-reveal] { transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pre { opacity: 0.12; transform: translateY(28px); }
+.pre.in { opacity: 1; transform: none; }
+@keyframes drift { from { transform: scale(1.09); } to { transform: scale(1); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .zoom img, .zoom video { animation: drift linear both; animation-timeline: view(); animation-range: entry 0% cover 55%; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], .btn, body, .top { transition: none; }
+  .pre { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home">Weston Prosser</a>
+    <nav class="links" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" id="themeBtn" type="button" data-mode="dark" aria-label="Switch to light mode">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+      </button>
+      <a class="btn btn-accent btn-small" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+</header>
+
+<main id="view-home">
+
+  <section class="hero">
+    <video id="heroVid" autoplay muted loop playsinline poster="img/hero-rover-poster.jpg" aria-label="The Yonder Dynamics rover driving on desert ground with its arm reaching forward">
+      <source src="media/rover-field-loop.mp4" type="video/mp4">
+    </video>
+    <div class="hero-scrim"></div>
+    <div class="wrap hero-in">
+      <div class="label">Electrical Engineering · UC San Diego</div>
+      <h1>Weston Prosser</h1>
+      <p class="hero-line">I design circuit boards, build them by hand, and fix the ones that don't work.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="#work">Selected work ↓</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="hero-note">VIDEO: THE YONDER DYNAMICS ROVER IN THE FIELD</div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="work">
+    <div class="sec-head">
+      <h2>Selected work</h2>
+      <div class="label">01–08</div>
+    </div>
+    <div class="projects">
+
+      <article class="proj" data-reveal>
+        <a class="media zoom" href="#endstop"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-angle.jpg" alt="Small black circuit board with a lever limit switch and two white connectors. Open the write-up."></a>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">01</span>Yonder Dynamics · Version 2</div>
+            <h3>Limit Switch Endstop</h3>
+          </div>
+          <div class="proj-text">
+            <p>A small board that tells the rover's ODrive where its linear slide ends. I designed it in Altium and soldered it myself. It passes on the bench. The slide is next.</p>
+            <ul class="tags"><li>Altium</li><li>LTspice</li><li>PCB design</li><li>Hand soldered</li></ul>
+            <a class="more" href="#endstop">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <a class="media trio" href="#hall-effect" data-hover-video>
+          <img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-bracket.jpg" alt="Hall-effect sensor board sitting in a black 3D-printed bracket with its cable tied down. Open the write-up.">
+          <img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-lit.jpg" alt="The sensor board powered on with its green light lit">
+          <img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-front.jpg" alt="Front of the hand-built sensor board with a sleeved cable">
+        <video class="hover-vid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="media/slide-loop.mp4" type="video/mp4"></video><span class="play-tag" aria-hidden="true"><svg viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z" fill="currentColor"></path></svg>Hover to play</span>
+        </a>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">02</span>Yonder Dynamics · Version 1</div>
+            <h3>Hall-Effect Endstop</h3>
+          </div>
+          <div class="proj-text">
+            <p>Version 1, hand-wired on perfboard. A hall-effect sensor and a magnet marked the end of the slide. It worked, but the magnet never had a good home on a slide this small.</p>
+            <ul class="tags"><li>Hall-effect sensor</li><li>Perfboard</li><li>Hand wired</li></ul>
+            <a class="more" href="#hall-effect">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <div class="media duo">
+          <img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="Inside the rover's electrical box: a fuse board with rows of red indicator lights between two motor controllers">
+          <video muted loop playsinline preload="none" poster="img/fuse-solder-loop-poster.jpg" aria-label="Tweezers placing a part on a green fuse board during soldering"><source src="media/fuse-solder-loop.mp4" type="video/mp4"></video>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">03</span>Yonder Dynamics</div>
+            <h3>Rover Power and Wiring</h3>
+          </div>
+          <div class="proj-text">
+            <p>I soldered and tested the fuse boards that sit in front of the motor controllers on the rover's arm, and I build the rover's wire harnesses. The photo is the rover's electrical box, where part of the wiring is mine.</p>
+            <ul class="tags"><li>Testing</li><li>Harnesses</li><li>Crimping</li><li>Soldering</li></ul>
+            <a class="more" href="#rover-power">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <div class="media"><video muted loop playsinline preload="none" poster="img/bench-poster.jpg" aria-label="Test bench with a power supply, an ODrive motor controller, a NEO motor, and a laptop running the ODrive setup tool"><source src="media/bench-loop.mp4" type="video/mp4"></video></div>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">04</span>Yonder Dynamics</div>
+            <h3>Motor Test Bench</h3>
+          </div>
+          <div class="proj-text">
+            <p>My bench setup for running NEO 550 motors from an ODrive or a SPARK MAX. It's also where the team's broken ODrives come to get fixed.</p>
+            <ul class="tags"><li>ODrive</li><li>SPARK MAX</li><li>NEO 550</li><li>Repair</li></ul>
+            <span class="soon">Write-up coming</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <a class="media" href="#light-meter" data-hover-video><img loading="lazy" decoding="async" width="1600" height="900" src="img/breadboard-top.jpg" alt="Breadboard light meter with logic chips, LEDs, and jumper wires. Open the write-up."><video class="hover-vid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="media/light-meter-loop.mp4" type="video/mp4"></video><span class="play-tag" aria-hidden="true"><svg viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z" fill="currentColor"></path></svg>Hover to play</span></a>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">05</span>Sierra College lab · Personal PCB</div>
+            <h3>8-Bit Light Meter</h3>
+          </div>
+          <div class="proj-text">
+            <p>A light meter made from logic chips. No microcontroller, no code. It reads 256 light levels and subtracts the room's light so it starts at zero.</p>
+            <ul class="tags"><li>Logic design</li><li>Debugging</li><li>First PCB</li></ul>
+            <a class="more" href="#light-meter">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <div class="media duo" style="grid-template-columns: minmax(0, 5fr) minmax(0, 2fr) minmax(0, 3fr)">
+          <img loading="lazy" decoding="async" width="1600" height="739" src="img/buggy.jpg" alt="Tube-frame off-road buggy parked on a driveway">
+          <img loading="lazy" decoding="async" width="1200" height="1600" src="img/buggy-filter.jpg" alt="Small hand-built filter board with capacitors and screw terminals, wired into the buggy">
+          <img loading="lazy" decoding="async" width="1600" height="1200" src="img/buggy-filter-inline.jpg" alt="A second filter built in-line on a red and black wire, sealed in heat shrink, with crimped terminals" style="object-position: 58% 100%">
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">06</span>Personal project</div>
+            <h3>Buggy Noise Filters</h3>
+          </div>
+          <div class="proj-text">
+            <p>My family's buggy runs a Holley Sniper fuel injection system, and two things were putting electrical noise into it: the LED light bar and the ignition. I built a filter for each. It has run clean since.</p>
+            <ul class="tags"><li>Troubleshooting</li><li>Electrical noise (EMI)</li><li>Filter design</li></ul>
+            <a class="more" href="#buggy-filters">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <a class="media blend" href="#speed-boat" data-blend>
+          <img class="b-before" loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-old-in.jpg" alt="A rusted starter motor sitting above rusty water in the boat's engine bay. Open the write-up." style="object-position: 50% 45%">
+          <img class="b-after" loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-new.jpg" alt="A new black starter motor bolted in the same spot, with the engine bay cleaned" style="object-position: 50% 78%">
+          <span class="ba-tag tag-before">Before</span><span class="ba-tag tag-after">After</span>
+        </a>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">07</span>Personal project</div>
+            <h3>Speed Boat Electrical Repair</h3>
+          </div>
+          <div class="proj-text">
+            <p>A friend's MerCruiser speed boat whose engine bay filled with water, twice. I repaired the electrical side both times: starter, alternator, ignition switch, hydraulic pump, and a new fused line off the battery.</p>
+            <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li><li>Troubleshooting</li></ul>
+            <a class="more" href="#speed-boat">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal>
+        <a class="media blend" href="#pontoon" data-blend data-hover-video>
+          <img class="b-before" loading="lazy" decoding="async" width="1336" height="1229" src="img/pontoon-before.jpg" alt="An old pontoon boat with a worn deck, torn seats, and a bare console. Open the write-up." style="object-position: 50% 62%">
+          <img class="b-after" loading="lazy" decoding="async" width="1600" height="900" src="img/pontoon-after-wide.jpg" alt="The rebuilt pontoon boat out on a lake, with new seating and a friend at the helm">
+          <video class="hover-vid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="media/pontoon-drive-loop.mp4" type="video/mp4"></video>
+          <span class="ba-tag tag-before">Before</span><span class="ba-tag tag-after">After</span>
+          <span class="play-tag" aria-hidden="true"><svg viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z" fill="currentColor"></path></svg>Hover to play</span>
+        </a>
+        <div class="proj-body">
+          <div>
+            <div class="label"><span class="num">08</span>Personal project</div>
+            <h3>Pontoon Boat Rebuild</h3>
+          </div>
+          <div class="proj-text">
+            <p>A worn-out pontoon, stripped to the frame and rebuilt with a friend and his grandfather. The electrical system was mine: fuse panel, switches, lights, stereo, fish finder, and charging off the outboard.</p>
+            <ul class="tags"><li>Marine electrical</li><li>Wiring plan</li><li>Crimping</li></ul>
+            <a class="more" href="#pontoon">Read the write-up →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec wrap divide" id="hands-on">
+    <div class="sec-head">
+      <h2>Soldering and crimping</h2>
+      <div class="label">Harnesses and boards I built by hand</div>
+    </div>
+    <div class="strip" data-reveal>
+      <figure>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="1561" height="830" src="img/endstop-top.jpg" alt="Close-up of hand-soldered surface-mount parts on the endstop board"></div>
+        <figcaption>Surface-mount parts on the endstop board.</figcaption>
+      </figure>
+      <figure>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/neo-harness.jpg" alt="NEO motor with sleeved wires ending in a yellow power connector"></div>
+        <figcaption>NEO motor harness.</figcaption>
+      </figure>
+      <figure>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/servo-harness.jpg" alt="Two servos joined by a soldered harness with heat shrink and yellow connectors"></div>
+        <figcaption>Servo power harness.</figcaption>
+      </figure>
+      <figure>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/motor-connector.jpg" alt="Three-pin yellow motor connector with white, black, and red wires"></div>
+        <figcaption>Three-pin motor connector.</figcaption>
+      </figure>
+      <figure>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/sparkmax.jpg" alt="SPARK MAX motor controller with power and sensor wires attached"></div>
+        <figcaption>SPARK MAX wiring.</figcaption>
+      </figure>
+      <figure>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/esp32-perfboard.jpg" alt="ESP32 module on perfboard beside rows of white connectors"></div>
+        <figcaption>General-purpose ESP32 breakout for rover testing.</figcaption>
+      </figure>
+    </div>
+    <div class="minis">
+      <div class="mini" data-reveal>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="1494" height="999" src="img/esp32-schematic.png" alt="Schematic of an ESP32-S3 board with a voltage regulator and USB-C connector"></div>
+        <div class="label">In progress · Yonder Dynamics</div>
+        <h3>ESP32-S3 Controller Board</h3>
+        <p>A general-purpose controller board the software team can use anywhere on the rover. The first schematic and layout are done in Altium. The requirements are still moving, so the board is too.</p>
+      </div>
+      <div class="mini" data-reveal>
+        <div class="media shot"><img loading="lazy" decoding="async" width="1025" height="881" src="img/fan-adapter.png" alt="Onshape model of a square fan adapter with a round duct collar and four screw bosses"></div>
+        <div class="label">Onshape</div>
+        <h3>Fume Fan Adapter</h3>
+        <p>A printed adapter that bolts onto my soldering fan with the fan's own screws and takes a duct to carry the fumes away. The printed one is pink, the only filament I had at the time.</p>
+      </div>
+      <div class="mini" data-reveal>
+        <div class="media shot"><img loading="lazy" decoding="async" width="1342" height="952" src="img/cad-odrive.png" alt="Simplified 3D model of an ODrive motor controller: board outline, capacitors, and connectors only"></div>
+        <div class="label">Yonder Dynamics · Onshape</div>
+        <h3>Lightweight Board Models</h3>
+        <p>Simplified Onshape models of every active PCB and the ODrive motor controllers on the rover. They cut tessellations by roughly 90 to 95 percent, so the rover's CAD is far quicker to work in. The method is written down.</p>
+      </div>
+      <div class="mini" data-reveal>
+        <a class="media zoom" href="#rover-power"><img loading="lazy" decoding="async" width="1600" height="900" src="img/ebox-plate-new.jpg" alt="The new white laser-cut plate bolted into the rover's blue frame. Open the rover write-up."></a>
+        <div class="label">Yonder Dynamics · Version 1</div>
+        <h3>Electrical Box Base Plate</h3>
+        <p>A new laser-cut floor for the rover's electrical box, designed and installed with another club member in about three hours. Rounded corners and an engraved logo come next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap divide" id="about">
+    <div class="sec-head">
+      <h2>About</h2>
+    </div>
+    <div class="about">
+      <div data-reveal>
+        <p>I'm a fourth-year electrical engineering student at UC San Diego. I transferred in from Sierra College.</p>
+        <p>I learn best by building something and then finding out why it doesn't work. Most of the projects on this page started that way.</p>
+        <p>A lot of it happens at Yonder Dynamics, the rover team, where I design boards, build wire harnesses, and repair motor controllers. The rest happens at my desk or on somebody's boat.</p>
+        <p>Power electronics, motors, and optics are what I want to work on.</p>
+        <figure style="margin: 8px 0 24px">
+          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="1085" src="img/workbench.jpg" alt="A desk with a 3D printer, a cabinet of small parts drawers, a soldering mat, and a small pink fume fan"></div>
+          <figcaption>My bench at home. The pink box on the right is the fume fan, with the adapter I printed for it.</figcaption>
+        </figure>
+      </div>
+      <div data-reveal>
+        <ol class="path">
+          <li><div class="label">Started at</div><strong>Sierra College</strong></li>
+          <li><div class="label">Transferred to</div><strong>UC San Diego, Electrical Engineering</strong></li>
+          <li><div class="label">Building at</div><strong>Yonder Dynamics, electrical team</strong></li>
+        </ol>
+        <figure style="margin-top: 28px">
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="1042" src="img/rover-field.jpg" alt="The Yonder Dynamics rover, a six-wheeled robot with an arm, on a dirt field"></div>
+          <figcaption>The Yonder Dynamics rover.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap divide" id="contact">
+    <div class="label">Contact</div>
+    <h2 class="big" style="margin-top: 10px">Get in touch</h2>
+    <a class="contact-mail" href="mailto:westonprosser04@gmail.com">westonprosser04@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener">GitHub</a>
+      <span class="label" style="align-self: center">San Diego, California</span>
+    </div>
+  </section>
+
+</main>
+
+<main id="view-project" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media" style="margin-top: 12px"><video muted loop playsinline preload="none" poster="img/light-meter-loop-poster.jpg" aria-label="LEDs on the breadboard changing as a light moves over the sensor"><source src="media/light-meter-loop.mp4" type="video/mp4"></video></div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Sierra College circuits lab · 2025</div>
+        <h1 class="p-title">8-Bit Light Meter</h1>
+        <p class="lead">A light meter made from logic chips. No microcontroller, no code. It turns light into an 8-bit number, subtracts the room's light, and shows what's left on LEDs.</p>
+        <p class="lead">It started as a lab in my circuits class at Sierra College. We were handed an outline of the circuit, and the rest was ours to figure out. Afterward I turned mine into my first PCB.</p>
+        <ul class="tags"><li>Logic design</li><li>ADC</li><li>Breadboarding</li><li>Debugging</li><li>First PCB</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>Sensor</dt><dd>Photoresistor in a Wheatstone bridge</dd></div>
+        <div><dt>Converter</dt><dd>ADC0804, 8-bit (256 levels)</dd></div>
+        <div><dt>Zeroing</dt><dd>2 × 74HC86 XOR, 2 × 74LS83 adder</dd></div>
+        <div><dt>Input</dt><dd>8-position DIP switch</dd></div>
+        <div><dt>Display</dt><dd>One LED per bit</dd></div>
+        <div><dt>Reset</dt><dd>Push button on the converter chip</dd></div>
+        <div><dt>Supply</dt><dd>5 V and 12 V</dd></div>
+        <div><dt>Status</dt><dd>Breadboard working. PCB made, not assembled.</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>Reading the light</h2></div>
+        <div>
+          <p>A photoresistor sits in one arm of a Wheatstone bridge. As the light changes, the bridge output swings between 0 and 5 V, dark to bright.</p>
+          <p>The ADC0804 turns that voltage into a number from 0 to 255.</p>
+          <p>Picking the bridge resistors was trial and error. Change a value, cover the sensor, watch the meter, and repeat until the output sat near 0 V in the dark and near 5 V in the light.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-bridge-test.jpg" alt="A small circuit on a breadboard with a 5 volt bench supply and three multimeters connected"></div>
+          <figcaption><span class="fig">Fig. 1</span>Testing the bridge on its own with a 5 V supply.</figcaption>
+        </figure>
+        <figure>
+          <div class="media zoom"><video muted loop playsinline preload="none" poster="img/bridge-test-loop-poster.jpg" aria-label="A multimeter beside a breadboard, its reading changing as a hand covers the sensor"><source src="media/bridge-test-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 2</span>Trying resistor values: watching the output on a meter while changing the light on the sensor.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>Zeroing out the room</h2></div>
+        <div>
+          <p>A room is never fully dark, so the raw reading never starts at zero. Eight switches along the bottom set a number to subtract.</p>
+          <p>XOR gates and two 4-bit adders take that number off the reading, so the display reads zero in normal room light. That's two's complement subtraction, which I had to learn in order to build it.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-closeup.jpg" alt="Close-up of the breadboard showing the switches, logic chips, converter chip, and two rows of LEDs"></div>
+          <figcaption><span class="fig">Fig. 3</span>Switches at bottom left, XOR chips and adders along the top, converter chip at bottom center.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>Hours of debugging</h2></div>
+        <div>
+          <p>This was a long lab, and most of the hours went into finding out why something didn't work. The problems that ate the most time:</p>
+          <ul class="points">
+            <li><strong>Bridge resistors.</strong> Getting a clean 0 V and a clean 5 V out of the bridge.</li>
+            <li><strong>LED resistors.</strong> Bright enough to read, dim enough to look at.</li>
+            <li><strong>Reset button.</strong> The converter needed a push-button reset. I ended up pulling pins off the button and reworking the wiring so it only touches ground while it's pressed.</li>
+            <li><strong>Zeroing.</strong> Built from the switches and XOR gates, once I understood how binary subtraction works.</li>
+            <li><strong>Moving to chips.</strong> Scaling up from transistor circuits to logic chips, and debugging each chip as it went in.</li>
+            <li><strong>Layout.</strong> Arranging the LEDs and wires so I could trace any signal by eye. That paid off every time something broke.</li>
+          </ul>
+          <p>A fair share of those hours went to debugging classmates' circuits too.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-early.jpg" alt="An earlier, messier breadboard build with loose jumper wires and chips labeled XOR, AND, and OR"></div>
+          <figcaption><span class="fig">Fig. 4</span>An earlier build, using separate XOR, AND, and OR gate chips, before the wiring was cleaned up.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>From breadboard to PCB</h2></div>
+        <div>
+          <p>Once the breadboard worked, I laid the circuit out as a PCB. Nobody assigned that part. It was my first board.</p>
+          <p>The boards came back and the chips fit. I haven't finished soldering it yet.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media box43"><img loading="lazy" decoding="async" width="688" height="740" src="img/lm-layout.png" alt="PCB layout with five chip footprints, a switch block, and a row of LED pads"></div>
+          <figcaption><span class="fig">Fig. 5</span>The layout.</figcaption>
+        </figure>
+        <figure>
+          <div class="media box43"><img loading="lazy" decoding="async" width="1247" height="927" src="img/pcb-render.jpg" alt="3D view of the circuit board design"></div>
+          <figcaption><span class="fig">Fig. 6</span>The board design, 3D view.</figcaption>
+        </figure>
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-pcb-angle.jpg" alt="The fabricated black circuit board before the chips were added"></div>
+          <figcaption><span class="fig">Fig. 7</span>The fabricated board.</figcaption>
+        </figure>
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/pcb-bare.jpg" alt="Fabricated black circuit board with five logic chips placed"></div>
+          <figcaption><span class="fig">Fig. 8</span>With the logic chips placed.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <a class="next" href="#buggy-filters">
+      <span class="label">Next project</span>
+      <strong>Buggy Noise Filters →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-endstop" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-angle.jpg" alt="Small black circuit board with a lever limit switch and two white connectors"></div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Yonder Dynamics · 2026</div>
+        <h1 class="p-title">Limit Switch Endstop</h1>
+        <p class="lead">A small board that tells the rover's ODrive when the linear slide has hit the end of its travel. It's one switch and one transistor, and it can only say OK while it has power and its wiring is intact.</p>
+        <ul class="tags"><li>Altium</li><li>LTspice</li><li>2-layer PCB</li><li>Hand soldered</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>Part no.</dt><dd>YD-ENDSTOP-001, Rev A</dd></div>
+        <div><dt>Reads into</dt><dd>GPIO 7 on the ODrive, set as the minimum endstop. An S1 for now. A Pro works too.</dd></div>
+        <div><dt>Supply</dt><dd>5 V from the ODrive</dd></div>
+        <div><dt>Output</dt><dd>About 4.9 V at rest. 0 V when pressed, unplugged, or unpowered.</dd></div>
+        <div><dt>Switch</dt><dd>Lever switch on its normally-closed contact, or a remote switch on J2</dd></div>
+        <div><dt>Board</dt><dd>2 layers, ground on both</dd></div>
+        <div><dt>Cost</dt><dd>About $10 a board, in a batch of five</dd></div>
+        <div><dt>Status</dt><dd>Bench tested. Testing on the slide is next.</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>What it has to do</h2></div>
+        <div>
+          <p>The rover's arm rides on a linear slide, driven by a NEO motor through an ODrive. The ODrive needs to know where the end of the slide is, so it has a fixed point to measure from.</p>
+          <p>Version 1 used a hall-effect sensor. This one uses a plain mechanical switch.</p>
+          <p>The hall sensor needs a magnet on the slide, and on a slide this small the magnet never fit or held well. If it falls off, there is no end stop. The software team also liked the idea of a physical switch.</p>
+          <p>A switch is slower and less exact than a hall sensor. For this slide that doesn't matter. It is well inside the tolerance.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media"><video muted loop playsinline preload="none" poster="img/slide-poster.jpg" aria-label="The rover's linear slide: a carriage riding along a blue rail"><source src="media/slide-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 1</span>The linear slide on the rover.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>The circuit</h2></div>
+        <div>
+          <p>The switch is wired through its normally-closed contact. At rest the loop is closed, which turns on a PNP transistor, and the transistor puts about 5 V on the ODrive's input. The LED is on. That is the board saying OK.</p>
+          <p>Press the lever and the loop opens. The transistor turns off, a 10 kΩ resistor pulls the signal down to 0 V, and the LED goes out. The ODrive reads that as the end of the slide.</p>
+          <p>A cut cable, an unplugged connector, or a dead 5 V supply all look the same as a pressed lever. The board has to be powered and wired correctly to say OK, so the likely failures read as stop.</p>
+          <p>That is also why the transistor is a PNP on the high side. The ODrive's input has no pull resistor of its own, and I wanted the circuit to spend energy saying OK, not saying stop.</p>
+          <p>Small capacitors filter the switch and the signal line, and the ODrive adds 50 ms of its own debounce.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="731" src="img/endstop-ltspice-open.png" alt="LTspice schematic: a limit switch input, PNP transistor, LED, and filter parts connected to an ODrive S1"></div>
+          <figcaption><span class="fig">Fig. 2</span>LTspice schematic, drawn with the loop open. A 1N4148 diode stands in for the LED.</figcaption>
+        </figure>
+      </div>
+      <div class="figs two" style="max-width: 760px">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="840" height="695" src="img/endstop-op-open.png" alt="LTspice results table showing the signal node at zero volts"></div>
+          <figcaption><span class="fig">Fig. 3</span>Loop open (lever pressed, or a cut cable): 0 V.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="837" height="656" src="img/endstop-op.png" alt="LTspice results table showing the signal node at 4.97 volts"></div>
+          <figcaption><span class="fig">Fig. 4</span>Loop closed (at rest): 4.97 V.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>The layout</h2></div>
+        <div>
+          <p>Two layers, ground poured on both. Everything sits on the top side, because I solder these by hand.</p>
+          <p>Three test points (switch, signal, ground), each big enough to clip a probe onto.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1553" height="784" src="img/endstop-layout-both.png" alt="PCB layout showing the top and bottom copper layers together"></div>
+          <figcaption><span class="fig">Fig. 5</span>Both copper layers in Altium.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1482" height="867" src="img/endstop-render.jpg" alt="3D view of the endstop board design"></div>
+          <figcaption><span class="fig">Fig. 6</span>3D view of the design.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1512" height="809" src="img/endstop-layout-top.png" alt="PCB layout showing only the top layer traces"></div>
+          <figcaption><span class="fig">Fig. 7</span>Top layer traces.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1512" height="812" src="img/endstop-layout-bottom.png" alt="PCB layout showing the bottom layer as a solid ground pour"></div>
+          <figcaption><span class="fig">Fig. 8</span>Bottom layer, solid ground.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>Build and bench test</h2></div>
+        <div>
+          <p>Boards from JLCPCB, parts from Digi-Key, soldered by me.</p>
+          <p>On the bench it powers up, and the signal and the LED follow the lever.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1561" height="830" src="img/endstop-top.jpg" alt="Top of the assembled endstop board"></div>
+          <figcaption><span class="fig">Fig. 9</span>Top side, assembled.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1542" height="780" src="img/endstop-back.jpg" alt="Bottom of the board with the part number, revision, and a small gecko drawing"></div>
+          <figcaption><span class="fig">Fig. 10</span>Bottom side: part number, revision, and the gecko.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">05</div><h2>What's next</h2></div>
+        <div>
+          <p>Testing on the slide is waiting on a mount from the mechanical team and the ODrive setup. When that's done, a video of the slide finding its end goes here.</p>
+          <p>The ODrive side is short: GPIO 7 as a digital input, set as the minimum endstop, active-high off, 50 ms debounce, and a slow homing speed to start.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next" href="#hall-effect">
+      <span class="label">Next project</span>
+      <strong>Hall-Effect Endstop →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-hall" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media" style="margin-top: 12px"><video muted loop playsinline preload="none" poster="img/slide-poster.jpg" aria-label="The rover's linear slide: a carriage riding along a blue rail"><source src="media/slide-loop.mp4" type="video/mp4"></video></div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Yonder Dynamics · 2026 · Version 1</div>
+        <h1 class="p-title">Hall-Effect Endstop</h1>
+        <p class="lead">Version 1 of the rover's end-of-travel sensor. It went from a notebook sketch to a breadboard to a hand-wired board on the slide.</p>
+        <ul class="tags"><li>Hall-effect sensor</li><li>Breadboarding</li><li>Perfboard</li><li>ODrive</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>Sensor</dt><dd>A3144 hall-effect sensor</dd></div>
+        <div><dt>Output</dt><dd>N-channel transistor, 10 kΩ, 0.1 µF</dd></div>
+        <div><dt>Reads into</dt><dd>ODrive, pin 7, set as the minimum endstop</dd></div>
+        <div><dt>Slide</dt><dd>15.75 in of travel</dd></div>
+        <div><dt>Size limit</dt><dd>0.75 in tall</dd></div>
+        <div><dt>Build</dt><dd>Hand-wired perfboard with a status LED</dd></div>
+        <div><dt>Status</dt><dd>Replaced by version 2</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>The job</h2></div>
+        <div>
+          <p>The rover's arm rides on a linear slide, which gives the arm one more direction to move. Before the ODrive can position the arm, it has to find one end of the rail and call that zero.</p>
+          <p>That takes a sensor at the end of the rail and a homing routine in the ODrive.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/slide-rover.jpg" alt="The slide rail and its carriage blocks on the rover's blue frame"></div>
+          <figcaption><span class="fig">Fig. 1</span>The slide rail on the rover, seen from one end.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>On paper first</h2></div>
+        <div>
+          <p>I worked it out in my notebook first: which ODrive pins to use, where the sensor sits on the rail, the circuit, and the homing steps.</p>
+          <p>One note on that page carried straight into version 2. A limit switch should be wired normally closed, so a broken wire stops the slide instead of letting it run.</p>
+        </div>
+      </div>
+      <div class="figs" style="max-width: 520px">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1028" height="1600" src="img/hall-notes.jpg" alt="Handwritten notebook page with ODrive pin notes, a sketch of the slide, a circuit drawing, and homing steps"></div>
+          <figcaption><span class="fig">Fig. 2</span>The notebook page: pins, placement, circuit, and homing steps.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>Breadboard test</h2></div>
+        <div>
+          <p>The first test was on a breadboard, with an ESP32 reading the sensor and printing the result to my laptop.</p>
+          <p>Bring a magnet close and the output flips. The LEDs show it.</p>
+        </div>
+      </div>
+      <div class="figs wide-narrow">
+        <figure>
+          <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/hall-breadboard.jpg" alt="An ESP32 board wired to a breadboard holding the hall-effect sensor, a transistor, and an LED"></div>
+          <figcaption><span class="fig">Fig. 3</span>The sensor circuit on a breadboard, read by an ESP32.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><video muted loop playsinline preload="none" poster="img/hall-bench-poster.jpg" aria-label="Close view of the breadboard as the sensor is triggered and the LEDs change"><source src="media/hall-bench-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 4</span>Triggering the sensor on the bench.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>Build and mount</h2></div>
+        <div>
+          <p>Then the circuit moved to perfboard, with a status LED and a sleeved cable running to the ODrive.</p>
+          <p>The mechanical team designed the bracket. I gave them the dimensions and asked for the zip-tie points and the cable cover.</p>
+        </div>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-front.jpg" alt="Front of the hand-built sensor board with a sleeved cable"></div>
+          <figcaption><span class="fig">Fig. 5</span>The finished board.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-lit.jpg" alt="The sensor board powered on with its green light lit"></div>
+          <figcaption><span class="fig">Fig. 6</span>Powered on.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-bracket.jpg" alt="The sensor board sitting in a black 3D-printed bracket with its cable tied down"></div>
+          <figcaption><span class="fig">Fig. 7</span>In its bracket.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">05</div><h2>Getting the ODrive to see it</h2></div>
+        <div>
+          <p>At first the ODrive didn't see the sensor at all. The input wasn't being detected, and nothing changed in the ODrive tool no matter what the sensor did.</p>
+          <p>That turned into a long goose chase. The cause was one setting: sampling was turned off on that input. With pin 7 set as a digital input, the minimum endstop pointed at it and switched on, and "active high" set to match the sensor, it worked.</p>
+          <p>I wrote the settings up for the team, along with how to watch the sensor's state live in the ODrive tool. After that, the sensor stopped the slide at the end of its travel.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="632" height="607" src="img/odrive-settings.png" alt="ODrive settings list for the linear slide, showing pin 7 set to digital and the minimum endstop enabled"></div>
+          <figcaption><span class="fig">Fig. 8</span>The endstop and homing settings for the slide.</figcaption>
+        </figure>
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="908" src="img/odrive-inspector.png" alt="ODrive tool screenshot with a hand-drawn arrow pointing at the run button"></div>
+          <figcaption><span class="fig">Fig. 9</span>From my note to the team: press run to watch the sensor's state live.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">06</div><h2>Why there is a version 2</h2></div>
+        <div>
+          <p>The sensor worked. The magnet was the weak point. The slide is small, and the magnet wouldn't fit or hold well on it. If it fell off, the slide would have no end stop at all.</p>
+          <p>The software team also liked the idea of a physical switch. A switch gives up some speed and precision, but it stays well within what the slide needs. That became the <a href="#endstop">limit switch board</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next" href="#rover-power">
+      <span class="label">Next project</span>
+      <strong>Rover Power and Wiring →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-boat" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media pair" style="margin-top: 12px">
+      <div class="ba"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-old-in.jpg" alt="A rusted starter motor sitting above rusty water in the boat's engine bay"><span class="ba-tag">Before</span></div>
+      <div class="ba"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-new.jpg" alt="A new black starter motor bolted in the same spot, with the engine bay cleaned"><span class="ba-tag">After</span></div>
+    </div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Personal project · 2022–24</div>
+        <h1 class="p-title">Speed Boat Electrical Repair</h1>
+        <p class="lead">A friend's speed boat whose engine bay filled with water, twice. I repaired the electrical system in 2022. Then it flooded again, and I did it all again in 2023. I'm its mechanic.</p>
+        <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li><li>Starting and charging</li><li>Troubleshooting</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>Engine</dt><dd>Mercury MerCruiser 3.0 L</dd></div>
+        <div><dt>Drive</dt><dd>MerCruiser Alpha One</dd></div>
+        <div><dt>Replaced</dt><dd>Starter, alternator (twice), ignition switch, hydraulic pump, belt</dd></div>
+        <div><dt>Added</dt><dd>In-line fuse between the battery and the ignition line</dd></div>
+        <div><dt>Also</dt><dd>Redid the crimps, battery cables included. Fixed the drive's hydraulics. Removed a lot of rust.</dd></div>
+        <div><dt>Status</dt><dd>Running</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>What I found</h2></div>
+        <div>
+          <p>There was rusty water pooled under the engine, and everything mounted low had been soaking in it.</p>
+          <p>The starter was rusted solid. With it out, I could see rust on the flywheel teeth behind it too.</p>
+        </div>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-engine.jpg" alt="Top of a Mercury MerCruiser 3.0 litre engine with brown water pooled below it"></div>
+          <figcaption><span class="fig">Fig. 1</span>The engine bay as found, with rusty water below the engine.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-starter-old-out.jpg" alt="A heavily rusted starter motor sitting on the boat's deck"></div>
+          <figcaption><span class="fig">Fig. 2</span>The old starter, out of the boat.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-flywheel.jpg" alt="Rusty gear teeth seen through the opening where the starter mounts"></div>
+          <figcaption><span class="fig">Fig. 3</span>Rust on the flywheel teeth, seen through the starter opening.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>Starter and alternator</h2></div>
+        <div>
+          <p>Old starter out, new starter in. The alternator got replaced in 2022. After the second flood it needed another one in 2023, and I redid the crimps on its wiring both times.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-old-in.jpg" alt="The rusted starter motor in place above rusty water"></div>
+          <figcaption><span class="fig">Fig. 4</span>Before: the old starter in place.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-new.jpg" alt="The new starter motor installed, with clean copper terminals"></div>
+          <figcaption><span class="fig">Fig. 5</span>After: the new starter installed.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>Battery and a new fuse</h2></div>
+        <div>
+          <p>I added an in-line fuse between the battery and the ignition line. If that wire ever shorts, the fuse goes before the wire does.</p>
+          <p>I also redid the crimps on the battery cables.</p>
+        </div>
+      </div>
+      <div class="figs two" style="max-width: 760px">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-battery-old.jpg" alt="A battery coated in rust-colored residue with corroded terminals"></div>
+          <figcaption><span class="fig">Fig. 6</span>Before: the battery and its terminals.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-battery-new.jpg" alt="A clean battery with a clear in-line fuse holder on a red wire from the positive terminal"></div>
+          <figcaption><span class="fig">Fig. 7</span>After: clean terminals and the in-line fuse holder.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>Ignition switch</h2></div>
+        <div>
+          <p>The ignition switch got replaced in 2023. Every wire on it has a numbered tag, so each one goes back on the right terminal.</p>
+        </div>
+      </div>
+      <div class="figs two" style="max-width: 760px">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-ignition.jpg" alt="A brass ignition switch held in a hand, with three wires on spade connectors, each tagged with a number"></div>
+          <figcaption><span class="fig">Fig. 8</span>The ignition switch and its numbered wires.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-fuse-block.jpg" alt="A blade fuse block with nine fuses beside a ground bar"></div>
+          <figcaption><span class="fig">Fig. 9</span>The boat's fuse block and ground bar.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">05</div><h2>Drive hydraulics</h2></div>
+        <div>
+          <p>The hydraulic pump that moves the drive was badly corroded, with green and orange crust around its wiring. I fixed the drive's hydraulics in 2022 and replaced the pump in 2023.</p>
+        </div>
+      </div>
+      <div class="figs wide-narrow">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-pump-old.jpg" alt="A hydraulic pump and fluid tank surrounded by heavily corroded parts and wiring"></div>
+          <figcaption><span class="fig">Fig. 10</span>Corrosion around the hydraulic pump and its wiring.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-outdrive.jpg" alt="The MerCruiser Alpha One drive at the back of the boat, with a hydraulic cylinder on each side"></div>
+          <figcaption><span class="fig">Fig. 11</span>The drive and its two hydraulic cylinders.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">06</div><h2>Repaired twice</h2></div>
+        <div>
+          <p>This boat got repaired twice. After the first round it filled with water again, and many of the same parts had to be replaced a second time.</p>
+          <ul class="points">
+            <li><strong>2022.</strong> New alternator. Redid the crimps, battery cables included. Fixed the drive's hydraulics. Cleaned the boat.</li>
+            <li><strong>2023, after the second flood.</strong> Another alternator, and the crimps again. New hydraulic pump. New ignition switch. Fixed the overhead speakers after a connection broke. Cleaned it again.</li>
+            <li><strong>2024.</strong> New belt, after the old one snapped.</li>
+          </ul>
+          <p>Both years included a lot of rust removal, with a rust solvent and a steel brush.</p>
+          <p>It starts and it runs.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next" href="#pontoon">
+      <span class="label">Next project</span>
+      <strong>Pontoon Boat Rebuild →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-rover" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="Inside the rover's electrical box: a fuse board with rows of red indicator lights between two motor controllers"></div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Yonder Dynamics · 2026</div>
+        <h1 class="p-title">Rover Power and Wiring</h1>
+        <p class="lead">Every motor controller on the rover's arm sits behind a small fuse board. I soldered those boards, tested one across its whole voltage range, and I build the rover's wire harnesses.</p>
+        <p class="lead">The fuse boards were designed by Aaron Lee, one of the team's two electrical leads.</p>
+        <ul class="tags"><li>Soldering</li><li>Testing</li><li>Crimping</li><li>Harnesses</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>Board</dt><dd>ODrive S1 fuse board, Mark 2</dd></div>
+        <div><dt>Design</dt><dd>Aaron Lee</dd></div>
+        <div><dt>My part</dt><dd>Soldering, testing, and harnesses. I also proposed using these boards on the arm, and ring terminals for the power connections.</dd></div>
+        <div><dt>Turns on</dt><dd>About 18.4 V</dd></div>
+        <div><dt>Cuts off</dt><dd>About 34.9 V</dd></div>
+        <div><dt>Reversed</dt><dd>Output stays within 0.35 V of zero</dd></div>
+        <div><dt>Later</dt><dd>Became the base for the ODrive Pro version</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>What the board does</h2></div>
+        <div>
+          <p>Each board sits between the battery and one ODrive. It holds a blade fuse and only passes power when the input voltage is in a safe range.</p>
+          <p>Too low, too high, or plugged in backwards, and the output stays off.</p>
+          <p>Putting these boards on the arm was my recommendation. Most of them live there now.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/fuse-board.jpg" alt="A green fuse board with a blade fuse holder in the middle and two large power transistors on the right"></div>
+          <figcaption><span class="fig">Fig. 1</span>A fuse board after soldering: fuse holder in the middle, two power transistors on the right.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 shot"><img loading="lazy" decoding="async" width="1190" height="846" src="img/cad-fuse-board.png" alt="Simplified 3D model of the fuse board with its fuse, heat sinks, and ring terminals"></div>
+          <figcaption><span class="fig">Fig. 2</span>My simplified model of the same board, for the rover's CAD.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>Soldering the boards</h2></div>
+        <div>
+          <p>I soldered the fuse boards. They're surface-mount: two big power transistors, a small control chip, and the resistors around it.</p>
+          <p>In the rover's electrical box, where part of the wiring is mine, a fuse board sits between two ODrives.</p>
+        </div>
+      </div>
+      <div class="figs wide-narrow">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="The rover's electrical box with a fuse board between two motor controllers"></div>
+          <figcaption><span class="fig">Fig. 3</span>The rover's electrical box.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall"><video muted loop playsinline preload="none" poster="img/fuse-solder-loop-poster.jpg" aria-label="Tweezers placing a part on a green fuse board during soldering"><source src="media/fuse-solder-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 4</span>Me soldering a fuse board.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>Testing it</h2></div>
+        <div>
+          <p>I stepped the input from about −32 V up to +40 V and wrote down the output at each step.</p>
+          <p>The output turns on at about 18.4 V and follows the input up to about 34.9 V, where it cuts off. Coming back down, it turns on again at about 32.8 V and drops out at about 17.5 V.</p>
+          <p>The gap between the on and off points is on purpose. Without it, the board would chatter on and off whenever the voltage sat right at a limit.</p>
+          <p>With the input reversed, the output never moved more than 0.35 V from zero.</p>
+          <p>One test is still open. My equipment tops out at 10 A, which isn't enough to find out whether the fuse blows before the board gives out.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1400" height="800" src="img/fuse-graph.png" alt="Graph of output voltage against input voltage. The output is zero below about 18 volts, follows the input from 18 to 35 volts, and is zero above 35 volts and for all negative inputs."></div>
+          <figcaption><span class="fig">Fig. 5</span>Measured input and output voltage for the Mark 2 board. Board design: Aaron Lee.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>Terminals and harnesses</h2></div>
+        <div>
+          <p>I pushed for ring terminals on the power connections. They bolt down, and they let power pass from one board to the next in a chain.</p>
+          <p>I also build the rover's harnesses: motor leads, servo power for the hand, and connectors.</p>
+        </div>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/neo-harness.jpg" alt="NEO motor with sleeved wires ending in a yellow power connector"></div>
+          <figcaption><span class="fig">Fig. 6</span>NEO motor harness.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/servo-harness.jpg" alt="Two servos joined by a soldered harness with heat shrink and yellow connectors"></div>
+          <figcaption><span class="fig">Fig. 7</span>Servo power harness for the hand.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/motor-connector.jpg" alt="Three-pin yellow motor connector with white, black, and red wires"></div>
+          <figcaption><span class="fig">Fig. 8</span>Three-pin motor connector.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal id="ebox-plate-section">
+      <div class="step-head">
+        <div><div class="step-num">05</div><h2>A new floor for the electrical box</h2></div>
+        <div>
+          <p>The bottom of the rover's electrical box was a scratched sheet of acrylic with velcro stuck all over it. In November 2026, another club member and I replaced it.</p>
+          <p>We designed a new plate in Onshape, laser cut it, and bolted it in. It's larger, it's cleaner, and the screw holes are where they should be. I also helped make the mounting system.</p>
+          <p>Design to installed took about three hours.</p>
+          <p>This is version 1. Still to come: bigger screw holes so it goes on faster, rounded corners so nothing is sharp, and the Yonder logo engraved in it.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1475" height="1229" src="img/ebox-plate-old.jpg" alt="The old bottom of the electrical box: scratched clear acrylic covered in strips of velcro"></div>
+          <figcaption><span class="fig">Fig. 9</span>Before: scratched acrylic and velcro.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/ebox-plate-new.jpg" alt="The new white laser-cut plate bolted into the rover's blue frame, with orange standoffs"></div>
+          <figcaption><span class="fig">Fig. 10</span>After: the new plate in the rover's frame.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 shot"><img loading="lazy" decoding="async" width="1511" height="960" src="img/ebox-plate-onshape.png" alt="Onshape sketch of the plate with its mounting holes"></div>
+          <figcaption><span class="fig">Fig. 11</span>The plate in Onshape.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1154" src="img/ebox-pegboard.jpg" alt="A white pegboard carrying motor controllers, fuse boards, and wiring harnesses"></div>
+          <figcaption><span class="fig">Fig. 12</span>The electronics board that mounts in the box. That board is not my design.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <a class="next" href="#light-meter">
+      <span class="label">Next project</span>
+      <strong>8-Bit Light Meter →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-pontoon" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media pair" style="margin-top: 12px">
+      <div class="ba"><img loading="lazy" decoding="async" width="1336" height="1229" src="img/pontoon-before.jpg" alt="An old pontoon boat with a worn deck, torn seats, and a bare console"><span class="ba-tag">Before</span></div>
+      <div class="ba"><img loading="lazy" decoding="async" width="1600" height="900" src="img/pontoon-after-wide.jpg" alt="The rebuilt pontoon boat out on a lake, with new seating and a friend at the helm" style="object-position: 30% 50%"><span class="ba-tag">After</span></div>
+    </div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Personal project · 2020–21</div>
+        <h1 class="p-title">Pontoon Boat Rebuild</h1>
+        <p class="lead">A worn-out pontoon boat, stripped to the frame and rebuilt with a friend and his grandfather, who let me join the project. They ran the mechanical side, including the engine rebuild. The electrical system was mine, engine wiring included, and all three of us worked on everything else.</p>
+        <ul class="tags"><li>Marine electrical</li><li>Wiring plan</li><li>Fusing</li><li>Crimping</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>My part</dt><dd>Electrical plan and all wiring, including the engine wiring</dd></div>
+        <div><dt>Power</dt><dd>12 V marine battery</dd></div>
+        <div><dt>Protection</dt><dd>In-line fuse at the battery, main cut-off switch, 12-circuit fuse panel</dd></div>
+        <div><dt>Circuits</dt><dd>Bow, stern, overhead, and underwater LED lights, horn, stereo, fish finder, USB outlet</dd></div>
+        <div><dt>Charging</dt><dd>From the outboard engine</dd></div>
+        <div><dt>Wire runs</dt><dd>Under the deck, inside PVC pipe</dd></div>
+        <div><dt>Engine</dt><dd>Mercury 40 hp FourStroke outboard</dd></div>
+        <div><dt>Status</dt><dd>Running. In use for about six years.</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>Where it started</h2></div>
+        <div>
+          <p>It showed up with a worn deck, torn seats, and a bare console. We took it down to the frame.</p>
+          <p>The old floor came out. New plywood went down on marine adhesive, then marine flooring, seats, and a new driver's console. There was a lot of metal polishing.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1336" height="1229" src="img/pontoon-before.jpg" alt="The pontoon boat before the rebuild, with a worn deck and torn seats"></div>
+          <figcaption><span class="fig">Fig. 1</span>Before the rebuild.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1200" src="img/pontoon-deck.jpg" alt="New plywood laid beside the old dark flooring on top of the pontoon frame"></div>
+          <figcaption><span class="fig">Fig. 2</span>New plywood going down beside the old floor.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>A plan on paper first</h2></div>
+        <div>
+          <p>Before I ran a single wire, I drew the whole system: every load, the fuse for each one, and the wire size for the current it carries.</p>
+          <p>Power leaves the battery through an in-line fuse, then a main cut-off switch, then a lighted switch on the dash, then a 12-circuit fuse panel under the helm. Every load gets its own fuse and its own switch.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1229" height="921" src="img/pontoon-diagram.jpg" alt="Hand-drawn wiring diagram: a list of loads, a wire size table, fuse colors, and the path from the battery through a fuse and two switches to a fuse panel and dash panel"></div>
+          <figcaption><span class="fig">Fig. 3</span>My wiring plan: loads, wire sizes, fuse ratings, and the path from the battery to each circuit.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>Fuse panel and switches</h2></div>
+        <div>
+          <p>Each circuit lands on its own labeled fuse: stereo, horn, GPS, dome light, DC outlet, accessory.</p>
+          <p>The wires end in crimped connectors and are zip-tied into bundles, so any one of them can be followed from fuse to switch.</p>
+        </div>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/pontoon-console.jpg" alt="The new grey console on the deck with a switch panel on its face"></div>
+          <figcaption><span class="fig">Fig. 4</span>The new console with its switch panel.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-switch-back.jpg" alt="Back of the switch panel inside the console, with wires on crimped connectors tied into a bundle"></div>
+          <figcaption><span class="fig">Fig. 5</span>Behind the switch panel.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-fuse-panel.jpg" alt="The fuse panel inside the console with labeled fuses"></div>
+          <figcaption><span class="fig">Fig. 6</span>The fuse panel under the helm, one labeled fuse per circuit.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>Loads, battery, and wire runs</h2></div>
+        <div>
+          <p>I wired the Bluetooth radio and its speakers, which sit in the driver's console and the big bench seat. I also wired the fish finder (which doubles as the speedometer), the front lights, the underwater LEDs, and the overhead lights.</p>
+          <p>A kill switch at the battery cuts power to everything. Most of the wiring runs under the deck inside PVC pipe, out of the water and away from feet.</p>
+          <p>The battery was a leftover we found that still held a charge and was rated for a boat.</p>
+        </div>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-stereo.jpg" alt="Stereo wiring harness joined with pink crimp connectors and tied with zip ties"></div>
+          <figcaption><span class="fig">Fig. 7</span>Stereo harness, joined with crimp connectors.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-battery.jpg" alt="A marine battery box on the rear deck with crimping pliers resting on top"></div>
+          <figcaption><span class="fig">Fig. 8</span>The battery in its marine battery box.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-underdeck.jpg" alt="Wires and a black conduit running under the plywood deck"></div>
+          <figcaption><span class="fig">Fig. 9</span>Wiring routed under the deck.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">05</div><h2>Charging from the outboard</h2></div>
+        <div>
+          <p>The outboard has no belt-driven alternator. It charges the battery from a stator, a ring of coils under the flywheel that makes power as the flywheel's magnets spin past.</p>
+          <p>The boat needed a new stator. I fitted it and wired its output to the battery. The regulator and rectifier were fine.</p>
+          <p>The cable connections were not, so I redid the crimps.</p>
+        </div>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-outboard.jpg" alt="A Mercury outboard engine with its cover off, standing on a hand truck"></div>
+          <figcaption><span class="fig">Fig. 10</span>The outboard with its cover off, before it went on the boat.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="1116" height="1600" src="img/pontoon-outboard-mounted.jpg" alt="A black Mercury 40 horsepower outboard mounted on the back of the pontoon boat"></div>
+          <figcaption><span class="fig">Fig. 11</span>The Mercury 40 mounted on the boat.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-outboard-battery.jpg" alt="The outboard from the side, with a battery box and its red wire on the deck behind it"></div>
+          <figcaption><span class="fig">Fig. 12</span>The battery box sits just behind the engine.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">06</div><h2>Result</h2></div>
+        <div>
+          <p>It runs. In April 2021 it was out on the lake with a new deck, new seats, and new wiring, and it has been in use for about six years. I'm still the one who gets called when something on it breaks.</p>
+        </div>
+      </div>
+      <div class="figs">
+        <figure>
+          <div class="media"><video muted loop playsinline preload="none" poster="img/pontoon-after-wide.jpg" aria-label="A friend driving the rebuilt pontoon boat across a lake, then a pan across the new seating"><source src="media/pontoon-drive-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 13</span>On the lake, April 2021, with my friend at the helm.</figcaption>
+        </figure>
+      </div>
+      <div class="figs two" style="max-width: 760px">
+        <figure>
+          <div class="media tall"><video muted loop playsinline preload="none" poster="img/pontoon-lake-loop-poster.jpg" aria-label="The outboard running with a wake behind it, then a pan across the new seating"><source src="media/pontoon-lake-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 14</span>The outboard running.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="720" height="1280" src="img/pontoon-after.jpg" alt="New blue and white seating on the finished pontoon boat, out on a lake"></div>
+          <figcaption><span class="fig">Fig. 15</span>The finished seating.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <a class="next" href="#endstop">
+      <span class="label">Back to the first project</span>
+      <strong>Limit Switch Endstop →</strong>
+    </a>
+  </div>
+</main>
+
+<main id="view-buggy" hidden>
+  <div class="wrap article">
+    <a class="back" href="#work">← All work</a>
+    <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="739" src="img/buggy.jpg" alt="Tube-frame off-road buggy parked on a driveway"></div>
+
+    <div class="p-head">
+      <div>
+        <div class="label">Personal project</div>
+        <h1 class="p-title">Buggy Noise Filters</h1>
+        <p class="lead">My family's buggy runs a Holley Sniper fuel injection system. Two things on the buggy were putting electrical noise on its 12 V wiring, and that noise was reaching the Sniper. I found both sources and built a filter for each.</p>
+        <ul class="tags"><li>Troubleshooting</li><li>Electrical noise (EMI)</li><li>Filter design</li><li>Crimping</li></ul>
+      </div>
+      <dl class="spec">
+        <div><dt>System</dt><dd>Holley Sniper fuel injection with an HEI distributor</dd></div>
+        <div><dt>Source 1</dt><dd>LED light bar</dd></div>
+        <div><dt>Filter 1</dt><dd>1000 µF electrolytic and two 0.1 µF ceramics, across 12 V and ground at the light bar</dd></div>
+        <div><dt>Source 2</dt><dd>Ignition</dd></div>
+        <div><dt>Filter 2</dt><dd>A series resistor with a ceramic capacitor to ground on each side, built in-line</dd></div>
+        <div><dt>Status</dt><dd>Both installed. Running clean.</dd></div>
+      </dl>
+    </div>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">01</div><h2>Two sources of noise</h2></div>
+        <div>
+          <p>The Sniper is a small computer that reads sensors and fires the injectors. It shares its 12 V wiring with everything else on the buggy, so noise on that wiring can end up in what the computer reads.</p>
+          <p>Two things were making noise. One was the LED light bar. The other was the ignition.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">02</div><h2>Light bar filter</h2></div>
+        <div>
+          <p>An LED light bar doesn't draw steady current. Its driver switches the current on and off very fast, and each switch tugs on the 12 V line. A well-designed light has parts inside to soak that up. This one didn't have enough.</p>
+          <p>My filter is three capacitors across 12 V and ground. The big 1000 µF one works like a small tank next to the light. It feeds the light's quick gulps of current, so they aren't pulled through the buggy's wiring.</p>
+          <p>The two small 0.1 µF ceramics catch the fastest noise, which the big capacitor is too slow to handle.</p>
+          <p>It sits as close to the light bar's power wires as I could get it. That way the noise is shorted out at the source, before the wiring can carry it anywhere.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="803" src="img/buggy-lightbar-sch.png" alt="Schematic of the light bar filter: three capacitors side by side between 12 volts and ground"></div>
+          <figcaption><span class="fig">Fig. 1</span>Light bar filter: one large capacitor and two small ones across the supply.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/buggy-filter.jpg" alt="Small green board with one large capacitor, small yellow capacitors, and screw terminals, wired into the buggy"></div>
+          <figcaption><span class="fig">Fig. 2</span>Built on a small board with screw terminals, and installed.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">03</div><h2>Ignition filter</h2></div>
+        <div>
+          <p>Every time the distributor fires the coil, it kicks a sharp spike onto the ignition's 12 V line. That line also runs to the fuel injection system.</p>
+          <p>This filter goes in-line on the positive wire and works in three stages:</p>
+          <ul class="points">
+            <li><strong>First capacitor.</strong> It sits on the noisy ignition side and sends the sharpest, fastest spikes, like coil ringing and alternator whine, straight to ground before they reach the resistor.</li>
+            <li><strong>Resistor.</strong> It sits in series with the positive wire. It holds back fast current spikes and gives the second capacitor something to work against.</li>
+            <li><strong>Second capacitor.</strong> It sits on the clean side. With the resistor it forms a low-pass filter that smooths out what's left, and it keeps a small reserve of charge for whatever is connected.</li>
+          </ul>
+          <p>The filter has three leads: red in, red out, and a black ground wire with a ring terminal that bolts to the frame. I didn't write the part values down when I built it, so the drawing shows the layout and not the values.</p>
+          <p>I built it right on the wire, crimped a terminal on each end, and sealed it in heat shrink.</p>
+        </div>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="727" src="img/buggy-ignition-sch.png" alt="Schematic of the ignition filter: a capacitor to ground, a resistor in series, then a second capacitor to ground"></div>
+          <figcaption><span class="fig">Fig. 3</span>How the in-line filter is laid out: a resistor in the red wire, with a ceramic capacitor to ground on each side.</figcaption>
+        </figure>
+        <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1200" src="img/buggy-filter-inline.jpg" alt="The in-line filter sealed in black heat shrink on a red and black wire with crimped terminals"></div>
+          <figcaption><span class="fig">Fig. 4</span>The in-line filter, sealed in heat shrink.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step" data-reveal>
+      <div class="step-head">
+        <div><div class="step-num">04</div><h2>Result</h2></div>
+        <div>
+          <p>With both filters in, the fuel injection has run clean.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next" href="#speed-boat">
+      <span class="label">Next project</span>
+      <strong>Speed Boat Electrical Repair →</strong>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <div style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--fg)">Weston Prosser</div>
+      <div>Electrical engineering student.</div>
+      <div>San Diego, California.</div>
+      <div style="margin-top: 12px">© 2026 Weston Prosser</div>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <div class="label">Site</div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="label">Elsewhere</div>
+        <ul>
+          <li><a href="mailto:westonprosser04@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function save(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  // Light and dark mode
+  var lightQuery = window.matchMedia('(prefers-color-scheme: light)');
+  var themeBtn = document.getElementById('themeBtn');
+  function currentTheme() { return root.getAttribute('data-theme') || (lightQuery.matches ? 'light' : 'dark'); }
+  function paintThemeBtn() {
+    var t = currentTheme();
+    themeBtn.setAttribute('data-mode', t);
+    themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  var savedTheme = load('pf-theme');
+  if (savedTheme === 'light' || savedTheme === 'dark') root.setAttribute('data-theme', savedTheme);
+  themeBtn.addEventListener('click', function () {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    save('pf-theme', next);
+    paintThemeBtn();
+  });
+  if (lightQuery.addEventListener) lightQuery.addEventListener('change', paintThemeBtn);
+  new MutationObserver(paintThemeBtn).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  paintThemeBtn();
+
+  // Accent picker
+  var swatches = Array.prototype.slice.call(document.querySelectorAll('.sw'));
+  function setAccent(name) {
+    if (name === 'amber') root.removeAttribute('data-accent'); else root.setAttribute('data-accent', name);
+    swatches.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-accent') === name)); });
+  }
+  swatches.forEach(function (b) {
+    b.addEventListener('click', function () { var n = b.getAttribute('data-accent'); setAccent(n); save('pf-accent', n); });
+  });
+  var savedAccent = load('pf-accent');
+  if (savedAccent && swatches.some(function (b) { return b.getAttribute('data-accent') === savedAccent; })) setAccent(savedAccent);
+
+  // Fade sections in as they scroll into view
+  var io = null;
+  if (!reduce && 'IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+  }
+  function arm(container) {
+    if (!io) return;
+    Array.prototype.forEach.call(container.querySelectorAll('[data-reveal]:not([data-armed])'), function (el) {
+      el.setAttribute('data-armed', '1');
+      if (el.getBoundingClientRect().top > window.innerHeight * 0.92) el.classList.add('pre');
+      io.observe(el);
+    });
+  }
+
+  // Two views: the home page and one sample project page
+  var home = document.getElementById('view-home');
+  var pages = {
+    'light-meter': document.getElementById('view-project'),
+    'endstop': document.getElementById('view-endstop'),
+    'hall-effect': document.getElementById('view-hall'),
+    'speed-boat': document.getElementById('view-boat'),
+    'rover-power': document.getElementById('view-rover'),
+    'pontoon': document.getElementById('view-pontoon'),
+    'buggy-filters': document.getElementById('view-buggy')
+  };
+  var current = null;
+  var homeY = null;
+  function show(name, jump) {
+    var page = Object.prototype.hasOwnProperty.call(pages, name) ? pages[name] : null;
+    var cameFromPage = !!current;
+    if (page && !current) homeY = window.scrollY;
+    current = page;
+    home.hidden = !!page;
+    Object.keys(pages).forEach(function (k) { pages[k].hidden = pages[k] !== page; });
+    arm(page || home);
+    if (page) { window.scrollTo(0, 0); return; }
+    if (jump === false) return;
+    // Coming back from a write-up: return to the spot in the list you left
+    if (cameFromPage && name === 'work' && homeY !== null) { window.scrollTo(0, homeY); return; }
+    var target = name && name !== 'home' ? document.getElementById(name) : null;
+    if (target) target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    else window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    e.preventDefault();
+    var name = a.getAttribute('href').slice(1);
+    if (location.hash.slice(1) === name) show(name);
+    else { try { location.hash = name; } catch (err) { show(name); } }
+  });
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
+  var first = location.hash.slice(1);
+  show(first, first ? undefined : false);
+
+  // Header line appears after the first scroll
+  var topBar = document.getElementById('top');
+  var progressBar = document.getElementById('progressBar');
+  function onScroll() {
+    topBar.classList.toggle('scrolled', window.scrollY > 8);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Cards with a video that plays over the photo: on hover with a mouse, or when centered on a touch screen
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var hoverIo = null, warmIo = null;
+  if (!reduce && 'IntersectionObserver' in window) {
+    if (!canHover) hoverIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.target.__hv) e.target.__hv(e.isIntersecting); });
+    }, { threshold: 0.8 });
+    // Start loading a card's clip shortly before it scrolls into view, so it can start without a wait
+    warmIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var v = e.target.querySelector('video.hover-vid');
+        if (v && v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+        warmIo.unobserve(e.target);
+      });
+    }, { rootMargin: '500px 0px' });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-hover-video]'), function (card) {
+    var v = card.querySelector('video.hover-vid');
+    if (!v || reduce) return;
+    var want = false, offTimer = null;
+    function reveal() { if (want) { v.classList.add('on'); card.classList.add('playing'); } }
+    function set(on) {
+      want = on;
+      clearTimeout(offTimer);
+      if (on) {
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+        if (!v.paused && v.readyState > 2) reveal();
+      } else {
+        // Fade the photo back in first, then stop the clip once it is hidden
+        v.classList.remove('on'); card.classList.remove('playing');
+        offTimer = setTimeout(function () { if (!want) v.pause(); }, 650);
+      }
+    }
+    v.addEventListener('playing', reveal);
+    if (warmIo) warmIo.observe(card);
+    if (canHover) {
+      card.addEventListener('mouseenter', function () { set(true); });
+      card.addEventListener('mouseleave', function () { set(false); });
+      card.addEventListener('focusin', function () { set(true); });
+      card.addEventListener('focusout', function () { set(false); });
+    } else if (card.hasAttribute('data-blend')) { card.__hv = set; }
+    else if (hoverIo) { card.__hv = set; hoverIo.observe(card); }
+  });
+
+  // Before-and-after cards: the "after" photo sweeps in as the card moves up the screen
+  var blends = Array.prototype.slice.call(document.querySelectorAll('[data-blend]'));
+  var blendTick = false;
+  function updateBlends() {
+    blendTick = false;
+    var vh = window.innerHeight;
+    blends.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (!r.height || r.bottom < -80 || r.top > vh + 80) return;
+      var center = r.top + r.height / 2;
+      var p = Math.max(0, Math.min(1, (0.80 * vh - center) / (0.34 * vh)));
+      el.style.setProperty('--p', p.toFixed(3));
+      if (el.__hv && !canHover) { var on = p >= 1; if (el.__on !== on) { el.__on = on; el.__hv(on); } }
+    });
+  }
+  function queueBlends() { if (!blendTick) { blendTick = true; requestAnimationFrame(updateBlends); } }
+  if (!reduce && blends.length) {
+    blends.forEach(function (el) { el.classList.add('live'); });
+    window.addEventListener('scroll', queueBlends, { passive: true });
+    window.addEventListener('resize', queueBlends);
+    window.addEventListener('hashchange', function () { setTimeout(queueBlends, 60); });
+    updateBlends();
+  }
+
+  // Videos play only while they are on screen. People who ask for less motion get play buttons instead.
+  var vids = Array.prototype.slice.call(document.querySelectorAll('video:not(.hover-vid)'));
+  function playQuietly(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  if (reduce) {
+    vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  } else if ('IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) playQuietly(e.target); else e.target.pause();
+      });
+    }, { threshold: 0.2 });
+    vids.forEach(function (v) { vio.observe(v); });
+  } else {
+    vids.forEach(playQuietly);
+  }
+})();
+</script>
+</body>
+</html>
