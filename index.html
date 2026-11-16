@@ -8,7 +8,8 @@
 <meta property="og:title" content="Weston Prosser | Electrical Engineering Portfolio">
 <meta property="og:description" content="Weston Prosser, electrical engineering student at UC San Diego. Circuit boards, wire harnesses, and electrical repair work, with photos and write-ups.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="img/hero-rover-poster.jpg">
+<meta property="og:image" content="https://grumpyzpants.github.io/img/hero-rover-poster.jpg">
+<meta property="og:url" content="https://grumpyzpants.github.io/">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
@@ -121,6 +122,7 @@ a { color: var(--accent); }
   position: sticky;
   top: env(safe-area-inset-top, 0px);
   z-index: 9;
+  background: var(--bg);
   background: color-mix(in srgb, var(--bg) 82%, transparent);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -286,7 +288,7 @@ a { color: var(--accent); }
 .mini .label { margin-top: 16px; }
 .mini h3 { margin: 6px 0; font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.2; }
 .mini p { margin: 0; }
-@media (max-width: 860px) { .minis { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .minis { grid-template-columns: minmax(0, 1fr); } }
 
 /* About and contact */
 .about { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 40px 64px; }
@@ -490,6 +492,23 @@ a.media { display: block; color: inherit; }
 /* Soldering clip: keep the iron and the part in frame when the box is narrow */
 video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
 
+/* Review fixes */
+.contact-mail { min-height: 44px; }
+.sub-head { margin-top: clamp(48px, 7vw, 88px); margin-bottom: 24px; }
+.sub-head + .minis { margin-top: 0; }
+.sub-head h2 { font-size: clamp(24px, 3vw, 32px); }
+.media.shot, .media.natural { border: 1px solid var(--line); }
+a.zoomable { cursor: zoom-in; }
+@media (max-width: 420px) {
+  .spec div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .spec dt { padding-top: 0; }
+}
+/* On phones the picker sits at the end of the page instead of floating over it */
+@media (max-width: 600px) {
+  .picks { position: static; align-items: center; margin: 0 auto; padding: 0 16px 28px; }
+  .foot { padding-block: 24px 20px; }
+}
+
 /* ============ New layouts. Shared parts ============ */
 :root[data-style] #work .sec-head .label, :root[data-style] .proj .num { display: none; }
 :root[data-style] #work { padding-top: clamp(36px, 5vw, 64px); }
@@ -585,7 +604,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
 
   <section class="hero">
     <div class="hero-media">
-    <video id="heroVid" autoplay muted loop playsinline poster="img/hero-rover-poster.jpg" aria-label="The Yonder Dynamics rover driving on desert ground with its arm reaching forward">
+    <video id="heroVid" muted loop playsinline preload="none" poster="img/hero-rover-poster.jpg" aria-label="The Yonder Dynamics rover driving on desert ground with its arm reaching forward">
       <source src="media/rover-field-loop.mp4" type="video/mp4">
     </video>
     <div class="hero-scrim"></div>
@@ -620,7 +639,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
           <div class="proj-text">
             <p>A small board that tells the rover's ODrive where its linear slide ends. Designed in Altium, soldered by me.</p>
             <ul class="tags"><li>Altium</li><li>LTspice</li><li>PCB design</li></ul>
-            <a class="more" href="#endstop">Read the write-up →</a>
+            <a class="more" href="#endstop">Read the write-up →</a>
           </div>
         </div>
       </article>
@@ -638,18 +657,18 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
             <h3>Hall-Effect Endstop</h3>
           </div>
           <div class="proj-text">
-            <p>Version 1: a hall sensor and a magnet, hand-wired on perfboard. The magnet never had a good home.</p>
+            <p>Version 1: a Hall sensor and a magnet, hand-wired on perfboard. The magnet never had a good home.</p>
             <ul class="tags"><li>Hall-effect sensor</li><li>Perfboard</li></ul>
-            <a class="more" href="#hall-effect">Read the write-up →</a>
+            <a class="more" href="#hall-effect">Read the write-up →</a>
           </div>
         </div>
       </article>
 
       <article class="proj" data-reveal>
-        <div class="media duo">
-          <img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="Inside the rover's electrical box: a fuse board with rows of red indicator lights between two motor controllers">
+        <a class="media duo" href="#rover-power">
+          <img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="Inside the rover's electrical box: a fuse board with rows of red indicator lights between two motor controllers. Open the write-up.">
           <video muted loop playsinline preload="none" poster="img/fuse-solder-loop-poster.jpg" aria-label="Tweezers placing a part on a green fuse board during soldering"><source src="media/fuse-solder-loop.mp4" type="video/mp4"></video>
-        </div>
+        </a>
         <div class="proj-body">
           <div>
             <div class="label"><span class="num">03</span>Yonder Dynamics</div>
@@ -658,7 +677,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
           <div class="proj-text">
             <p>Fuse boards I soldered and tested for the rover's arm, plus the rover's wire harnesses.</p>
             <ul class="tags"><li>Soldering</li><li>Testing</li><li>Harnesses</li></ul>
-            <a class="more" href="#rover-power">Read the write-up →</a>
+            <a class="more" href="#rover-power">Read the write-up →</a>
           </div>
         </div>
       </article>
@@ -688,17 +707,17 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
           <div class="proj-text">
             <p>A light meter made from logic chips. No microcontroller, no code.</p>
             <ul class="tags"><li>Logic design</li><li>Debugging</li><li>First PCB</li></ul>
-            <a class="more" href="#light-meter">Read the write-up →</a>
+            <a class="more" href="#light-meter">Read the write-up →</a>
           </div>
         </div>
       </article>
 
       <article class="proj" data-reveal>
-        <div class="media duo" style="grid-template-columns: minmax(0, 5fr) minmax(0, 2fr) minmax(0, 3fr)">
-          <img loading="lazy" decoding="async" width="1600" height="739" src="img/buggy.jpg" alt="Tube-frame off-road buggy parked on a driveway">
+        <a class="media duo" href="#buggy-filters" style="grid-template-columns: minmax(0, 5fr) minmax(0, 2fr) minmax(0, 3fr)">
+          <img loading="lazy" decoding="async" width="1600" height="739" src="img/buggy.jpg" alt="Tube-frame off-road buggy parked on a driveway. Open the write-up.">
           <img loading="lazy" decoding="async" width="1200" height="1600" src="img/buggy-filter.jpg" alt="Small hand-built filter board with capacitors and screw terminals, wired into the buggy">
           <img loading="lazy" decoding="async" width="1600" height="1200" src="img/buggy-filter-inline.jpg" alt="A second filter built in-line on a red and black wire, sealed in heat shrink, with crimped terminals" style="object-position: 58% 100%">
-        </div>
+        </a>
         <div class="proj-body">
           <div>
             <div class="label"><span class="num">06</span>Personal project</div>
@@ -707,7 +726,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
           <div class="proj-text">
             <p>Two filters that keep electrical noise out of the fuel injection on my family's buggy.</p>
             <ul class="tags"><li>Troubleshooting</li><li>EMI</li><li>Filter design</li></ul>
-            <a class="more" href="#buggy-filters">Read the write-up →</a>
+            <a class="more" href="#buggy-filters">Read the write-up →</a>
           </div>
         </div>
       </article>
@@ -726,7 +745,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
           <div class="proj-text">
             <p>A friend's speed boat that flooded twice. I repaired the electrical system both times.</p>
             <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li></ul>
-            <a class="more" href="#speed-boat">Read the write-up →</a>
+            <a class="more" href="#speed-boat">Read the write-up →</a>
           </div>
         </div>
       </article>
@@ -747,7 +766,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
           <div class="proj-text">
             <p>A worn-out pontoon, rebuilt from the frame up. The electrical system was mine.</p>
             <ul class="tags"><li>Marine electrical</li><li>Wiring plan</li><li>Crimping</li></ul>
-            <a class="more" href="#pontoon">Read the write-up →</a>
+            <a class="more" href="#pontoon">Read the write-up →</a>
           </div>
         </div>
       </article>
@@ -785,6 +804,9 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div class="media zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/esp32-perfboard.jpg" alt="ESP32 module on perfboard beside rows of white connectors"></div>
         <figcaption>General-purpose ESP32 breakout for rover testing.</figcaption>
       </figure>
+    </div>
+    <div class="sec-head sub-head">
+      <h2>Smaller projects</h2>
     </div>
     <div class="minis">
       <div class="mini" data-reveal>
@@ -825,7 +847,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <p>A lot of it happens at Yonder Dynamics, the rover team, where I design boards, build wire harnesses, and repair motor controllers. The rest happens at my desk or on somebody's boat.</p>
         <p>Power electronics, motors, and optics are what I want to work on.</p>
         <figure style="margin: 8px 0 24px">
-          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="1085" src="img/workbench.jpg" alt="A desk with a 3D printer, a cabinet of small parts drawers, a soldering mat, and a small pink fume fan"></div>
+          <a class="media natural zoomable" href="img/workbench.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="1085" src="img/workbench.jpg" alt="A desk with a 3D printer, a cabinet of small parts drawers, a soldering mat, and a small pink fume fan"></a>
           <figcaption>My bench at home. The pink box on the right is the fume fan, with the adapter I printed for it.</figcaption>
         </figure>
       </div>
@@ -877,8 +899,8 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div><dt>Input</dt><dd>8-position DIP switch</dd></div>
         <div><dt>Display</dt><dd>One LED per bit</dd></div>
         <div><dt>Reset</dt><dd>Push button on the converter chip</dd></div>
-        <div><dt>Supply</dt><dd>5 V and 12 V</dd></div>
-        <div><dt>Status</dt><dd>Breadboard working. PCB made, not assembled.</dd></div>
+        <div><dt>Supply</dt><dd>5 V and 12 V</dd></div>
+        <div><dt>Status</dt><dd>Breadboard working. PCB made, not fully soldered.</dd></div>
       </dl>
     </div>
 
@@ -886,19 +908,19 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>Reading the light</h2></div>
         <div>
-          <p>A photoresistor sits in one arm of a Wheatstone bridge. As the light changes, the bridge output swings between 0 and 5 V, dark to bright.</p>
+          <p>A photoresistor sits in one arm of a Wheatstone bridge. As the light changes, the bridge output swings between 0 and 5 V, dark to bright.</p>
           <p>The ADC0804 turns that voltage into a number from 0 to 255.</p>
-          <p>Picking the bridge resistors was trial and error. Change a value, cover the sensor, watch the meter, and repeat until the output sat near 0 V in the dark and near 5 V in the light.</p>
+          <p>Picking the bridge resistors was trial and error. Change a value, cover the sensor, watch the meter, and repeat until the output sat near 0 V in the dark and near 5 V in the light.</p>
         </div>
       </div>
       <div class="figs two">
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-bridge-test.jpg" alt="A small circuit on a breadboard with a 5 volt bench supply and three multimeters connected"></div>
-          <figcaption><span class="fig">Fig. 1</span>Testing the bridge on its own with a 5 V supply.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> Testing the bridge on its own with a 5 V supply.</figcaption>
         </figure>
         <figure>
           <div class="media zoom"><video muted loop playsinline preload="none" poster="img/bridge-test-loop-poster.jpg" aria-label="A multimeter beside a breadboard, its reading changing as a hand covers the sensor"><source src="media/bridge-test-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 2</span>Trying resistor values: watching the output on a meter while changing the light on the sensor.</figcaption>
+          <figcaption><span class="fig">Fig. 2</span> Trying resistor values: watching the output on a meter while changing the light on the sensor.</figcaption>
         </figure>
       </div>
     </section>
@@ -914,7 +936,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs">
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-closeup.jpg" alt="Close-up of the breadboard showing the switches, logic chips, converter chip, and two rows of LEDs"></div>
-          <figcaption><span class="fig">Fig. 3</span>Switches at bottom left, XOR chips and adders along the top, converter chip at bottom center.</figcaption>
+          <figcaption><span class="fig">Fig. 3</span> Switches at bottom left, XOR chips and adders along the top, converter chip at bottom center.</figcaption>
         </figure>
       </div>
     </section>
@@ -925,7 +947,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div>
           <p>This was a long lab, and most of the hours went into finding out why something didn't work. The problems that ate the most time:</p>
           <ul class="points">
-            <li><strong>Bridge resistors.</strong> Getting a clean 0 V and a clean 5 V out of the bridge.</li>
+            <li><strong>Bridge resistors.</strong> Getting a clean 0 V and a clean 5 V out of the bridge.</li>
             <li><strong>LED resistors.</strong> Bright enough to read, dim enough to look at.</li>
             <li><strong>Reset button.</strong> The converter needed a push-button reset. I ended up pulling pins off the button and reworking the wiring so it only touches ground while it's pressed.</li>
             <li><strong>Zeroing.</strong> Built from the switches and XOR gates, once I understood how binary subtraction works.</li>
@@ -938,7 +960,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs">
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-early.jpg" alt="An earlier, messier breadboard build with loose jumper wires and chips labeled XOR, AND, and OR"></div>
-          <figcaption><span class="fig">Fig. 4</span>An earlier build, using separate XOR, AND, and OR gate chips, before the wiring was cleaned up.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> An earlier build, using separate XOR, AND, and OR gate chips, before the wiring was cleaned up.</figcaption>
         </figure>
       </div>
     </section>
@@ -954,26 +976,26 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs two">
         <figure>
           <div class="media box43"><img loading="lazy" decoding="async" width="688" height="740" src="img/lm-layout.png" alt="PCB layout with five chip footprints, a switch block, and a row of LED pads"></div>
-          <figcaption><span class="fig">Fig. 5</span>The layout.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> The layout.</figcaption>
         </figure>
         <figure>
           <div class="media box43"><img loading="lazy" decoding="async" width="1247" height="927" src="img/pcb-render.jpg" alt="3D view of the circuit board design"></div>
-          <figcaption><span class="fig">Fig. 6</span>The board design, 3D view.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> The board design, 3D view.</figcaption>
         </figure>
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-pcb-angle.jpg" alt="The fabricated black circuit board before the chips were added"></div>
-          <figcaption><span class="fig">Fig. 7</span>The fabricated board.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> The fabricated board.</figcaption>
         </figure>
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/pcb-bare.jpg" alt="Fabricated black circuit board with five logic chips placed"></div>
-          <figcaption><span class="fig">Fig. 8</span>With the logic chips placed.</figcaption>
+          <figcaption><span class="fig">Fig. 8</span> With the logic chips placed.</figcaption>
         </figure>
       </div>
     </section>
 
     <a class="next" href="#buggy-filters">
       <span class="label">Next project</span>
-      <strong>Buggy Noise Filters →</strong>
+      <strong>Buggy Noise Filters →</strong>
     </a>
   </div>
 </main>
@@ -985,7 +1007,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
 
     <div class="p-head">
       <div>
-        <div class="label">Yonder Dynamics · 2026</div>
+        <div class="label">Yonder Dynamics · 2026 · Version 2</div>
         <h1 class="p-title">Limit Switch Endstop</h1>
         <p class="lead">A small board that tells the rover's ODrive when the linear slide has hit the end of its travel. It's one switch and one transistor, and it can only say OK while it has power and its wiring is intact.</p>
         <ul class="tags"><li>Altium</li><li>LTspice</li><li>2-layer PCB</li><li>Hand soldered</li></ul>
@@ -993,8 +1015,8 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <dl class="spec">
         <div><dt>Part no.</dt><dd>YD-ENDSTOP-001, Rev A</dd></div>
         <div><dt>Reads into</dt><dd>GPIO 7 on the ODrive, set as the minimum endstop. An S1 for now. A Pro works too.</dd></div>
-        <div><dt>Supply</dt><dd>5 V from the ODrive</dd></div>
-        <div><dt>Output</dt><dd>About 4.9 V at rest. 0 V when pressed, unplugged, or unpowered.</dd></div>
+        <div><dt>Supply</dt><dd>5 V from the ODrive</dd></div>
+        <div><dt>Output</dt><dd>About 4.9 V at rest. 0 V when pressed, unplugged, or unpowered.</dd></div>
         <div><dt>Switch</dt><dd>Lever switch on its normally-closed contact, or a remote switch on J2</dd></div>
         <div><dt>Board</dt><dd>2 layers, ground on both</dd></div>
         <div><dt>Cost</dt><dd>About $10 a board, in a batch of five</dd></div>
@@ -1007,15 +1029,15 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div><div class="step-num">01</div><h2>What it has to do</h2></div>
         <div>
           <p>The rover's arm rides on a linear slide, driven by a NEO motor through an ODrive. The ODrive needs to know where the end of the slide is, so it has a fixed point to measure from.</p>
-          <p>Version 1 used a hall-effect sensor. This one uses a plain mechanical switch.</p>
-          <p>The hall sensor needs a magnet on the slide, and on a slide this small the magnet never fit or held well. If it falls off, there is no end stop. The software team also liked the idea of a physical switch.</p>
-          <p>A switch is slower and less exact than a hall sensor. For this slide that doesn't matter. It is well inside the tolerance.</p>
+          <p><a href="#hall-effect">Version 1</a> used a Hall-effect sensor. This one uses a plain mechanical switch.</p>
+          <p>The Hall sensor needs a magnet on the slide, and on a slide this small the magnet never fit or held well. If it falls off, there is no endstop. The software team also liked the idea of a physical switch.</p>
+          <p>A switch is slower and less exact than a Hall sensor. For this slide that doesn't matter. It is well inside the tolerance.</p>
         </div>
       </div>
       <div class="figs">
         <figure>
           <div class="media"><video muted loop playsinline preload="none" poster="img/slide-poster.jpg" aria-label="The rover's linear slide: a carriage riding along a blue rail"><source src="media/slide-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 1</span>The linear slide on the rover.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> The linear slide on the rover.</figcaption>
         </figure>
       </div>
     </section>
@@ -1024,27 +1046,27 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>The circuit</h2></div>
         <div>
-          <p>The switch is wired through its normally-closed contact. At rest the loop is closed, which turns on a PNP transistor, and the transistor puts about 5 V on the ODrive's input. The LED is on. That is the board saying OK.</p>
-          <p>Press the lever and the loop opens. The transistor turns off, a 10 kΩ resistor pulls the signal down to 0 V, and the LED goes out. The ODrive reads that as the end of the slide.</p>
-          <p>A cut cable, an unplugged connector, or a dead 5 V supply all look the same as a pressed lever. The board has to be powered and wired correctly to say OK, so the likely failures read as stop.</p>
+          <p>The switch is wired through its normally-closed contact. At rest the loop is closed, which turns on a PNP transistor, and the transistor puts about 4.9 V on the ODrive's input. The LED is on. That is the board saying OK.</p>
+          <p>Press the lever and the loop opens. The transistor turns off, a 10 kΩ resistor pulls the signal down to 0 V, and the LED goes out. The ODrive reads that as the end of the slide.</p>
+          <p>A cut cable, an unplugged connector, or a dead 5 V supply all look the same as a pressed lever. The board has to be powered and wired correctly to say OK, so the likely failures read as stop.</p>
           <p>That is also why the transistor is a PNP on the high side. The ODrive's input has no pull resistor of its own, and I wanted the circuit to spend energy saying OK, not saying stop.</p>
-          <p>Small capacitors filter the switch and the signal line, and the ODrive adds 50 ms of its own debounce.</p>
+          <p>Small capacitors filter the switch and the signal line, and the ODrive adds 50 ms of its own debounce.</p>
         </div>
       </div>
       <div class="figs">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="731" src="img/endstop-ltspice-open.png" alt="LTspice schematic: a limit switch input, PNP transistor, LED, and filter parts connected to an ODrive S1"></div>
-          <figcaption><span class="fig">Fig. 2</span>LTspice schematic, drawn with the loop open. A 1N4148 diode stands in for the LED.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-ltspice-open.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="731" src="img/endstop-ltspice-open.png" alt="LTspice schematic: a limit switch input, PNP transistor, LED, and filter parts connected to an ODrive S1"></a>
+          <figcaption><span class="fig">Fig. 2</span> LTspice schematic, drawn with the loop open. A 1N4148 diode stands in for the LED.</figcaption>
         </figure>
       </div>
       <div class="figs two" style="max-width: 760px">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="840" height="695" src="img/endstop-op-open.png" alt="LTspice results table showing the signal node at zero volts"></div>
-          <figcaption><span class="fig">Fig. 3</span>Loop open (lever pressed, or a cut cable): 0 V.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-op-open.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="840" height="695" src="img/endstop-op-open.png" alt="LTspice results table showing the signal node at zero volts"></a>
+          <figcaption><span class="fig">Fig. 3</span> Loop open (lever pressed, or a cut cable): 0 V.</figcaption>
         </figure>
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="837" height="656" src="img/endstop-op.png" alt="LTspice results table showing the signal node at 4.97 volts"></div>
-          <figcaption><span class="fig">Fig. 4</span>Loop closed (at rest): 4.97 V.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-op.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="837" height="656" src="img/endstop-op.png" alt="LTspice results table showing the signal node at 4.97 volts"></a>
+          <figcaption><span class="fig">Fig. 4</span> Loop closed (at rest): 4.97 V.</figcaption>
         </figure>
       </div>
     </section>
@@ -1059,20 +1081,20 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       </div>
       <div class="figs two">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1553" height="784" src="img/endstop-layout-both.png" alt="PCB layout showing the top and bottom copper layers together"></div>
-          <figcaption><span class="fig">Fig. 5</span>Both copper layers in Altium.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-layout-both.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1553" height="784" src="img/endstop-layout-both.png" alt="PCB layout showing the top and bottom copper layers together"></a>
+          <figcaption><span class="fig">Fig. 5</span> Both copper layers in Altium.</figcaption>
         </figure>
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1482" height="867" src="img/endstop-render.jpg" alt="3D view of the endstop board design"></div>
-          <figcaption><span class="fig">Fig. 6</span>3D view of the design.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-render.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1482" height="867" src="img/endstop-render.jpg" alt="3D view of the endstop board design"></a>
+          <figcaption><span class="fig">Fig. 6</span> 3D view of the design.</figcaption>
         </figure>
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1512" height="809" src="img/endstop-layout-top.png" alt="PCB layout showing only the top layer traces"></div>
-          <figcaption><span class="fig">Fig. 7</span>Top layer traces.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-layout-top.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1512" height="809" src="img/endstop-layout-top.png" alt="PCB layout showing only the top layer traces"></a>
+          <figcaption><span class="fig">Fig. 7</span> Top layer traces.</figcaption>
         </figure>
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1512" height="812" src="img/endstop-layout-bottom.png" alt="PCB layout showing the bottom layer as a solid ground pour"></div>
-          <figcaption><span class="fig">Fig. 8</span>Bottom layer, solid ground.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-layout-bottom.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1512" height="812" src="img/endstop-layout-bottom.png" alt="PCB layout showing the bottom layer as a solid ground pour"></a>
+          <figcaption><span class="fig">Fig. 8</span> Bottom layer, solid ground.</figcaption>
         </figure>
       </div>
     </section>
@@ -1087,12 +1109,12 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       </div>
       <div class="figs two">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1561" height="830" src="img/endstop-top.jpg" alt="Top of the assembled endstop board"></div>
-          <figcaption><span class="fig">Fig. 9</span>Top side, assembled.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-top.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1561" height="830" src="img/endstop-top.jpg" alt="Top of the assembled endstop board"></a>
+          <figcaption><span class="fig">Fig. 9</span> Top side, assembled.</figcaption>
         </figure>
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1542" height="780" src="img/endstop-back.jpg" alt="Bottom of the board with the part number, revision, and a small gecko drawing"></div>
-          <figcaption><span class="fig">Fig. 10</span>Bottom side: part number, revision, and the gecko.</figcaption>
+          <a class="media natural zoomable" href="img/endstop-back.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1542" height="780" src="img/endstop-back.jpg" alt="Bottom of the board with the part number, revision, and a small gecko drawing"></a>
+          <figcaption><span class="fig">Fig. 10</span> Bottom side: part number, revision, and the gecko.</figcaption>
         </figure>
       </div>
     </section>
@@ -1101,15 +1123,15 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">05</div><h2>What's next</h2></div>
         <div>
-          <p>Testing on the slide is waiting on a mount from the mechanical team and the ODrive setup. When that's done, a video of the slide finding its end goes here.</p>
-          <p>The ODrive side is short: GPIO 7 as a digital input, set as the minimum endstop, active-high off, 50 ms debounce, and a slow homing speed to start.</p>
+          <p>Testing on the slide is waiting on a mount from the mechanical team and the ODrive setup.</p>
+          <p>The ODrive side is short: GPIO 7 as a digital input, set as the minimum endstop, active-high off, 50 ms debounce, and a slow homing speed to start.</p>
         </div>
       </div>
     </section>
 
     <a class="next" href="#hall-effect">
       <span class="label">Next project</span>
-      <strong>Hall-Effect Endstop →</strong>
+      <strong>Hall-Effect Endstop →</strong>
     </a>
   </div>
 </main>
@@ -1127,11 +1149,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <ul class="tags"><li>Hall-effect sensor</li><li>Breadboarding</li><li>Perfboard</li><li>ODrive</li></ul>
       </div>
       <dl class="spec">
-        <div><dt>Sensor</dt><dd>A3144 hall-effect sensor</dd></div>
-        <div><dt>Output</dt><dd>N-channel transistor, 10 kΩ, 0.1 µF</dd></div>
-        <div><dt>Reads into</dt><dd>ODrive, pin 7, set as the minimum endstop</dd></div>
-        <div><dt>Slide</dt><dd>15.75 in of travel</dd></div>
-        <div><dt>Size limit</dt><dd>0.75 in tall</dd></div>
+        <div><dt>Sensor</dt><dd>A3144 Hall-effect sensor</dd></div>
+        <div><dt>Output</dt><dd>N-channel transistor, 10 kΩ, 0.1 µF</dd></div>
+        <div><dt>Reads into</dt><dd>ODrive, GPIO 7, set as the minimum endstop</dd></div>
+        <div><dt>Slide</dt><dd>15.75 in of travel</dd></div>
+        <div><dt>Size limit</dt><dd>0.75 in tall</dd></div>
         <div><dt>Build</dt><dd>Hand-wired perfboard with a status LED</dd></div>
         <div><dt>Status</dt><dd>Replaced by version 2</dd></div>
       </dl>
@@ -1148,7 +1170,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs">
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/slide-rover.jpg" alt="The slide rail and its carriage blocks on the rover's blue frame"></div>
-          <figcaption><span class="fig">Fig. 1</span>The slide rail on the rover, seen from one end.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> The slide rail on the rover, seen from one end.</figcaption>
         </figure>
       </div>
     </section>
@@ -1163,8 +1185,8 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       </div>
       <div class="figs" style="max-width: 520px">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1028" height="1600" src="img/hall-notes.jpg" alt="Handwritten notebook page with ODrive pin notes, a sketch of the slide, a circuit drawing, and homing steps"></div>
-          <figcaption><span class="fig">Fig. 2</span>The notebook page: pins, placement, circuit, and homing steps.</figcaption>
+          <a class="media natural zoomable" href="img/hall-notes.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1028" height="1600" src="img/hall-notes.jpg" alt="Handwritten notebook page with ODrive pin notes, a sketch of the slide, a circuit drawing, and homing steps"></a>
+          <figcaption><span class="fig">Fig. 2</span> The notebook page: pins, placement, circuit, and homing steps.</figcaption>
         </figure>
       </div>
     </section>
@@ -1180,11 +1202,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs wide-narrow">
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/hall-breadboard.jpg" alt="An ESP32 board wired to a breadboard holding the hall-effect sensor, a transistor, and an LED"></div>
-          <figcaption><span class="fig">Fig. 3</span>The sensor circuit on a breadboard, read by an ESP32.</figcaption>
+          <figcaption><span class="fig">Fig. 3</span> The sensor circuit on a breadboard, read by an ESP32.</figcaption>
         </figure>
         <figure>
           <div class="media natural"><video muted loop playsinline preload="none" poster="img/hall-bench-poster.jpg" aria-label="Close view of the breadboard as the sensor is triggered and the LEDs change"><source src="media/hall-bench-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 4</span>Triggering the sensor on the bench.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> Triggering the sensor on the bench.</figcaption>
         </figure>
       </div>
     </section>
@@ -1200,15 +1222,15 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs three">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-front.jpg" alt="Front of the hand-built sensor board with a sleeved cable"></div>
-          <figcaption><span class="fig">Fig. 5</span>The finished board.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> The finished board.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-lit.jpg" alt="The sensor board powered on with its green light lit"></div>
-          <figcaption><span class="fig">Fig. 6</span>Powered on.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> Powered on.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-bracket.jpg" alt="The sensor board sitting in a black 3D-printed bracket with its cable tied down"></div>
-          <figcaption><span class="fig">Fig. 7</span>In its bracket.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> In its bracket.</figcaption>
         </figure>
       </div>
     </section>
@@ -1218,18 +1240,18 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div><div class="step-num">05</div><h2>Getting the ODrive to see it</h2></div>
         <div>
           <p>At first the ODrive didn't see the sensor at all. The input wasn't being detected, and nothing changed in the ODrive tool no matter what the sensor did.</p>
-          <p>That turned into a long goose chase. The cause was one setting: sampling was turned off on that input. With pin 7 set as a digital input, the minimum endstop pointed at it and switched on, and "active high" set to match the sensor, it worked.</p>
+          <p>That turned into a long goose chase. The cause was one setting: sampling was turned off on that input. With GPIO 7 set as a digital input, the minimum endstop pointed at it and switched on, and "active high" set to match the sensor, it worked.</p>
           <p>I wrote the settings up for the team, along with how to watch the sensor's state live in the ODrive tool. After that, the sensor stopped the slide at the end of its travel.</p>
         </div>
       </div>
       <div class="figs two">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="632" height="607" src="img/odrive-settings.png" alt="ODrive settings list for the linear slide, showing pin 7 set to digital and the minimum endstop enabled"></div>
-          <figcaption><span class="fig">Fig. 8</span>The endstop and homing settings for the slide.</figcaption>
+          <a class="media natural zoomable" href="img/odrive-settings.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="632" height="607" src="img/odrive-settings.png" alt="ODrive settings list for the linear slide, showing pin 7 set to digital and the minimum endstop enabled"></a>
+          <figcaption><span class="fig">Fig. 8</span> The endstop and homing settings for the slide.</figcaption>
         </figure>
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="908" src="img/odrive-inspector.png" alt="ODrive tool screenshot with a hand-drawn arrow pointing at the run button"></div>
-          <figcaption><span class="fig">Fig. 9</span>From my note to the team: press run to watch the sensor's state live.</figcaption>
+          <a class="media natural zoomable" href="img/odrive-inspector.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="908" src="img/odrive-inspector.png" alt="ODrive tool screenshot with a hand-drawn arrow pointing at the run button"></a>
+          <figcaption><span class="fig">Fig. 9</span> From my note to the team: press run to watch the sensor's state live.</figcaption>
         </figure>
       </div>
     </section>
@@ -1238,7 +1260,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">06</div><h2>Why there is a version 2</h2></div>
         <div>
-          <p>The sensor worked. The magnet was the weak point. The slide is small, and the magnet wouldn't fit or hold well on it. If it fell off, the slide would have no end stop at all.</p>
+          <p>The sensor worked. The magnet was the weak point. The slide is small, and the magnet wouldn't fit or hold well on it. If it fell off, the slide would have no endstop at all.</p>
           <p>The software team also liked the idea of a physical switch. A switch gives up some speed and precision, but it stays well within what the slide needs. That became the <a href="#endstop">limit switch board</a>.</p>
         </div>
       </div>
@@ -1246,7 +1268,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
 
     <a class="next" href="#rover-power">
       <span class="label">Next project</span>
-      <strong>Rover Power and Wiring →</strong>
+      <strong>Rover Power and Wiring →</strong>
     </a>
   </div>
 </main>
@@ -1267,7 +1289,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li><li>Starting and charging</li><li>Troubleshooting</li></ul>
       </div>
       <dl class="spec">
-        <div><dt>Engine</dt><dd>Mercury MerCruiser 3.0 L</dd></div>
+        <div><dt>Engine</dt><dd>Mercury MerCruiser 3.0 L</dd></div>
         <div><dt>Drive</dt><dd>MerCruiser Alpha One</dd></div>
         <div><dt>Replaced</dt><dd>Starter, alternator (twice), ignition switch, hydraulic pump, belt</dd></div>
         <div><dt>Added</dt><dd>In-line fuse between the battery and the ignition line</dd></div>
@@ -1287,15 +1309,15 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs three">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-engine.jpg" alt="Top of a Mercury MerCruiser 3.0 litre engine with brown water pooled below it"></div>
-          <figcaption><span class="fig">Fig. 1</span>The engine bay as found, with rusty water below the engine.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> The engine bay as found, with rusty water below the engine.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-starter-old-out.jpg" alt="A heavily rusted starter motor sitting on the boat's deck"></div>
-          <figcaption><span class="fig">Fig. 2</span>The old starter, out of the boat.</figcaption>
+          <figcaption><span class="fig">Fig. 2</span> The old starter, out of the boat.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-flywheel.jpg" alt="Rusty gear teeth seen through the opening where the starter mounts"></div>
-          <figcaption><span class="fig">Fig. 3</span>Rust on the flywheel teeth, seen through the starter opening.</figcaption>
+          <figcaption><span class="fig">Fig. 3</span> Rust on the flywheel teeth, seen through the starter opening.</figcaption>
         </figure>
       </div>
     </section>
@@ -1310,11 +1332,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-old-in.jpg" alt="The rusted starter motor in place above rusty water"></div>
-          <figcaption><span class="fig">Fig. 4</span>Before: the old starter in place.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> Before: the old starter in place.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-new.jpg" alt="The new starter motor installed, with clean copper terminals"></div>
-          <figcaption><span class="fig">Fig. 5</span>After: the new starter installed.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> After: the new starter installed.</figcaption>
         </figure>
       </div>
     </section>
@@ -1330,11 +1352,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs two" style="max-width: 760px">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-battery-old.jpg" alt="A battery coated in rust-colored residue with corroded terminals"></div>
-          <figcaption><span class="fig">Fig. 6</span>Before: the battery and its terminals.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> Before: the battery and its terminals.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-battery-new.jpg" alt="A clean battery with a clear in-line fuse holder on a red wire from the positive terminal"></div>
-          <figcaption><span class="fig">Fig. 7</span>After: clean terminals and the in-line fuse holder.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> After: clean terminals and the in-line fuse holder.</figcaption>
         </figure>
       </div>
     </section>
@@ -1349,11 +1371,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs two" style="max-width: 760px">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-ignition.jpg" alt="A brass ignition switch held in a hand, with three wires on spade connectors, each tagged with a number"></div>
-          <figcaption><span class="fig">Fig. 8</span>The ignition switch and its numbered wires.</figcaption>
+          <figcaption><span class="fig">Fig. 8</span> The ignition switch and its numbered wires.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-fuse-block.jpg" alt="A blade fuse block with nine fuses beside a ground bar"></div>
-          <figcaption><span class="fig">Fig. 9</span>The boat's fuse block and ground bar.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> The boat's fuse block and ground bar.</figcaption>
         </figure>
       </div>
     </section>
@@ -1368,11 +1390,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs wide-narrow">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-pump-old.jpg" alt="A hydraulic pump and fluid tank surrounded by heavily corroded parts and wiring"></div>
-          <figcaption><span class="fig">Fig. 10</span>Corrosion around the hydraulic pump and its wiring.</figcaption>
+          <figcaption><span class="fig">Fig. 10</span> Corrosion around the hydraulic pump and its wiring.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/boat-outdrive.jpg" alt="The MerCruiser Alpha One drive at the back of the boat, with a hydraulic cylinder on each side"></div>
-          <figcaption><span class="fig">Fig. 11</span>The drive and its two hydraulic cylinders.</figcaption>
+          <figcaption><span class="fig">Fig. 11</span> The drive and its two hydraulic cylinders.</figcaption>
         </figure>
       </div>
     </section>
@@ -1381,13 +1403,13 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">06</div><h2>Repaired twice</h2></div>
         <div>
-          <p>This boat got repaired twice. After the first round it filled with water again, and many of the same parts had to be replaced a second time.</p>
+          <p>After the first round of repairs it filled with water again, and many of the same parts had to be replaced a second time.</p>
           <ul class="points">
             <li><strong>2022.</strong> New alternator. Redid the crimps, battery cables included. Fixed the drive's hydraulics. Cleaned the boat.</li>
             <li><strong>2023, after the second flood.</strong> Another alternator, and the crimps again. New hydraulic pump. New ignition switch. Fixed the overhead speakers after a connection broke. Cleaned it again.</li>
             <li><strong>2024.</strong> New belt, after the old one snapped.</li>
           </ul>
-          <p>Both years included a lot of rust removal, with a rust solvent and a steel brush.</p>
+          <p>In 2022 and 2023 there was also a lot of rust removal, with a rust solvent and a steel brush.</p>
           <p>It starts and it runs.</p>
         </div>
       </div>
@@ -1395,7 +1417,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
 
     <a class="next" href="#pontoon">
       <span class="label">Next project</span>
-      <strong>Pontoon Boat Rebuild →</strong>
+      <strong>Pontoon Boat Rebuild →</strong>
     </a>
   </div>
 </main>
@@ -1417,9 +1439,9 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div><dt>Board</dt><dd>ODrive S1 fuse board, Mark 2</dd></div>
         <div><dt>Design</dt><dd>Aaron Lee</dd></div>
         <div><dt>My part</dt><dd>Soldering, testing, and harnesses. I also proposed using these boards on the arm, and ring terminals for the power connections.</dd></div>
-        <div><dt>Turns on</dt><dd>About 18.4 V</dd></div>
-        <div><dt>Cuts off</dt><dd>About 34.9 V</dd></div>
-        <div><dt>Reversed</dt><dd>Output stays within 0.35 V of zero</dd></div>
+        <div><dt>Turns on</dt><dd>About 18.4 V</dd></div>
+        <div><dt>Cuts off</dt><dd>About 34.9 V</dd></div>
+        <div><dt>Reversed</dt><dd>Output stays within 0.35 V of zero</dd></div>
         <div><dt>Later</dt><dd>Became the base for the ODrive Pro version</dd></div>
       </dl>
     </div>
@@ -1436,11 +1458,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/fuse-board.jpg" alt="A green fuse board with a blade fuse holder in the middle and two large power transistors on the right"></div>
-          <figcaption><span class="fig">Fig. 1</span>A fuse board after soldering: fuse holder in the middle, two power transistors on the right.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> A fuse board after soldering: fuse holder in the middle, two power transistors on the right.</figcaption>
         </figure>
         <figure>
           <div class="media r43 shot"><img loading="lazy" decoding="async" width="1190" height="846" src="img/cad-fuse-board.png" alt="Simplified 3D model of the fuse board with its fuse, heat sinks, and ring terminals"></div>
-          <figcaption><span class="fig">Fig. 2</span>My simplified model of the same board, for the rover's CAD.</figcaption>
+          <figcaption><span class="fig">Fig. 2</span> My simplified model of the same board, for the rover's CAD.</figcaption>
         </figure>
       </div>
     </section>
@@ -1456,11 +1478,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs wide-narrow">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="The rover's electrical box with a fuse board between two motor controllers"></div>
-          <figcaption><span class="fig">Fig. 3</span>The rover's electrical box.</figcaption>
+          <figcaption><span class="fig">Fig. 3</span> The rover's electrical box.</figcaption>
         </figure>
         <figure>
           <div class="media tall"><video muted loop playsinline preload="none" poster="img/fuse-solder-loop-poster.jpg" aria-label="Tweezers placing a part on a green fuse board during soldering"><source src="media/fuse-solder-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 4</span>Me soldering a fuse board.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> Me soldering a fuse board.</figcaption>
         </figure>
       </div>
     </section>
@@ -1469,17 +1491,17 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Testing it</h2></div>
         <div>
-          <p>I stepped the input from about −32 V up to +40 V and wrote down the output at each step.</p>
-          <p>The output turns on at about 18.4 V and follows the input up to about 34.9 V, where it cuts off. Coming back down, it turns on again at about 32.8 V and drops out at about 17.5 V.</p>
+          <p>I stepped the input from about −32 V up to +40 V and wrote down the output at each step.</p>
+          <p>The output turns on at about 18.4 V and follows the input up to about 34.9 V, where it cuts off. Coming back down, it turns on again at about 32.8 V and drops out at about 17.5 V.</p>
           <p>The gap between the on and off points is on purpose. Without it, the board would chatter on and off whenever the voltage sat right at a limit.</p>
-          <p>With the input reversed, the output never moved more than 0.35 V from zero.</p>
-          <p>One test is still open. My equipment tops out at 10 A, which isn't enough to find out whether the fuse blows before the board gives out.</p>
+          <p>With the input reversed, the output never moved more than 0.35 V from zero.</p>
+          <p>One test is still open. My equipment tops out at 10 A, which isn't enough to find out whether the fuse blows before the board gives out.</p>
         </div>
       </div>
       <div class="figs">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1400" height="800" src="img/fuse-graph.png" alt="Graph of output voltage against input voltage. The output is zero below about 18 volts, follows the input from 18 to 35 volts, and is zero above 35 volts and for all negative inputs."></div>
-          <figcaption><span class="fig">Fig. 5</span>Measured input and output voltage for the Mark 2 board. Board design: Aaron Lee.</figcaption>
+          <a class="media natural zoomable" href="img/fuse-graph.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1400" height="800" src="img/fuse-graph.png" alt="Graph of output voltage against input voltage. The output is zero below about 18 volts, follows the input from 18 to 35 volts, and is zero above 35 volts and for all negative inputs."></a>
+          <figcaption><span class="fig">Fig. 5</span> Input and output voltage from my test of the Mark 2 board. Board design: Aaron Lee.</figcaption>
         </figure>
       </div>
     </section>
@@ -1495,15 +1517,15 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs three">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/neo-harness.jpg" alt="NEO motor with sleeved wires ending in a yellow power connector"></div>
-          <figcaption><span class="fig">Fig. 6</span>NEO motor harness.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> NEO motor harness.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/servo-harness.jpg" alt="Two servos joined by a soldered harness with heat shrink and yellow connectors"></div>
-          <figcaption><span class="fig">Fig. 7</span>Servo power harness for the hand.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> Servo power harness for the hand.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/motor-connector.jpg" alt="Three-pin yellow motor connector with white, black, and red wires"></div>
-          <figcaption><span class="fig">Fig. 8</span>Three-pin motor connector.</figcaption>
+          <figcaption><span class="fig">Fig. 8</span> Three-pin motor connector.</figcaption>
         </figure>
       </div>
     </section>
@@ -1514,33 +1536,33 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div>
           <p>The bottom of the rover's electrical box was a scratched sheet of acrylic with velcro stuck all over it. In November 2026, another club member and I replaced it.</p>
           <p>We designed a new plate in Onshape, laser cut it, and bolted it in. It's larger, it's cleaner, and the screw holes are where they should be. I also helped make the mounting system.</p>
-          <p>Design to installed took about three hours.</p>
+          <p>It took about three hours from design to installed.</p>
           <p>This is version 1. Still to come: bigger screw holes so it goes on faster, rounded corners so nothing is sharp, and the Yonder logo engraved in it.</p>
         </div>
       </div>
       <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1475" height="1229" src="img/ebox-plate-old.jpg" alt="The old bottom of the electrical box: scratched clear acrylic covered in strips of velcro"></div>
-          <figcaption><span class="fig">Fig. 9</span>Before: scratched acrylic and velcro.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> Before: scratched acrylic and velcro.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/ebox-plate-new.jpg" alt="The new white laser-cut plate bolted into the rover's blue frame, with orange standoffs"></div>
-          <figcaption><span class="fig">Fig. 10</span>After: the new plate in the rover's frame.</figcaption>
+          <figcaption><span class="fig">Fig. 10</span> After: the new plate in the rover's frame.</figcaption>
         </figure>
         <figure>
           <div class="media r43 shot"><img loading="lazy" decoding="async" width="1511" height="960" src="img/ebox-plate-onshape.png" alt="Onshape sketch of the plate with its mounting holes"></div>
-          <figcaption><span class="fig">Fig. 11</span>The plate in Onshape.</figcaption>
+          <figcaption><span class="fig">Fig. 11</span> The plate in Onshape.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1154" src="img/ebox-pegboard.jpg" alt="A white pegboard carrying motor controllers, fuse boards, and wiring harnesses"></div>
-          <figcaption><span class="fig">Fig. 12</span>The electronics board that mounts in the box. That board is not my design.</figcaption>
+          <figcaption><span class="fig">Fig. 12</span> The electronics board that mounts in the box. That board is not my design.</figcaption>
         </figure>
       </div>
     </section>
 
     <a class="next" href="#light-meter">
       <span class="label">Next project</span>
-      <strong>8-Bit Light Meter →</strong>
+      <strong>8-Bit Light Meter →</strong>
     </a>
   </div>
 </main>
@@ -1562,13 +1584,13 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       </div>
       <dl class="spec">
         <div><dt>My part</dt><dd>Electrical plan and all wiring, including the engine wiring</dd></div>
-        <div><dt>Power</dt><dd>12 V marine battery</dd></div>
+        <div><dt>Power</dt><dd>12 V marine battery</dd></div>
         <div><dt>Protection</dt><dd>In-line fuse at the battery, main cut-off switch, 12-circuit fuse panel</dd></div>
         <div><dt>Circuits</dt><dd>Bow, stern, overhead, and underwater LED lights, horn, stereo, fish finder, USB outlet</dd></div>
         <div><dt>Charging</dt><dd>From the outboard engine</dd></div>
         <div><dt>Wire runs</dt><dd>Under the deck, inside PVC pipe</dd></div>
-        <div><dt>Engine</dt><dd>Mercury 40 hp FourStroke outboard</dd></div>
-        <div><dt>Status</dt><dd>Running. In use for about six years.</dd></div>
+        <div><dt>Engine</dt><dd>Mercury 40 hp FourStroke outboard</dd></div>
+        <div><dt>Status</dt><dd>Running. In use since the rebuild.</dd></div>
       </dl>
     </div>
 
@@ -1583,11 +1605,11 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1336" height="1229" src="img/pontoon-before.jpg" alt="The pontoon boat before the rebuild, with a worn deck and torn seats"></div>
-          <figcaption><span class="fig">Fig. 1</span>Before the rebuild.</figcaption>
+          <figcaption><span class="fig">Fig. 1</span> Before the rebuild.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1200" src="img/pontoon-deck.jpg" alt="New plywood laid beside the old dark flooring on top of the pontoon frame"></div>
-          <figcaption><span class="fig">Fig. 2</span>New plywood going down beside the old floor.</figcaption>
+          <figcaption><span class="fig">Fig. 2</span> New plywood going down beside the old floor.</figcaption>
         </figure>
       </div>
     </section>
@@ -1602,8 +1624,8 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       </div>
       <div class="figs">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1229" height="921" src="img/pontoon-diagram.jpg" alt="Hand-drawn wiring diagram: a list of loads, a wire size table, fuse colors, and the path from the battery through a fuse and two switches to a fuse panel and dash panel"></div>
-          <figcaption><span class="fig">Fig. 3</span>My wiring plan: loads, wire sizes, fuse ratings, and the path from the battery to each circuit.</figcaption>
+          <a class="media natural zoomable" href="img/pontoon-diagram.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1229" height="921" src="img/pontoon-diagram.jpg" alt="Hand-drawn wiring diagram: a list of loads, a wire size table, fuse colors, and the path from the battery through a fuse and two switches to a fuse panel and dash panel"></a>
+          <figcaption><span class="fig">Fig. 3</span> My wiring plan: loads, wire sizes, fuse ratings, and the path from the battery to each circuit.</figcaption>
         </figure>
       </div>
     </section>
@@ -1612,22 +1634,22 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Fuse panel and switches</h2></div>
         <div>
-          <p>Each circuit lands on its own labeled fuse: stereo, horn, GPS, dome light, DC outlet, accessory.</p>
+          <p>Each circuit lands on its own labeled fuse. The labels on the panel read stereo, horn, GPS, dome light, DC outlet, and accessory.</p>
           <p>The wires end in crimped connectors and are zip-tied into bundles, so any one of them can be followed from fuse to switch.</p>
         </div>
       </div>
       <div class="figs three">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/pontoon-console.jpg" alt="The new grey console on the deck with a switch panel on its face"></div>
-          <figcaption><span class="fig">Fig. 4</span>The new console with its switch panel.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> The new console with its switch panel.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-switch-back.jpg" alt="Back of the switch panel inside the console, with wires on crimped connectors tied into a bundle"></div>
-          <figcaption><span class="fig">Fig. 5</span>Behind the switch panel.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> Behind the switch panel.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-fuse-panel.jpg" alt="The fuse panel inside the console with labeled fuses"></div>
-          <figcaption><span class="fig">Fig. 6</span>The fuse panel under the helm, one labeled fuse per circuit.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> The fuse panel under the helm, one labeled fuse per circuit.</figcaption>
         </figure>
       </div>
     </section>
@@ -1637,22 +1659,22 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
         <div><div class="step-num">04</div><h2>Loads, battery, and wire runs</h2></div>
         <div>
           <p>I wired the Bluetooth radio and its speakers, which sit in the driver's console and the big bench seat. I also wired the fish finder (which doubles as the speedometer), the front lights, the underwater LEDs, and the overhead lights.</p>
-          <p>A kill switch at the battery cuts power to everything. Most of the wiring runs under the deck inside PVC pipe, out of the water and away from feet.</p>
+          <p>The main cut-off switch at the battery kills power to everything. Most of the wiring runs under the deck inside PVC pipe, out of the water and away from feet.</p>
           <p>The battery was a leftover we found that still held a charge and was rated for a boat.</p>
         </div>
       </div>
       <div class="figs three">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-stereo.jpg" alt="Stereo wiring harness joined with pink crimp connectors and tied with zip ties"></div>
-          <figcaption><span class="fig">Fig. 7</span>Stereo harness, joined with crimp connectors.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> Stereo harness, joined with crimp connectors.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-battery.jpg" alt="A marine battery box on the rear deck with crimping pliers resting on top"></div>
-          <figcaption><span class="fig">Fig. 8</span>The battery in its marine battery box.</figcaption>
+          <figcaption><span class="fig">Fig. 8</span> The battery in its marine battery box.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="921" height="1229" src="img/pontoon-underdeck.jpg" alt="Wires and a black conduit running under the plywood deck"></div>
-          <figcaption><span class="fig">Fig. 9</span>Wiring routed under the deck.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> Wiring routed under the deck.</figcaption>
         </figure>
       </div>
     </section>
@@ -1669,15 +1691,15 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="figs three">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-outboard.jpg" alt="A Mercury outboard engine with its cover off, standing on a hand truck"></div>
-          <figcaption><span class="fig">Fig. 10</span>The outboard with its cover off, before it went on the boat.</figcaption>
+          <figcaption><span class="fig">Fig. 10</span> The outboard with its cover off, before it went on the boat.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="1116" height="1600" src="img/pontoon-outboard-mounted.jpg" alt="A black Mercury 40 horsepower outboard mounted on the back of the pontoon boat"></div>
-          <figcaption><span class="fig">Fig. 11</span>The Mercury 40 mounted on the boat.</figcaption>
+          <figcaption><span class="fig">Fig. 11</span> The Mercury 40 mounted on the boat.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-outboard-battery.jpg" alt="The outboard from the side, with a battery box and its red wire on the deck behind it"></div>
-          <figcaption><span class="fig">Fig. 12</span>The battery box sits just behind the engine.</figcaption>
+          <figcaption><span class="fig">Fig. 12</span> The battery box sits just behind the engine.</figcaption>
         </figure>
       </div>
     </section>
@@ -1686,30 +1708,30 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">06</div><h2>Result</h2></div>
         <div>
-          <p>It runs. In April 2021 it was out on the lake with a new deck, new seats, and new wiring, and it has been in use for about six years. I'm still the one who gets called when something on it breaks.</p>
+          <p>It runs. In April 2021 it was out on the lake with a new deck, new seats, and new wiring, and it has been in use ever since. I'm still the one who gets called when something on it breaks.</p>
         </div>
       </div>
       <div class="figs">
         <figure>
           <div class="media"><video muted loop playsinline preload="none" poster="img/pontoon-after-wide.jpg" aria-label="A friend driving the rebuilt pontoon boat across a lake, then a pan across the new seating"><source src="media/pontoon-drive-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 13</span>On the lake, April 2021, with my friend at the helm.</figcaption>
+          <figcaption><span class="fig">Fig. 13</span> On the lake, April 2021, with my friend at the helm.</figcaption>
         </figure>
       </div>
       <div class="figs two" style="max-width: 760px">
         <figure>
           <div class="media tall"><video muted loop playsinline preload="none" poster="img/pontoon-lake-loop-poster.jpg" aria-label="The outboard running with a wake behind it, then a pan across the new seating"><source src="media/pontoon-lake-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 14</span>The outboard running.</figcaption>
+          <figcaption><span class="fig">Fig. 14</span> The outboard running.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="720" height="1280" src="img/pontoon-after.jpg" alt="New blue and white seating on the finished pontoon boat, out on a lake"></div>
-          <figcaption><span class="fig">Fig. 15</span>The finished seating.</figcaption>
+          <figcaption><span class="fig">Fig. 15</span> The finished seating.</figcaption>
         </figure>
       </div>
     </section>
 
     <a class="next" href="#endstop">
       <span class="label">Back to the first project</span>
-      <strong>Limit Switch Endstop →</strong>
+      <strong>Limit Switch Endstop →</strong>
     </a>
   </div>
 </main>
@@ -1723,13 +1745,13 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div>
         <div class="label">Personal project</div>
         <h1 class="p-title">Buggy Noise Filters</h1>
-        <p class="lead">My family's buggy runs a Holley Sniper fuel injection system. Two things on the buggy were putting electrical noise on its 12 V wiring, and that noise was reaching the Sniper. I found both sources and built a filter for each.</p>
+        <p class="lead">My family's buggy runs a Holley Sniper fuel injection system. Two things on the buggy were putting electrical noise on its 12 V wiring, and that noise was reaching the Sniper. I found both sources and built a filter for each.</p>
         <ul class="tags"><li>Troubleshooting</li><li>Electrical noise (EMI)</li><li>Filter design</li><li>Crimping</li></ul>
       </div>
       <dl class="spec">
         <div><dt>System</dt><dd>Holley Sniper fuel injection with an HEI distributor</dd></div>
         <div><dt>Source 1</dt><dd>LED light bar</dd></div>
-        <div><dt>Filter 1</dt><dd>1000 µF electrolytic and two 0.1 µF ceramics, across 12 V and ground at the light bar</dd></div>
+        <div><dt>Filter 1</dt><dd>1000 µF electrolytic and two 0.1 µF ceramics, across 12 V and ground at the light bar</dd></div>
         <div><dt>Source 2</dt><dd>Ignition</dd></div>
         <div><dt>Filter 2</dt><dd>A series resistor with a ceramic capacitor to ground on each side, built in-line</dd></div>
         <div><dt>Status</dt><dd>Both installed. Running clean.</dd></div>
@@ -1740,7 +1762,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>Two sources of noise</h2></div>
         <div>
-          <p>The Sniper is a small computer that reads sensors and fires the injectors. It shares its 12 V wiring with everything else on the buggy, so noise on that wiring can end up in what the computer reads.</p>
+          <p>The Sniper is a small computer that reads sensors and fires the injectors. It shares its 12 V wiring with everything else on the buggy, so noise on that wiring can end up in what the computer reads.</p>
           <p>Two things were making noise. One was the LED light bar. The other was the ignition.</p>
         </div>
       </div>
@@ -1750,20 +1772,20 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>Light bar filter</h2></div>
         <div>
-          <p>An LED light bar doesn't draw steady current. Its driver switches the current on and off very fast, and each switch tugs on the 12 V line. A well-designed light has parts inside to soak that up. This one didn't have enough.</p>
-          <p>My filter is three capacitors across 12 V and ground. The big 1000 µF one works like a small tank next to the light. It feeds the light's quick gulps of current, so they aren't pulled through the buggy's wiring.</p>
-          <p>The two small 0.1 µF ceramics catch the fastest noise, which the big capacitor is too slow to handle.</p>
+          <p>An LED light bar doesn't draw steady current. Its driver switches the current on and off very fast, and each switch tugs on the 12 V line. A well-designed light has parts inside to soak that up. This one didn't have enough.</p>
+          <p>My filter is three capacitors across 12 V and ground. The big 1000 µF one works like a small tank next to the light. It feeds the light's quick gulps of current, so they aren't pulled through the buggy's wiring.</p>
+          <p>The two small 0.1 µF ceramics catch the fastest noise, which the big capacitor is too slow to handle.</p>
           <p>It sits as close to the light bar's power wires as I could get it. That way the noise is shorted out at the source, before the wiring can carry it anywhere.</p>
         </div>
       </div>
       <div class="figs two">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="803" src="img/buggy-lightbar-sch.png" alt="Schematic of the light bar filter: three capacitors side by side between 12 volts and ground"></div>
-          <figcaption><span class="fig">Fig. 1</span>Light bar filter: one large capacitor and two small ones across the supply.</figcaption>
+          <a class="media natural zoomable" href="img/buggy-lightbar-sch.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="803" src="img/buggy-lightbar-sch.png" alt="Schematic of the light bar filter: three capacitors side by side between 12 volts and ground"></a>
+          <figcaption><span class="fig">Fig. 1</span> Light bar filter: one large capacitor and two small ones across the supply.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/buggy-filter.jpg" alt="Small green board with one large capacitor, small yellow capacitors, and screw terminals, wired into the buggy"></div>
-          <figcaption><span class="fig">Fig. 2</span>Built on a small board with screw terminals, and installed.</figcaption>
+          <figcaption><span class="fig">Fig. 2</span> Built on a small board with screw terminals, and installed.</figcaption>
         </figure>
       </div>
     </section>
@@ -1772,10 +1794,10 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>Ignition filter</h2></div>
         <div>
-          <p>Every time the distributor fires the coil, it kicks a sharp spike onto the ignition's 12 V line. That line also runs to the fuel injection system.</p>
+          <p>Every time the distributor fires the coil, it kicks a sharp spike onto the ignition's 12 V line. That line also runs to the fuel injection system.</p>
           <p>This filter goes in-line on the positive wire and works in three stages:</p>
           <ul class="points">
-            <li><strong>First capacitor.</strong> It sits on the noisy ignition side and sends the sharpest, fastest spikes, like coil ringing and alternator whine, straight to ground before they reach the resistor.</li>
+            <li><strong>First capacitor.</strong> It sits on the noisy ignition side and sends the sharpest, fastest spikes, like coil ringing, straight to ground before they reach the resistor.</li>
             <li><strong>Resistor.</strong> It sits in series with the positive wire. It holds back fast current spikes and gives the second capacitor something to work against.</li>
             <li><strong>Second capacitor.</strong> It sits on the clean side. With the resistor it forms a low-pass filter that smooths out what's left, and it keeps a small reserve of charge for whatever is connected.</li>
           </ul>
@@ -1785,12 +1807,12 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
       </div>
       <div class="figs two">
         <figure>
-          <div class="media natural"><img loading="lazy" decoding="async" width="1600" height="727" src="img/buggy-ignition-sch.png" alt="Schematic of the ignition filter: a capacitor to ground, a resistor in series, then a second capacitor to ground"></div>
-          <figcaption><span class="fig">Fig. 3</span>How the in-line filter is laid out: a resistor in the red wire, with a ceramic capacitor to ground on each side.</figcaption>
+          <a class="media natural zoomable" href="img/buggy-ignition-sch.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="727" src="img/buggy-ignition-sch.png" alt="Schematic of the ignition filter: a capacitor to ground, a resistor in series, then a second capacitor to ground"></a>
+          <figcaption><span class="fig">Fig. 3</span> How the in-line filter is laid out: a resistor in the red wire, with a ceramic capacitor to ground on each side.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1200" src="img/buggy-filter-inline.jpg" alt="The in-line filter sealed in black heat shrink on a red and black wire with crimped terminals"></div>
-          <figcaption><span class="fig">Fig. 4</span>The in-line filter, sealed in heat shrink.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> The in-line filter, sealed in heat shrink.</figcaption>
         </figure>
       </div>
     </section>
@@ -1806,7 +1828,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
 
     <a class="next" href="#speed-boat">
       <span class="label">Next project</span>
-      <strong>Speed Boat Electrical Repair →</strong>
+      <strong>Speed Boat Electrical Repair →</strong>
     </a>
   </div>
 </main>
@@ -1907,6 +1929,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
     'pontoon': document.getElementById('view-pontoon'),
     'buggy-filters': document.getElementById('view-buggy')
   };
+  var baseTitle = document.title;
   var current = null;
   var homeY = null;
   function show(name, jump) {
@@ -1917,6 +1940,8 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
     home.hidden = !!page;
     Object.keys(pages).forEach(function (k) { pages[k].hidden = pages[k] !== page; });
     arm(page || home);
+    var h1 = page ? page.querySelector('h1') : null;
+    document.title = (h1 ? h1.textContent + ' | ' : '') + baseTitle;
     if (page) { window.scrollTo(0, 0); return; }
     if (jump === false) return;
     // Coming back from a write-up: return to the spot in the list you left
@@ -1953,7 +1978,12 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
   var hoverIo = null, warmIo = null;
   if (!reduce && 'IntersectionObserver' in window) {
     if (!canHover) hoverIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.target.__hv) e.target.__hv(e.isIntersecting); });
+      entries.forEach(function (e) {
+        var c = e.target; if (!c.__hv) return;
+        clearTimeout(c.__hvT);
+        // Give the photos a moment on screen before the clip takes over
+        if (e.isIntersecting) c.__hvT = setTimeout(function () { c.__hv(true); }, 1600); else c.__hv(false);
+      });
     }, { threshold: 0.8 });
     // Start loading a card's clip shortly before it scrolls into view, so it can start without a wait
     warmIo = new IntersectionObserver(function (entries) {
@@ -2021,7 +2051,7 @@ video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
   var vids = Array.prototype.slice.call(document.querySelectorAll('video:not(.hover-vid)'));
   function playQuietly(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
   if (reduce) {
-    vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+    vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); if (v.id !== 'heroVid') v.controls = true; });
   } else if ('IntersectionObserver' in window) {
     var vio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
