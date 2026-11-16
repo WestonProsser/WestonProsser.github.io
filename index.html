@@ -842,7 +842,7 @@ a.zoomable { cursor: zoom-in; }
     </div>
     <div class="about">
       <div data-reveal>
-        <p>I'm a fourth-year electrical engineering student at UC San Diego. I transferred in from Sierra College.</p>
+        <p>I'm an electrical engineering student at UC San Diego, graduating in 2028. I transferred in from Sierra College.</p>
         <p>I learn best by building something and then finding out why it doesn't work. Most of the projects on this page started that way.</p>
         <p>A lot of it happens at Yonder Dynamics, the rover team, where I design boards, build wire harnesses, and repair motor controllers. The rest happens at my desk or on somebody's boat.</p>
         <p>Power electronics, motors, and optics are what I want to work on.</p>
@@ -1009,7 +1009,7 @@ a.zoomable { cursor: zoom-in; }
       <div>
         <div class="label">Yonder Dynamics · 2026 · Version 2</div>
         <h1 class="p-title">Limit Switch Endstop</h1>
-        <p class="lead">A small board that tells the rover's ODrive when the linear slide has hit the end of its travel. It's one switch and one transistor, and it can only say OK while it has power and its wiring is intact.</p>
+        <p class="lead">A PCB designed to detect when the rover's linear slide has reached the end of its rail. It works in tandem with an ODrive S1 or Pro, using a single limit switch and one transistor. Its signal is only valid while the board has power and the wiring is unbroken.</p>
         <ul class="tags"><li>Altium</li><li>LTspice</li><li>2-layer PCB</li><li>Hand soldered</li></ul>
       </div>
       <dl class="spec">
@@ -1028,10 +1028,10 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">01</div><h2>What it has to do</h2></div>
         <div>
-          <p>The rover's arm rides on a linear slide, driven by a NEO motor through an ODrive. The ODrive needs to know where the end of the slide is, so it has a fixed point to measure from.</p>
-          <p><a href="#hall-effect">Version 1</a> used a Hall-effect sensor. This one uses a plain mechanical switch.</p>
-          <p>The Hall sensor needs a magnet on the slide, and on a slide this small the magnet never fit or held well. If it falls off, there is no endstop. The software team also liked the idea of a physical switch.</p>
-          <p>A switch is slower and less exact than a Hall sensor. For this slide that doesn't matter. It is well inside the tolerance.</p>
+          <p>The rover's arm has multiple axes of freedom. The arm itself runs on a linear slide, driven by a NEO 550 motor through an ODrive. The rail needs some form of end detection so the motor can return to its middle position.</p>
+          <p><a href="#hall-effect">Version 1</a>, a Hall-effect sensor, worked, but reliability concerns were raised over the placement of the magnet.</p>
+          <p>This led to an internal discussion that ended in a switch from the Hall-effect sensor to a limit switch. The primary reason was that if the magnet ever fell off, the endstop would fail. The software team also liked the idea of a physical switch.</p>
+          <p>The downsides are that the switch is slower and less precise than the Hall sensor, but for this application it all stays well within tolerance.</p>
         </div>
       </div>
       <div class="figs">
@@ -1046,11 +1046,11 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">02</div><h2>The circuit</h2></div>
         <div>
-          <p>The switch is wired through its normally-closed contact. At rest the loop is closed, which turns on a PNP transistor, and the transistor puts about 4.9 V on the ODrive's input. The LED is on. That is the board saying OK.</p>
-          <p>Press the lever and the loop opens. The transistor turns off, a 10 kΩ resistor pulls the signal down to 0 V, and the LED goes out. The ODrive reads that as the end of the slide.</p>
-          <p>A cut cable, an unplugged connector, or a dead 5 V supply all look the same as a pressed lever. The board has to be powered and wired correctly to say OK, so the likely failures read as stop.</p>
-          <p>That is also why the transistor is a PNP on the high side. The ODrive's input has no pull resistor of its own, and I wanted the circuit to spend energy saying OK, not saying stop.</p>
-          <p>Small capacitors filter the switch and the signal line, and the ODrive adds 50 ms of its own debounce.</p>
+          <p>The switch is wired through its normally-closed contact. At rest the loop is closed, which turns on a PNP transistor, and the transistor supplies about 4.9 V to the ODrive's input. The status LED turns on, indicating an "OK" state.</p>
+          <p>Once the switch is pressed, the loop opens and the transistor turns off. A pull-down resistor drags the signal output down to 0 V and the LED turns off. The ODrive reads this as an "end of slide" state.</p>
+          <p>If a cable were cut, a connector came unplugged, or the 5 V supply dropped out, the ODrive would see the same thing as the switch being pressed. The board has to stay powered and be wired correctly for an "OK" state. Each of these faults reads as a stop.</p>
+          <p>This is why the PNP transistor is on the high side of the board. The ODrive also has no internal pull-down resistor of its own, which is why there is one on the signal output.</p>
+          <p>The remaining small capacitors filter the switch and signal lines, aiding the ODrive's own 50 ms of debouncing.</p>
         </div>
       </div>
       <div class="figs">
@@ -1075,8 +1075,9 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">03</div><h2>The layout</h2></div>
         <div>
-          <p>Two layers, ground poured on both. Everything sits on the top side, because I solder these by hand.</p>
-          <p>Three test points (switch, signal, ground), each big enough to clip a probe onto.</p>
+          <p>The layout is two layers, with a ground pour on both. All components sit on the top side, as this was the easiest choice for hand soldering.</p>
+          <p>The second JST connector, J2, is a way to move the limit switch to any location desired: take it off the board and connect it back through the 2-pin JST connector.</p>
+          <p>There are three test points (switch, ground, and signal), each big enough to clip a probe onto.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1103,8 +1104,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">04</div><h2>Build and bench test</h2></div>
         <div>
-          <p>Boards from JLCPCB, parts from Digi-Key, soldered by me.</p>
-          <p>On the bench it powers up, and the signal and the LED follow the lever.</p>
+          <p>The board was ordered from JLCPCB and the parts were sourced from Digi-Key. All hand soldered by me.</p>
+          <p>In bench testing, all outputs read as they should.</p>
         </div>
       </div>
       <div class="figs two">
@@ -1123,8 +1124,8 @@ a.zoomable { cursor: zoom-in; }
       <div class="step-head">
         <div><div class="step-num">05</div><h2>What's next</h2></div>
         <div>
-          <p>Testing on the slide is waiting on a mount from the mechanical team and the ODrive setup.</p>
-          <p>The ODrive side is short: GPIO 7 as a digital input, set as the minimum endstop, active-high off, 50 ms debounce, and a slow homing speed to start.</p>
+          <p>Testing on the slide is all that remains. Once the mechanical team has made a mount, I will configure the ODrive, test the endstop, and record my results.</p>
+          <p>The initial configuration for the ODrive is GPIO 7 as a digital input, set as the minimum endstop, active-high off, 50 ms debounce, and a slow homing speed to start.</p>
         </div>
       </div>
     </section>
@@ -1501,7 +1502,7 @@ a.zoomable { cursor: zoom-in; }
       <div class="figs">
         <figure>
           <a class="media natural zoomable" href="img/fuse-graph.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1400" height="800" src="img/fuse-graph.png" alt="Graph of output voltage against input voltage. The output is zero below about 18 volts, follows the input from 18 to 35 volts, and is zero above 35 volts and for all negative inputs."></a>
-          <figcaption><span class="fig">Fig. 5</span> Input and output voltage from my test of the Mark 2 board. Board design: Aaron Lee.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> My test data and my graph for the Mark 2 board. The board design is Aaron Lee's.</figcaption>
         </figure>
       </div>
     </section>
