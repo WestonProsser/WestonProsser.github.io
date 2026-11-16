@@ -469,6 +469,27 @@ a.media { display: block; color: inherit; }
 .hero-play { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex: none; border: 1px solid var(--on-media); border-radius: 50%; }
 .proj h3, .sec-head h2, .p-title, .step h2 { letter-spacing: -0.025em; }
 
+/* Banner: text sits a little higher, smaller tagline */
+.hero-in { padding-block: clamp(60px, 9.5vw, 124px) clamp(40px, 6vw, 72px); }
+.hero-line { font-size: clamp(16px, 1.7vw, 19px); }
+
+/* Contact */
+.accent-bar { width: 52px; height: 3px; margin-bottom: 22px; background: var(--accent); }
+.contact-mail { display: flex; align-items: center; gap: 14px; margin-top: 26px; font-family: var(--font-display); font-size: clamp(16px, 4.5vw, 28px); font-weight: 700; line-height: 1.2; white-space: nowrap; overflow-wrap: normal; user-select: auto; color: var(--fg); text-decoration: none; }
+.contact-mail svg { width: 1.25em; height: 1.25em; flex: none; }
+.mail-text { user-select: all; }
+.contact-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 26px; margin-top: 16px; }
+.contact-links a { gap: 10px; text-decoration: none; }
+.contact-links a .lk { text-decoration: underline; text-underline-offset: 4px; }
+.contact-links svg { width: 22px; height: 22px; flex: none; color: var(--fg); }
+.contact-place { display: flex; align-items: center; gap: 12px; margin-top: 26px; font-family: var(--font-mono); font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.contact-place svg { width: 22px; height: 22px; flex: none; color: var(--fg); }
+@media (min-width: 601px) { .contact-links { gap: 4px 0; } .contact-links a + a { margin-left: 24px; padding-left: 24px; border-left: 1px solid var(--line-strong); } }
+.foot { padding-block: 24px 110px; }
+
+/* Soldering clip: keep the iron and the part in frame when the box is narrow */
+video[poster="img/fuse-solder-loop-poster.jpg"] { object-position: 100% 55%; }
+
 /* ============ New layouts. Shared parts ============ */
 :root[data-style] #work .sec-head .label, :root[data-style] .proj .num { display: none; }
 :root[data-style] #work { padding-top: clamp(36px, 5vw, 64px); }
@@ -484,8 +505,9 @@ a.media { display: block; color: inherit; }
 /* ---- Grid: text beside a framed video, then two columns of cards ---- */
 :root[data-style="grid"] .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 :root[data-style="grid"] .proj { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
-:root[data-style="grid"] .proj > .media { border-radius: 0; }
-:root[data-style="grid"] .proj-body { display: block; margin: 0; padding: 18px 20px 20px; }
+:root[data-style="grid"] .proj > .media { border-radius: 0; aspect-ratio: 4 / 3; }
+:root[data-style="grid"] .proj .tags { display: none; }
+:root[data-style="grid"] .proj-body { display: block; margin: 0; padding: 14px 20px 14px; }
 :root[data-style="grid"] .proj h3 { margin-top: 6px; font-size: 24px; letter-spacing: -0.01em; }
 :root[data-style="grid"] .proj-text { margin-top: 8px; }
 :root[data-style="grid"] .proj-text p { font-size: 16px; }
@@ -822,14 +844,15 @@ a.media { display: block; color: inherit; }
   </section>
 
   <section class="sec wrap divide" id="contact">
-    <div class="label">Contact</div>
-    <h2 class="big" style="margin-top: 10px">Get in touch</h2>
-    <a class="contact-mail" href="mailto:westonprosser04@gmail.com">westonprosser04@gmail.com</a>
+    <div class="accent-bar" aria-hidden="true"></div>
+    <h2 class="big">Get in touch</h2>
+    <a class="contact-mail" href="mailto:westonprosser04@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span class="mail-text">westonprosser04@gmail.com</span></a>
     <div class="contact-links">
-      <a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener">GitHub</a>
-      <span class="label" style="align-self: center">San Diego, California</span>
+      <a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M5.5 16c.6-1.8 2-2.6 3.5-2.6s2.9.8 3.5 2.6M15 9h3M15 13h3"></path></svg><span class="lk">LinkedIn</span><span class="ext" aria-hidden="true">↗</span></a>
+      <a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"></path></svg><span class="lk">GitHub</span><span class="ext" aria-hidden="true">↗</span></a>
+      <a href="resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg><span class="lk">Resume</span><span class="ext" aria-hidden="true">↗</span></a>
     </div>
+    <div class="contact-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>San Diego, California</div>
   </section>
 
 </main>
@@ -1789,26 +1812,10 @@ a.media { display: block; color: inherit; }
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-row">
-    <div>© 2026 Weston Prosser</div>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="#work">Projects</a>
-      <a href="#about">About</a>
-      <a href="mailto:westonprosser04@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </div>
+  <div class="wrap">© 2026 Weston Prosser</div>
 </footer>
 
 <div class="picks">
-<div class="pick pick-style" role="group" aria-label="Layout">
-  <span>Layout</span>
-  <button class="lay" type="button" data-lay="grid" aria-pressed="false">Grid</button>
-  <button class="lay" type="button" data-lay="list" aria-pressed="false">List</button>
-  <button class="lay" type="button" data-lay="side" aria-pressed="false">Side by side</button>
-  <button class="lay" type="button" data-lay="" aria-pressed="false">Before</button>
-</div>
 <div class="pick" role="group" aria-label="Accent color">
   <span>Accent</span>
   <button class="sw sw-amber" type="button" data-accent="amber" aria-label="Amber" aria-pressed="true"></button>
@@ -1869,7 +1876,7 @@ a.media { display: block; color: inherit; }
     b.addEventListener('click', function () { var n = b.getAttribute('data-lay'); setLayout(n); save('pf-layout', n || 'before'); });
   });
   var savedLayout = load('pf-layout');
-  setLayout(savedLayout === 'before' ? '' : (savedLayout === 'list' || savedLayout === 'side' || savedLayout === 'grid') ? savedLayout : 'grid');
+  setLayout('grid');
 
   // Fade sections in as they scroll into view
   var io = null;
