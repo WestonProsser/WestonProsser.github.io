@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&family=Sora:wght@600;700&family=Archivo:wght@700;800&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
 <script>
 /* Dark is the default. A saved choice from the light/dark button wins. */
 (function () { var t = null; try { t = localStorage.getItem('pf-theme'); } catch (e) {} document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); })();
@@ -30,13 +30,14 @@ img, video { max-width: 100%; }
    Project pages read like a lab report: facts table, then numbered steps with numbered figures. */
 :root {
   color-scheme: dark;
-  --bg: #0A0A0A;
-  --surface: #141414;
-  --placeholder: #1A1A1A;
-  --line: #262626;
-  --line-strong: #4A4A48;
-  --fg: #F4F4F2;
-  --muted: #A8A8A4;
+  --bg: #0D0F12;
+  --surface: #15181C;
+  --placeholder: #1B1F24;
+  --line: #272C33;
+  --line-strong: #4C535C;
+  --fg: #F2F4F6;
+  --muted: #A4ABB3;
+  --logo-filter: invert(1);
   --accent-d: #F0A24B;
   --accent-l: #9A5B00;
   --accent: var(--accent-d);
@@ -60,6 +61,7 @@ img, video { max-width: 100%; }
     --line-strong: #9C9C96;
     --fg: #0E0E0E;
     --muted: #55554F;
+    --logo-filter: none;
     --accent: var(--accent-l);
   }
 }
@@ -72,6 +74,7 @@ img, video { max-width: 100%; }
   --line-strong: #9C9C96;
   --fg: #0E0E0E;
   --muted: #55554F;
+  --logo-filter: none;
   --accent: var(--accent-l);
 }
 :root[data-accent="green"] { --accent-d: #5FD68A; --accent-l: #0B7A3E; }
@@ -433,6 +436,105 @@ a.media { display: block; color: inherit; }
 .media.sch svg { display: block; width: 100%; height: auto; font-family: var(--font-mono); }
 .media.shot img { object-fit: contain; }
 
+/* Logo in the header */
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark { display: block; height: 30px; width: auto; flex: none; filter: var(--logo-filter); }
+.brand-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 600px) { .brand-name { display: none; } .brand-mark { height: 32px; } }
+
+/* Footer, one row */
+.foot-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 32px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.foot-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--fg); text-decoration: none; }
+.foot-links a:hover { color: var(--accent); }
+.foot { padding-block: 24px 110px; }
+
+/* Hero media wrapper */
+.hero-media { position: absolute; inset: 0; }
+
+/* Preview-only pickers */
+.picks { position: fixed; right: calc(14px + env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 8; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.picks .pick { position: static; }
+.lay { min-height: 36px; padding: 0 12px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--fg); font-family: var(--font-mono); font-size: 12px; cursor: pointer; white-space: nowrap; }
+.lay[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+@media (max-width: 600px) { .lay { padding: 0 9px; } }
+
+/* ============ New layouts. Shared parts ============ */
+:root[data-style] .hero-name, :root[data-style] .hero-note, :root[data-style] .hero-cta .btn-ghost, :root[data-style] #work .sec-head .label, :root[data-style] .proj .num { display: none; }
+:root[data-style] .hero { background: transparent; }
+:root[data-style] .hero-scrim { display: none; }
+:root[data-style] .hero-in { color: var(--fg); }
+:root[data-style] .hero .label { color: var(--muted); }
+:root[data-style] .hero-line { margin: 14px 0 0; font-family: var(--font-display); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance; }
+:root[data-style] .hero-cta { margin-top: 26px; }
+:root[data-style] #work { padding-top: clamp(36px, 5vw, 64px); }
+:root[data-style] #work .sec-head { margin-bottom: 24px; }
+:root[data-style] .proj > .media { aspect-ratio: 16 / 10; }
+:root[data-style] .proj > .media.duo { grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); }
+:root[data-style] .proj > .media.duo img, :root[data-style] .proj > .media.duo video { aspect-ratio: auto; height: 100%; }
+:root[data-style] .proj > .media.pair, :root[data-style] .proj > .media.duo, :root[data-style] .proj > .media.trio { grid-template-rows: minmax(0, 1fr); }
+:root[data-style] .proj-text p { font-size: 17px; line-height: 1.5; }
+:root[data-style] .proj .tags { margin-top: 12px; }
+:root[data-style] .proj .more, :root[data-style] .proj .soon { margin-top: 6px; }
+
+/* ---- Grid: text beside a framed video, then two columns of cards ---- */
+:root[data-style="grid"] { --font-display: 'Sora', 'Helvetica Neue', Arial, sans-serif; }
+:root[data-style="grid"] .hero { overflow: visible; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: 28px 48px; max-width: 1120px; margin-inline: auto; padding: clamp(28px, 5vw, 64px) max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px)); }
+:root[data-style="grid"] .hero-media { position: relative; order: 2; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: var(--media-bg); }
+:root[data-style="grid"] .hero-in { max-width: none; margin: 0; padding: 0; }
+:root[data-style="grid"] .hero-line { font-size: clamp(28px, 3.4vw, 44px); }
+:root[data-style="grid"] .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+:root[data-style="grid"] .proj { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+:root[data-style="grid"] .proj > .media { border-radius: 0; }
+:root[data-style="grid"] .proj-body { display: block; margin: 0; padding: 18px 20px 20px; }
+:root[data-style="grid"] .proj h3 { margin-top: 6px; font-size: 24px; letter-spacing: -0.01em; }
+:root[data-style="grid"] .proj-text { margin-top: 8px; }
+:root[data-style="grid"] .proj-text p { font-size: 16px; }
+@media (max-width: 760px) {
+  :root[data-style="grid"] .hero { grid-template-columns: minmax(0, 1fr); }
+  :root[data-style="grid"] .projects { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---- List: words only up top, then one compact row per project ---- */
+:root[data-style="list"] { --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', Arial, sans-serif; }
+:root[data-style="list"] .hero-media { display: none; }
+:root[data-style="list"] .hero-in { padding-block: clamp(40px, 7vw, 96px) 0; }
+:root[data-style="list"] .hero-line { max-width: 17em; font-size: clamp(34px, 5.2vw, 64px); letter-spacing: -0.01em; }
+:root[data-style="list"] .projects { display: block; border-top: 1px solid var(--line-strong); }
+:root[data-style="list"] .proj { display: grid; grid-template-columns: 232px minmax(0, 1fr); align-items: center; gap: 0 28px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+:root[data-style="list"] .proj > .media { border-radius: 3px; }
+:root[data-style="list"] .proj .ba-tag, :root[data-style="list"] .proj .play-tag, :root[data-style="list"] .proj .tags { display: none; }
+:root[data-style="list"] .proj-body { margin: 0; align-items: center; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); gap: 4px 32px; }
+:root[data-style="list"] .proj h3 { margin-top: 4px; font-size: 27px; letter-spacing: 0; }
+:root[data-style="list"] .proj-text p { font-size: 16px; }
+:root[data-style="list"] .proj .more { min-height: 32px; margin-top: 2px; }
+@media (max-width: 760px) {
+  :root[data-style="list"] .proj { grid-template-columns: 112px minmax(0, 1fr); gap: 0 14px; }
+  :root[data-style="list"] .proj-body { grid-template-columns: minmax(0, 1fr); }
+  :root[data-style="list"] .proj .label { display: none; }
+  :root[data-style="list"] .proj h3 { margin-top: 0; font-size: 21px; }
+  :root[data-style="list"] .proj-text p { font-size: 15px; }
+}
+
+/* ---- Side by side: words, a short video band, then photo and text in alternating rows ---- */
+:root[data-style="side"] { --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif; }
+:root[data-style="side"] .hero { display: flex; flex-direction: column; }
+:root[data-style="side"] .hero-in { order: 1; width: min(1120px, 100% - 40px); max-width: none; margin-inline: auto; padding: clamp(32px, 5vw, 64px) 0 28px; }
+:root[data-style="side"] .hero-media { position: relative; order: 2; height: clamp(200px, 30vw, 380px); }
+:root[data-style="side"] .hero-line { max-width: 20em; font-size: clamp(30px, 4.2vw, 52px); font-weight: 800; }
+:root[data-style="side"] .projects { gap: 44px; }
+:root[data-style="side"] .proj { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: center; gap: 0 44px; }
+:root[data-style="side"] .proj:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+:root[data-style="side"] .proj:nth-of-type(even) > .media { order: 2; }
+:root[data-style="side"] .proj-body { display: block; margin: 0; }
+:root[data-style="side"] .proj h3 { margin-top: 8px; font-size: clamp(24px, 2.6vw, 32px); font-weight: 800; }
+:root[data-style="side"] .proj-text { margin-top: 10px; }
+@media (max-width: 760px) {
+  :root[data-style="side"] .proj, :root[data-style="side"] .proj:nth-of-type(even) { grid-template-columns: minmax(0, 1fr); gap: 14px 0; }
+  :root[data-style="side"] .proj:nth-of-type(even) > .media { order: 0; }
+  :root[data-style="side"] .projects { gap: 40px; }
+}
+
 /* Motion */
 [data-reveal] { transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .pre { opacity: 0.12; transform: translateY(28px); }
@@ -452,9 +554,9 @@ a.media { display: block; color: inherit; }
 <body>
 <header class="top" id="top">
   <div class="wrap bar">
-    <a class="brand" href="#home">Weston Prosser</a>
+    <a class="brand" href="#home" aria-label="Weston Prosser, home"><img class="brand-mark" src="img/wp-mark.png" width="196" height="160" alt=""><span class="brand-name">Weston Prosser</span></a>
     <nav class="links" aria-label="Main">
-      <a href="#work">Work</a>
+      <a href="#work">Projects</a>
       <a href="#about">About</a>
     </nav>
     <div class="actions">
@@ -471,16 +573,18 @@ a.media { display: block; color: inherit; }
 <main id="view-home">
 
   <section class="hero">
+    <div class="hero-media">
     <video id="heroVid" autoplay muted loop playsinline poster="img/hero-rover-poster.jpg" aria-label="The Yonder Dynamics rover driving on desert ground with its arm reaching forward">
       <source src="media/rover-field-loop.mp4" type="video/mp4">
     </video>
     <div class="hero-scrim"></div>
+    </div>
     <div class="wrap hero-in">
       <div class="label">Electrical Engineering · UC San Diego</div>
-      <h1>Weston Prosser</h1>
+      <h1 class="hero-name">Weston Prosser</h1>
       <p class="hero-line">I design circuit boards, build them by hand, and fix the ones that don't work.</p>
       <div class="hero-cta">
-        <a class="btn btn-accent" href="#work">Selected work ↓</a>
+        <a class="btn btn-accent" href="#work">Projects ↓</a>
         <a class="btn btn-ghost" href="#contact">Get in touch</a>
       </div>
       <div class="hero-note">VIDEO: THE YONDER DYNAMICS ROVER IN THE FIELD</div>
@@ -489,7 +593,7 @@ a.media { display: block; color: inherit; }
 
   <section class="sec wrap" id="work">
     <div class="sec-head">
-      <h2>Selected work</h2>
+      <h2>Projects</h2>
       <div class="label">01–08</div>
     </div>
     <div class="projects">
@@ -502,8 +606,8 @@ a.media { display: block; color: inherit; }
             <h3>Limit Switch Endstop</h3>
           </div>
           <div class="proj-text">
-            <p>A small board that tells the rover's ODrive where its linear slide ends. I designed it in Altium and soldered it myself. It passes on the bench. The slide is next.</p>
-            <ul class="tags"><li>Altium</li><li>LTspice</li><li>PCB design</li><li>Hand soldered</li></ul>
+            <p>A small board that tells the rover's ODrive where its linear slide ends. Designed in Altium, soldered by me.</p>
+            <ul class="tags"><li>Altium</li><li>LTspice</li><li>PCB design</li></ul>
             <a class="more" href="#endstop">Read the write-up →</a>
           </div>
         </div>
@@ -522,8 +626,8 @@ a.media { display: block; color: inherit; }
             <h3>Hall-Effect Endstop</h3>
           </div>
           <div class="proj-text">
-            <p>Version 1, hand-wired on perfboard. A hall-effect sensor and a magnet marked the end of the slide. It worked, but the magnet never had a good home on a slide this small.</p>
-            <ul class="tags"><li>Hall-effect sensor</li><li>Perfboard</li><li>Hand wired</li></ul>
+            <p>Version 1: a hall sensor and a magnet, hand-wired on perfboard. The magnet never had a good home.</p>
+            <ul class="tags"><li>Hall-effect sensor</li><li>Perfboard</li></ul>
             <a class="more" href="#hall-effect">Read the write-up →</a>
           </div>
         </div>
@@ -540,8 +644,8 @@ a.media { display: block; color: inherit; }
             <h3>Rover Power and Wiring</h3>
           </div>
           <div class="proj-text">
-            <p>I soldered and tested the fuse boards that sit in front of the motor controllers on the rover's arm, and I build the rover's wire harnesses. The photo is the rover's electrical box, where part of the wiring is mine.</p>
-            <ul class="tags"><li>Testing</li><li>Harnesses</li><li>Crimping</li><li>Soldering</li></ul>
+            <p>Fuse boards I soldered and tested for the rover's arm, plus the rover's wire harnesses.</p>
+            <ul class="tags"><li>Soldering</li><li>Testing</li><li>Harnesses</li></ul>
             <a class="more" href="#rover-power">Read the write-up →</a>
           </div>
         </div>
@@ -555,8 +659,8 @@ a.media { display: block; color: inherit; }
             <h3>Motor Test Bench</h3>
           </div>
           <div class="proj-text">
-            <p>My bench setup for running NEO 550 motors from an ODrive or a SPARK MAX. It's also where the team's broken ODrives come to get fixed.</p>
-            <ul class="tags"><li>ODrive</li><li>SPARK MAX</li><li>NEO 550</li><li>Repair</li></ul>
+            <p>My bench for running NEO 550 motors from an ODrive or a SPARK MAX, and for fixing broken ODrives.</p>
+            <ul class="tags"><li>ODrive</li><li>SPARK MAX</li><li>Repair</li></ul>
             <span class="soon">Write-up coming</span>
           </div>
         </div>
@@ -570,7 +674,7 @@ a.media { display: block; color: inherit; }
             <h3>8-Bit Light Meter</h3>
           </div>
           <div class="proj-text">
-            <p>A light meter made from logic chips. No microcontroller, no code. It reads 256 light levels and subtracts the room's light so it starts at zero.</p>
+            <p>A light meter made from logic chips. No microcontroller, no code.</p>
             <ul class="tags"><li>Logic design</li><li>Debugging</li><li>First PCB</li></ul>
             <a class="more" href="#light-meter">Read the write-up →</a>
           </div>
@@ -589,8 +693,8 @@ a.media { display: block; color: inherit; }
             <h3>Buggy Noise Filters</h3>
           </div>
           <div class="proj-text">
-            <p>My family's buggy runs a Holley Sniper fuel injection system, and two things were putting electrical noise into it: the LED light bar and the ignition. I built a filter for each. It has run clean since.</p>
-            <ul class="tags"><li>Troubleshooting</li><li>Electrical noise (EMI)</li><li>Filter design</li></ul>
+            <p>Two filters that keep electrical noise out of the fuel injection on my family's buggy.</p>
+            <ul class="tags"><li>Troubleshooting</li><li>EMI</li><li>Filter design</li></ul>
             <a class="more" href="#buggy-filters">Read the write-up →</a>
           </div>
         </div>
@@ -608,8 +712,8 @@ a.media { display: block; color: inherit; }
             <h3>Speed Boat Electrical Repair</h3>
           </div>
           <div class="proj-text">
-            <p>A friend's MerCruiser speed boat whose engine bay filled with water, twice. I repaired the electrical side both times: starter, alternator, ignition switch, hydraulic pump, and a new fused line off the battery.</p>
-            <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li><li>Troubleshooting</li></ul>
+            <p>A friend's speed boat that flooded twice. I repaired the electrical system both times.</p>
+            <ul class="tags"><li>Marine electrical</li><li>Corrosion repair</li></ul>
             <a class="more" href="#speed-boat">Read the write-up →</a>
           </div>
         </div>
@@ -629,7 +733,7 @@ a.media { display: block; color: inherit; }
             <h3>Pontoon Boat Rebuild</h3>
           </div>
           <div class="proj-text">
-            <p>A worn-out pontoon, stripped to the frame and rebuilt with a friend and his grandfather. The electrical system was mine: fuse panel, switches, lights, stereo, fish finder, and charging off the outboard.</p>
+            <p>A worn-out pontoon, rebuilt from the frame up. The electrical system was mine.</p>
             <ul class="tags"><li>Marine electrical</li><li>Wiring plan</li><li>Crimping</li></ul>
             <a class="more" href="#pontoon">Read the write-up →</a>
           </div>
@@ -742,7 +846,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-project" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media" style="margin-top: 12px"><video muted loop playsinline preload="none" poster="img/light-meter-loop-poster.jpg" aria-label="LEDs on the breadboard changing as a light moves over the sensor"><source src="media/light-meter-loop.mp4" type="video/mp4"></video></div>
 
     <div class="p-head">
@@ -863,7 +967,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-endstop" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-angle.jpg" alt="Small black circuit board with a lever limit switch and two white connectors"></div>
 
     <div class="p-head">
@@ -999,7 +1103,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-hall" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media" style="margin-top: 12px"><video muted loop playsinline preload="none" poster="img/slide-poster.jpg" aria-label="The rover's linear slide: a carriage riding along a blue rail"><source src="media/slide-loop.mp4" type="video/mp4"></video></div>
 
     <div class="p-head">
@@ -1136,7 +1240,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-boat" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media pair" style="margin-top: 12px">
       <div class="ba"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-old-in.jpg" alt="A rusted starter motor sitting above rusty water in the boat's engine bay"><span class="ba-tag">Before</span></div>
       <div class="ba"><img loading="lazy" decoding="async" width="1639" height="1229" src="img/boat-starter-new.jpg" alt="A new black starter motor bolted in the same spot, with the engine bay cleaned"><span class="ba-tag">After</span></div>
@@ -1285,7 +1389,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-rover" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="803" src="img/rover-ebox.jpg" alt="Inside the rover's electrical box: a fuse board with rows of red indicator lights between two motor controllers"></div>
 
     <div class="p-head">
@@ -1430,7 +1534,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-pontoon" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media pair" style="margin-top: 12px">
       <div class="ba"><img loading="lazy" decoding="async" width="1336" height="1229" src="img/pontoon-before.jpg" alt="An old pontoon boat with a worn deck, torn seats, and a bare console"><span class="ba-tag">Before</span></div>
       <div class="ba"><img loading="lazy" decoding="async" width="1600" height="900" src="img/pontoon-after-wide.jpg" alt="The rebuilt pontoon boat out on a lake, with new seating and a friend at the helm" style="object-position: 30% 50%"><span class="ba-tag">After</span></div>
@@ -1599,7 +1703,7 @@ a.media { display: block; color: inherit; }
 
 <main id="view-buggy" hidden>
   <div class="wrap article">
-    <a class="back" href="#work">← All work</a>
+    <a class="back" href="#work">← All projects</a>
     <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="739" src="img/buggy.jpg" alt="Tube-frame off-road buggy parked on a driveway"></div>
 
     <div class="p-head">
@@ -1695,34 +1799,34 @@ a.media { display: block; color: inherit; }
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-grid">
-    <div>
-      <div style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--fg)">Weston Prosser</div>
-      <div>Electrical engineering student.</div>
-      <div>San Diego, California.</div>
-      <div style="margin-top: 12px">© 2026 Weston Prosser</div>
-    </div>
-    <div class="foot-cols">
-      <div>
-        <div class="label">Site</div>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="label">Elsewhere</div>
-        <ul>
-          <li><a href="mailto:westonprosser04@gmail.com">Email</a></li>
-          <li><a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </div>
-    </div>
+  <div class="wrap foot-row">
+    <div>© 2026 Weston Prosser</div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#work">Projects</a>
+      <a href="#about">About</a>
+      <a href="mailto:westonprosser04@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/weston-g-prosser" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/GrumpyzPants" target="_blank" rel="noopener">GitHub</a>
+    </nav>
   </div>
 </footer>
+
+<div class="picks">
+<div class="pick pick-style" role="group" aria-label="Layout">
+  <span>Layout</span>
+  <button class="lay" type="button" data-lay="grid" aria-pressed="false">Grid</button>
+  <button class="lay" type="button" data-lay="list" aria-pressed="false">List</button>
+  <button class="lay" type="button" data-lay="side" aria-pressed="false">Side by side</button>
+  <button class="lay" type="button" data-lay="" aria-pressed="false">Before</button>
+</div>
+<div class="pick" role="group" aria-label="Accent color">
+  <span>Accent</span>
+  <button class="sw sw-amber" type="button" data-accent="amber" aria-label="Amber" aria-pressed="true"></button>
+  <button class="sw sw-green" type="button" data-accent="green" aria-label="Green" aria-pressed="false"></button>
+  <button class="sw sw-blue" type="button" data-accent="blue" aria-label="Blue" aria-pressed="false"></button>
+  <button class="sw sw-red" type="button" data-accent="red" aria-label="Red" aria-pressed="false"></button>
+</div>
+</div>
 
 <script>
 (function () {
@@ -1763,6 +1867,19 @@ a.media { display: block; color: inherit; }
   });
   var savedAccent = load('pf-accent');
   if (savedAccent && swatches.some(function (b) { return b.getAttribute('data-accent') === savedAccent; })) setAccent(savedAccent);
+
+  // Layout picker
+  var lays = Array.prototype.slice.call(document.querySelectorAll('.lay'));
+  function setLayout(name) {
+    if (name) root.setAttribute('data-style', name); else root.removeAttribute('data-style');
+    lays.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lay') === name)); });
+    try { window.dispatchEvent(new Event('resize')); window.dispatchEvent(new Event('scroll')); } catch (e) {}
+  }
+  lays.forEach(function (b) {
+    b.addEventListener('click', function () { var n = b.getAttribute('data-lay'); setLayout(n); save('pf-layout', n || 'before'); });
+  });
+  var savedLayout = load('pf-layout');
+  setLayout(savedLayout === 'before' ? '' : (savedLayout === 'list' || savedLayout === 'side' || savedLayout === 'grid') ? savedLayout : 'grid');
 
   // Fade sections in as they scroll into view
   var io = null;
