@@ -626,7 +626,7 @@ a.zoomable { cursor: zoom-in; }
     <div class="projects">
 
       <article class="proj" data-reveal>
-        <a class="media zoom" href="#endstop"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-angle.jpg" alt="Small black circuit board with a lever limit switch and two white connectors. Open the write-up."></a>
+        <a class="media zoom" href="#endstop"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-hero.jpg" alt="Small black circuit board seen from above, with a lever limit switch and two white connectors. Open the write-up."></a>
         <div class="proj-body">
           <div>
             <div class="label"><span class="num">01</span>Yonder Dynamics · Version 2</div>
@@ -777,7 +777,7 @@ a.zoomable { cursor: zoom-in; }
     </div>
     <div class="strip" data-reveal>
       <figure>
-        <div class="media zoom"><img loading="lazy" decoding="async" width="1561" height="830" src="img/endstop-top.jpg" alt="Close-up of hand-soldered surface-mount parts on the endstop board"></div>
+        <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/endstop-closeup.jpg" alt="Close-up of hand-soldered surface-mount parts on the endstop board"></div>
         <figcaption>Surface-mount parts on the endstop board.</figcaption>
       </figure>
       <figure>
@@ -1006,7 +1006,7 @@ a.zoomable { cursor: zoom-in; }
 <main id="view-endstop" hidden>
   <div class="wrap article">
     <a class="back" href="#work">← All projects</a>
-    <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-angle.jpg" alt="Small black circuit board with a lever limit switch and two white connectors"></div>
+    <div class="media zoom" style="margin-top: 12px"><img loading="lazy" decoding="async" width="1600" height="1144" src="img/endstop-hero.jpg" alt="Small black circuit board seen from above, with a lever limit switch and two white connectors"></div>
 
     <div class="p-head">
       <div>
@@ -1113,12 +1113,22 @@ a.zoomable { cursor: zoom-in; }
       </div>
       <div class="figs two">
         <figure>
-          <a class="media natural zoomable" href="img/endstop-top.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1561" height="830" src="img/endstop-top.jpg" alt="Top of the assembled endstop board"></a>
+          <a class="media natural zoomable" href="img/endstop-angle.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="809" src="img/endstop-angle.jpg" alt="The assembled endstop board from an angle, with the limit switch standing above the other parts"></a>
           <figcaption><span class="fig">Fig. 9</span> Top side, assembled.</figcaption>
         </figure>
         <figure>
           <a class="media natural zoomable" href="img/endstop-back.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1542" height="780" src="img/endstop-back.jpg" alt="Bottom of the board with the part number, revision, and a small gecko drawing"></a>
           <figcaption><span class="fig">Fig. 10</span> Bottom side: part number, revision, and the gecko.</figcaption>
+        </figure>
+      </div>
+      <div class="figs two">
+        <figure>
+          <div class="media"><video muted loop playsinline preload="none" poster="img/endstop-press-poster.jpg" aria-label="A finger pressing the limit switch on the endstop board. The green status LED turns off each time the switch is pressed"><source src="media/endstop-press-loop.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="fig">Fig. 11</span> Bench test: pressing the switch turns the status LED off.</figcaption>
+        </figure>
+        <figure>
+          <a class="media zoomable" href="img/endstop-closeup.jpg" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="900" src="img/endstop-closeup.jpg" alt="Close view of the resistors, capacitors, transistor, and LED soldered on the endstop board"></a>
+          <figcaption><span class="fig">Fig. 12</span> Close view of the hand-soldered parts.</figcaption>
         </figure>
       </div>
     </section>
@@ -1527,7 +1537,7 @@ a.zoomable { cursor: zoom-in; }
           <p>I also built a number of harnesses on the rover, for the NEO 550 motors, miscellaneous connectors, and the pair of servos that power the hand.</p>
         </div>
       </div>
-      <div class="figs three">
+      <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/neo-harness.jpg" alt="NEO motor with sleeved wires ending in a yellow power connector"></div>
           <figcaption><span class="fig">Fig. 6</span> NEO motor harness.</figcaption>
@@ -1537,8 +1547,12 @@ a.zoomable { cursor: zoom-in; }
           <figcaption><span class="fig">Fig. 7</span> Servo power harness for the hand.</figcaption>
         </figure>
         <figure>
+          <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1200" src="img/servo-harness-installed.jpg" alt="The two hand servos mounted on the rover, with the soldered harness, heat shrink, and yellow connectors in place"></div>
+          <figcaption><span class="fig">Fig. 8</span> The same harness installed on the rover's hand.</figcaption>
+        </figure>
+        <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/motor-connector.jpg" alt="Three-pin yellow motor connector with white, black, and red wires"></div>
-          <figcaption><span class="fig">Fig. 8</span> Three-pin motor connector.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> Three-pin motor connector.</figcaption>
         </figure>
       </div>
     </section>
@@ -1550,25 +1564,25 @@ a.zoomable { cursor: zoom-in; }
           <p>The bottom of the rover's electrical box was a scratched sheet of acrylic with velcro stuck all over it. In November 2026, another club member and I replaced it.</p>
           <p>We designed a new plate in Onshape, laser cut it, and bolted it in. It's larger, cleaner, and there are fewer random holes.</p>
           <p>In a moment of frustration, the old one was removed, measured, redesigned, and installed all within 3 hours.</p>
-          <p>This is only version 1. Some improvements to be made are a laser-engraved Yonder logo, larger screw holes, rounded edges to remove sharp points, and better magnetic mounting for the pegboard attachment seen in Figure 12.</p>
+          <p>This is only version 1. Some improvements to be made are a laser-engraved Yonder logo, larger screw holes, rounded edges to remove sharp points, and better magnetic mounting for the pegboard attachment seen in Figure 13.</p>
         </div>
       </div>
       <div class="figs two">
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1475" height="1229" src="img/ebox-plate-old.jpg" alt="The old bottom of the electrical box: scratched clear acrylic covered in strips of velcro"></div>
-          <figcaption><span class="fig">Fig. 9</span> Before: scratched acrylic and velcro.</figcaption>
+          <figcaption><span class="fig">Fig. 10</span> Before: scratched acrylic and velcro.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/ebox-plate-new.jpg" alt="The new white laser-cut plate bolted into the rover's blue frame, with orange standoffs"></div>
-          <figcaption><span class="fig">Fig. 10</span> After: the new plate in the rover's frame.</figcaption>
+          <figcaption><span class="fig">Fig. 11</span> After: the new plate in the rover's frame.</figcaption>
         </figure>
         <figure>
           <div class="media r43 shot"><img loading="lazy" decoding="async" width="1511" height="960" src="img/ebox-plate-onshape.png" alt="Onshape sketch of the plate with its mounting holes"></div>
-          <figcaption><span class="fig">Fig. 11</span> The plate in Onshape.</figcaption>
+          <figcaption><span class="fig">Fig. 12</span> The plate in Onshape.</figcaption>
         </figure>
         <figure>
           <div class="media r43 zoom"><img loading="lazy" decoding="async" width="1600" height="1154" src="img/ebox-pegboard.jpg" alt="A white pegboard carrying motor controllers, fuse boards, and wiring harnesses"></div>
-          <figcaption><span class="fig">Fig. 12</span> The pegboard attachment that mounts in the box. The pegboard is not my design.</figcaption>
+          <figcaption><span class="fig">Fig. 13</span> The pegboard attachment that mounts in the box. The pegboard is not my design.</figcaption>
         </figure>
       </div>
     </section>
@@ -1825,6 +1839,20 @@ a.zoomable { cursor: zoom-in; }
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="720" height="1280" src="img/pontoon-after.jpg" alt="New blue and white seating on the finished pontoon boat, out on a lake"></div>
           <figcaption><span class="fig">Fig. 15</span> The finished seating.</figcaption>
+        </figure>
+      </div>
+      <div class="figs three">
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-later-forward.jpg" alt="The pontoon boat's deck at the dock, looking toward the console and the corner seating, with the lake beyond"></div>
+          <figcaption><span class="fig">Fig. 16</span> Three years later, at the dock.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-later-helm.jpg" alt="The console from above, with the switch panel lit, the steering wheel, and the throttle"></div>
+          <figcaption><span class="fig">Fig. 17</span> The console, with the switch panel lit.</figcaption>
+        </figure>
+        <figure>
+          <div class="media tall zoom"><img loading="lazy" decoding="async" width="1200" height="1600" src="img/pontoon-later-aft.jpg" alt="The deck looking the other way, with two folding seats by the gate"></div>
+          <figcaption><span class="fig">Fig. 18</span> The deck from the other end.</figcaption>
         </figure>
       </div>
     </section>
