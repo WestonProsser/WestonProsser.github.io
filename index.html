@@ -976,22 +976,28 @@ a.zoomable { cursor: zoom-in; }
           <p>The board came back and all the components fit. However, because I transferred to UCSD, the board was never soldered and tested.</p>
         </div>
       </div>
+      <div class="figs">
+        <figure>
+          <a class="media natural zoomable" href="img/lm-schematic.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="1047" src="img/lm-schematic.png" alt="Schematic in eight labelled blocks: two adder chips, the analog-to-digital converter, two XOR chips, the Wheatstone bridge, the add or subtract switch, the eight input switches, nine output LEDs, and the converter's clock parts"></a>
+          <figcaption><span class="fig">Fig. 5</span> The schematic, drawn in EasyEDA. The 1 kΩ LED resistors are placeholders.</figcaption>
+        </figure>
+      </div>
       <div class="figs two">
         <figure>
           <div class="media box43"><img loading="lazy" decoding="async" width="688" height="740" src="img/lm-layout.png" alt="PCB layout with five chip footprints, a switch block, and a row of LED pads"></div>
-          <figcaption><span class="fig">Fig. 5</span> The layout.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> The layout.</figcaption>
         </figure>
         <figure>
           <div class="media box43"><img loading="lazy" decoding="async" width="1247" height="927" src="img/pcb-render.jpg" alt="3D view of the circuit board design"></div>
-          <figcaption><span class="fig">Fig. 6</span> The board design, 3D view.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> The board design, 3D view.</figcaption>
         </figure>
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/lm-pcb-angle.jpg" alt="The fabricated black circuit board before the chips were added"></div>
-          <figcaption><span class="fig">Fig. 7</span> The fabricated board.</figcaption>
+          <figcaption><span class="fig">Fig. 8</span> The fabricated board.</figcaption>
         </figure>
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/pcb-bare.jpg" alt="Fabricated black circuit board with five logic chips placed"></div>
-          <figcaption><span class="fig">Fig. 8</span> With the logic chips placed.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> With the logic chips placed.</figcaption>
         </figure>
       </div>
     </section>
@@ -1213,14 +1219,20 @@ a.zoomable { cursor: zoom-in; }
           <p>When the magnet is brought close, the output flips. This shows as the green LED turning off and the red LED turning on.</p>
         </div>
       </div>
+      <div class="figs" style="max-width: 640px">
+        <figure>
+          <a class="media natural zoomable" href="img/hall-circuit-built.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="979" src="img/hall-circuit-built.png" alt="Hand-drawn circuit: a Hall sensor module feeds a transistor through a 4.7 kΩ resistor, with a capacitor to ground. An LED and a 470 Ω resistor run from 5 V to the transistor's output, which is the signal"></a>
+          <figcaption><span class="fig">Fig. 3</span> The circuit as built.</figcaption>
+        </figure>
+      </div>
       <div class="figs wide-narrow">
         <figure>
           <div class="media zoom"><img loading="lazy" decoding="async" width="1600" height="900" src="img/hall-breadboard.jpg" alt="An ESP32 board wired to a breadboard holding the hall-effect sensor, a transistor, and an LED"></div>
-          <figcaption><span class="fig">Fig. 3</span> The sensor circuit on a breadboard, read by an ESP32.</figcaption>
+          <figcaption><span class="fig">Fig. 4</span> The sensor circuit on a breadboard, read by an ESP32.</figcaption>
         </figure>
         <figure>
           <div class="media natural"><video muted loop playsinline preload="none" poster="img/hall-bench-poster.jpg" aria-label="Close view of the breadboard as the sensor is triggered and the LEDs change"><source src="media/hall-bench-loop.mp4" type="video/mp4"></video></div>
-          <figcaption><span class="fig">Fig. 4</span> Triggering the sensor on the bench.</figcaption>
+          <figcaption><span class="fig">Fig. 5</span> Triggering the sensor on the bench.</figcaption>
         </figure>
       </div>
     </section>
@@ -1236,15 +1248,15 @@ a.zoomable { cursor: zoom-in; }
       <div class="figs three">
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-front.jpg" alt="Front of the hand-built sensor board with a sleeved cable"></div>
-          <figcaption><span class="fig">Fig. 5</span> The finished board.</figcaption>
+          <figcaption><span class="fig">Fig. 6</span> The finished board.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-lit.jpg" alt="The sensor board powered on with its green light lit"></div>
-          <figcaption><span class="fig">Fig. 6</span> Powered on.</figcaption>
+          <figcaption><span class="fig">Fig. 7</span> Powered on.</figcaption>
         </figure>
         <figure>
           <div class="media tall zoom"><img loading="lazy" decoding="async" width="691" height="1229" src="img/hall-bracket.jpg" alt="The sensor board sitting in a black 3D-printed bracket with its cable tied down"></div>
-          <figcaption><span class="fig">Fig. 7</span> In its bracket.</figcaption>
+          <figcaption><span class="fig">Fig. 8</span> In its bracket.</figcaption>
         </figure>
       </div>
     </section>
@@ -1254,7 +1266,7 @@ a.zoomable { cursor: zoom-in; }
         <div><div class="step-num">05</div><h2>Getting the ODrive to see it</h2></div>
         <div>
           <p>Initial testing made it look like the ODrive didn't see the sensor. The input never changed on screen, even though the status LEDs worked as expected.</p>
-          <p>This led to a long debugging process and hours of testing in the ODrive GUI. The issue was simply that the ODrive tool wasn't sampling live, so the sensor's state never updated on screen. This is best shown in Figure 9, where the arrow points to the on/off button for sampling.</p>
+          <p>This led to a long debugging process and hours of testing in the ODrive GUI. The issue was simply that the ODrive tool wasn't sampling live, so the sensor's state never updated on screen. This is best shown in Figure 10, where the arrow points to the on/off button for sampling.</p>
           <p>Once that was fixed, GPIO 7 was set as the digital input, the minimum endstop was pointed at it, and the "active high" setting was selected. The result is the working slide in the video at the top of this page. I included a brief write-up to document the process for future use.</p>
           <p>The ODrive is set up with a revolution limit. When the rover is powered on, the slide moves to the end position, hits the endstop, then runs a set number of revolutions back to the middle position. The ODrive then sets software limits for each end of the linear slide, similar to a 3D printer.</p>
         </div>
@@ -1262,11 +1274,11 @@ a.zoomable { cursor: zoom-in; }
       <div class="figs two">
         <figure>
           <a class="media natural zoomable" href="img/odrive-settings.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="632" height="607" src="img/odrive-settings.png" alt="ODrive settings list for the linear slide, showing pin 7 set to digital and the minimum endstop enabled"></a>
-          <figcaption><span class="fig">Fig. 8</span> The endstop and homing settings for the slide.</figcaption>
+          <figcaption><span class="fig">Fig. 9</span> The endstop and homing settings for the slide.</figcaption>
         </figure>
         <figure>
           <a class="media natural zoomable" href="img/odrive-inspector.png" target="_blank" rel="noopener" title="Open full size"><img loading="lazy" decoding="async" width="1600" height="908" src="img/odrive-inspector.png" alt="ODrive tool screenshot with a hand-drawn arrow pointing at the run button"></a>
-          <figcaption><span class="fig">Fig. 9</span> The ODrive tool. The arrow points to the button that turns sampling on and off.</figcaption>
+          <figcaption><span class="fig">Fig. 10</span> The ODrive tool. The arrow points to the button that turns sampling on and off.</figcaption>
         </figure>
       </div>
     </section>
